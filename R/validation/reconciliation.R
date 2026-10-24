@@ -14,15 +14,29 @@ reconcile_game_totals_impl <- function(con) {
   }
   # Reconcile both the schedule and boxes against the reference independently.
   DBI::dbExecute(con,"INSERT INTO reconciliation_checks SELECT g.game_id,r.team_id,r.dataset_id,r.source_game_id,'schedule_points',CASE WHEN r.home THEN g.home_score ELSE g.away_score END,r.points,(CASE WHEN r.home THEN g.home_score ELSE g.away_score END)-r.points,(CASE WHEN r.home THEN g.home_score ELSE g.away_score END)=r.points,TRUE FROM games g JOIN reference_matches m USING(game_id) JOIN independent_team_totals r ON r.source_game_id=m.source_game_id AND r.dataset_id=m.dataset_id")
+  resolved<-DBI::dbGetQuery(con,'SELECT g.game_id,g.season,r.team_id,r.source_game_id,r.mapped_player_team_rows,r.dataset_id FROM reference_matches m JOIN games g USING(game_id) JOIN independent_team_totals r ON m.source_game_id=r.source_game_id AND m.dataset_id=r.dataset_id WHERE r.mapped_player_team_rows>0')
+  if(nrow(resolved))upsert_rows(con,'quality_exceptions',exception_rows(resolved$game_id,resolved$season,'reference_identity_resolution','missing_team_id_resolved_by_provider_metadata',paste('NBA game',resolved$source_game_id,'team',resolved$team_id,'player rows',resolved$mapped_player_team_rows,'matched uniquely on game/home/team/opponent metadata; statistics unchanged'),severity='warning',dataset_id=resolved$dataset_id),'exception_id')
   mismatches<-DBI::dbGetQuery(con,'SELECT c.*,g.season FROM reconciliation_checks c JOIN games g USING(game_id) WHERE passed IS DISTINCT FROM TRUE')
-  if(nrow(mismatches)) upsert_rows(con,'quality_exceptions',exception_rows(mismatches$game_id,mismatches$season,'independent_reconciliation',paste0('reference_',mismatches$metric),paste('team',mismatches$team_id,'warehouse',mismatches$warehouse_value,'reference',mismatches$reference_value),dataset_id=mismatches$reference_dataset_id),'exception_id')
+  if(nrow(mismatches)) upsert_rows(con,'quality_exceptions',exception_rows(mismatches$game_id,mismatches$season,'independent_reconciliation',paste0('reference_',mismatches$metric),paste('team',mismatches$team_id,'warehouse',mismatches$warehouse_value,'reference',mismatches$reference_value),severity=ifelse(is.na(mismatches$passed),'warning','error'),dataset_id=mismatches$reference_dataset_id),'exception_id')
   # Invalidate published reconstructions immediately on an independent
   # contradiction, even before the reconstruction job is rerun.
-  DBI::dbExecute(con,'CREATE OR REPLACE TEMP TABLE reference_conflicts AS SELECT DISTINCT game_id FROM reconciliation_checks WHERE passed IS DISTINCT FROM TRUE')
+  # A missing source turnover total may have been checked directly against
+  # the reference. Re-evaluate that observed event count on reference refresh.
+  DBI::dbExecute(con,"CREATE OR REPLACE TEMP TABLE pbp_reference_updates AS
+    WITH providers AS (SELECT e.game_id,min(d.source_id) source_id FROM pbp_events e LEFT JOIN datasets d USING(dataset_id) GROUP BY e.game_id HAVING count(*)=count(d.source_id) AND count(DISTINCT d.source_id)=1)
+    SELECT p.game_id,p.team_id,p.metric,p.observed,r.dataset_id,r.source_game_id,
+      CASE WHEN r.source_id<>providers.source_id THEN r.total_turnovers ELSE NULL END expected
+    FROM pbp_reconciliation_checks p LEFT JOIN reference_matches m USING(game_id)
+    LEFT JOIN independent_team_totals r ON m.dataset_id=r.dataset_id AND m.source_game_id=r.source_game_id AND p.team_id=r.team_id
+    LEFT JOIN providers ON p.game_id=providers.game_id
+    WHERE p.metric='total_turnovers' AND p.box_value IS NULL")
+  DBI::dbExecute(con,"UPDATE pbp_reconciliation_checks p SET benchmark_value=u.expected,benchmark_dataset_id=u.dataset_id,benchmark_game_id=u.source_game_id,benchmark_type=CASE WHEN u.expected IS NULL THEN 'unavailable' ELSE 'independent_reference' END,difference=p.observed-u.expected,passed=CASE WHEN p.observed IS NULL OR u.expected IS NULL THEN NULL ELSE p.observed=u.expected END,status=CASE WHEN p.observed IS NULL OR u.expected IS NULL THEN 'unavailable' WHEN p.observed=u.expected THEN 'match' ELSE 'mismatch' END FROM pbp_reference_updates u WHERE p.game_id=u.game_id AND p.team_id=u.team_id AND p.metric=u.metric")
+  DBI::dbExecute(con,"CREATE OR REPLACE TEMP TABLE reference_conflicts AS SELECT DISTINCT game_id FROM reconciliation_checks WHERE passed IS FALSE UNION SELECT DISTINCT game_id FROM pbp_reconciliation_checks WHERE metric='total_turnovers' AND box_value IS NULL AND passed IS DISTINCT FROM TRUE")
   DBI::dbExecute(con,'DELETE FROM lineup_players WHERE lineup_id IN (SELECT lineup_id FROM lineups WHERE game_id IN (SELECT game_id FROM reference_conflicts))')
   for(table in c('lineups','possessions','possession_events','non_possession_points'))DBI::dbExecute(con,paste('DELETE FROM',table,'WHERE game_id IN (SELECT game_id FROM reference_conflicts)'))
   DBI::dbExecute(con,"UPDATE reconstruction_status SET possessions_status='unresolved_reference',lineups_status='unresolved_reference' WHERE game_id IN (SELECT game_id FROM reference_conflicts)")
   DBI::dbRemoveTable(con,'reference_conflicts')
+  DBI::dbRemoveTable(con,'pbp_reference_updates')
   DBI::dbRemoveTable(con,'reference_matches')
   invisible(mismatches)
 }

@@ -142,15 +142,45 @@ testthat::test_that('independent turnovers come from player records across chang
   testthat::expect_equal(current$total_turnovers,13L)
 })
 
-testthat::test_that('missing independent metrics remain unavailable and block false certification', {
+testthat::test_that('missing independent metrics remain unavailable without inventing a contradiction', {
   con<-connect_warehouse(':memory:');on.exit(DBI::dbDisconnect(con,shutdown=TRUE))
   ingest_bundle(con,sample_bundle(),'2024-25');import_reference(con,load_reference_fixture())
-  DBI::dbExecute(con,"UPDATE independent_team_totals SET turnovers=NULL WHERE team_id='espn:13'")
+  DBI::dbExecute(con,"UPDATE independent_team_totals SET turnovers=NULL,total_turnovers=NULL WHERE team_id='espn:13'")
   testthat::expect_silent(suppressMessages(reconcile_game_totals(con)))
   checks<-DBI::dbReadTable(con,'reconciliation_checks')
   testthat::expect_equal(sum(is.na(checks$passed)),3L)
   reconstruct_season(con,'2024-25')
+  testthat::expect_gt(nrow(DBI::dbReadTable(con,'possessions')),0L)
+  testthat::expect_equal(DBI::dbGetQuery(con,'SELECT count(*) n FROM (SELECT game_id FROM reconciliation_checks GROUP BY game_id HAVING bool_and(passed IS TRUE))')$n,0)
+})
+
+testthat::test_that('an explicit independent turnover total validates a missing source field without filling it', {
+  x<-normalize_bundle(sample_bundle(),'2024-25');g<-x$games[1,,drop=FALSE]
+  e<-x$pbp_events[x$pbp_events$game_id==g$game_id,];p<-x$player_box_scores[x$player_box_scores$game_id==g$game_id,];b<-x$team_box_scores[x$team_box_scores$game_id==g$game_id,]
+  ref<-normalize_reference(load_reference_fixture());ref<-ref[ref$game_date==g$game_date & ref$team_id%in%c(g$home_team_id,g$away_team_id),];ref$independent<-TRUE
+  b$total_turnovers<-NA_integer_;f<-event_features(e,p)
+  result<-reconcile_pbp_box(e,b,f,ref);checks<-attr(result,'checks');checks<-checks[checks$metric=='total_turnovers',]
+  testthat::expect_length(result,0L)
+  testthat::expect_true(all(is.na(b$total_turnovers)) && all(is.na(checks$box_value)))
+  testthat::expect_true(all(checks$passed & checks$benchmark_type=='independent_reference'))
+  testthat::expect_true(all(checks$benchmark_dataset_id%in%ref$dataset_id & checks$benchmark_game_id%in%ref$source_game_id))
+  ref$total_turnovers<-ref$total_turnovers+1L
+  testthat::expect_true(any(grepl('PBP/reference',reconcile_pbp_box(e,b,f,ref))))
+  ref$total_turnovers<-NA_integer_
+  testthat::expect_true(any(grepl('critical metric unavailable',reconcile_pbp_box(e,b,f,ref))))
+})
+
+testthat::test_that('changed turnover benchmarks withdraw publication and invalidate checkpoints', {
+  con<-connect_warehouse(':memory:');on.exit(DBI::dbDisconnect(con,shutdown=TRUE))
+  ingest_bundle(con,sample_bundle(),'2024-25');import_reference(con,load_reference_fixture());reconcile_game_totals(con)
+  DBI::dbExecute(con,'UPDATE team_box_scores SET total_turnovers=NULL')
+  reconstruct_season(con,'2024-25')
+  testthat::expect_gt(nrow(DBI::dbReadTable(con,'possessions')),0L)
+  DBI::dbExecute(con,"UPDATE independent_team_totals SET total_turnovers=total_turnovers+1 WHERE team_id='espn:13'")
+  reconcile_game_totals(con)
   testthat::expect_equal(nrow(DBI::dbReadTable(con,'possessions')),0L)
+  reconstruct_season(con,'2024-25')
+  testthat::expect_true(all(DBI::dbReadTable(con,'reconstruction_status')$possessions_status=='unresolved'))
 })
 
 testthat::test_that('a replacement reference snapshot withdraws absent normalized rows but keeps provenance', {
@@ -162,6 +192,7 @@ testthat::test_that('a replacement reference snapshot withdraws absent normalize
   ref$path<-tempfile(fileext='.csv');on.exit(unlink(ref$path),add=TRUE)
   utils::write.csv(ref$data,ref$path,row.names=FALSE)
   ref$sha256<-file_sha256(ref$path);ref$revision<-'fixture-with-withdrawn-records'
+  ref<-attach_reference_players(ref,path='data/sample/independent_player_rows.csv',download=FALSE)
   import_reference(con,ref)
   testthat::expect_equal(nrow(DBI::dbReadTable(con,'independent_team_totals')),nrow(before)-2L)
   testthat::expect_equal(nrow(DBI::dbReadTable(con,'dataset_dependencies')),4L)

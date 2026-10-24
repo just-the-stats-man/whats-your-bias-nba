@@ -35,6 +35,7 @@ Rscript -e "source('scripts/load.R'); targets::tar_make()"
 Rscript scripts/ingest.R 2024-25
 Rscript scripts/audited_backfill.R
 Rscript scripts/reconstruct.R
+Rscript scripts/reconstruct_parallel.R
 Rscript scripts/report_completeness.R
 quarto render articles/luka-efficiency.qmd
 ```
@@ -53,6 +54,9 @@ in `quality_exceptions` and the season report, not silently repaired. A fatal
 season/download failure returns nonzero. Quarantined games can coexist with a
 completed audit attempt. The original incremental `backfill.R` remains
 available, but use the audited commands above for research-ready processing.
+The serial and parallel reconstruction commands are alternatives. Parallel
+processing uses isolated season databases and publishes only after all workers
+pass integrity checks; it can substantially reduce a full historical rerun.
 
 The scheduled GitHub workflow retrieves licensed SDV and Kaggle archives,
 reconstructs, reconciles and reports; it does not scrape NBA/ESPN websites.

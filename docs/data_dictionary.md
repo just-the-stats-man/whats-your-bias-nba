@@ -1,5 +1,11 @@
 # Data dictionary
 
+PBP reconciliation records retain the original source `box_value` separately
+from a comparison's `benchmark_value`, type, dataset and provider game ID.
+An independently reported total can validate a missing source field without
+filling that field. Independent team totals also record `reference_player_rows`
+and `mapped_player_team_rows` for strict provider-metadata identity resolution.
+
 Column names and SQL types are in `config/schema.sql` and the idempotent
 existing-warehouse migrations in `R/database/warehouse.R`.
 All identifiers are VARCHAR, counts INTEGER, money DOUBLE in nominal USD,

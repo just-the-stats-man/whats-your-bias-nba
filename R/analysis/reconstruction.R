@@ -240,18 +240,30 @@ reconstruct_lineups <- function(e,game,roster,features=event_features(e,roster))
   list(lineups=lf,members=mf,checks=checks,issues=issues,resolved=resolved,expected=2L*max(e$period))
 }
 
-reconcile_pbp_box <- function(e,box,features) {
+reconcile_pbp_box <- function(e,box,features,reference=NULL) {
   f<-features;issues<-character();checks<-list()
   for(i in seq_len(nrow(box))) {
     team<-box$team_id[i];sel<-e$team_id%in%team
     unknown_attempts<-sum(sel & f$fg & is.na(f$value))
     observed<-c(points=sum(f$points[sel],na.rm=TRUE),fgm=sum(sel & f$fg & f$made),fga=sum(sel & f$fg),fg3m=sum(sel & f$fg & f$made & f$value%in%3),fg3a=if(unknown_attempts)NA_real_ else sum(sel & f$fg & f$value%in%3),ftm=sum(sel & f$ft & f$made),fta=sum(sel & f$ft),total_turnovers=sum(sel & f$tov))
     for(metric in names(observed)) {
-      value<-observed[[metric]];expected<-box[[metric]][i]
+      value<-observed[[metric]];box_value<-box[[metric]][i];expected<-box_value
+      benchmark_type<-'team_box';benchmark_dataset_id<-box$dataset_id[i];benchmark_game_id<-e$game_id[1]
+      # Some ESPN seasons omit the team-inclusive turnover total. An explicit
+      # uniquely matched NBA-derived total can validate the event count without
+      # changing the missing ESPN cell or assigning unattributed turnovers.
+      if(metric=='total_turnovers' && is.na(expected) && !is.null(reference)) {
+        r<-reference[reference$team_id%in%team & reference$independent%in%TRUE,,drop=FALSE]
+        if(nrow(r)==1L && !is.na(r$total_turnovers)) {
+          expected<-r$total_turnovers;benchmark_type<-'independent_reference'
+          benchmark_dataset_id<-r$dataset_id;benchmark_game_id<-r$source_game_id
+        }
+      }
+      if(is.na(expected))benchmark_type<-'unavailable'
       passed<-if(is.na(value) || is.na(expected))NA else value==expected
       status<-if(is.na(passed))'unavailable' else if(passed)'match' else 'mismatch'
-      checks[[length(checks)+1L]]<-data.frame(game_id=e$game_id[1],team_id=team,metric=metric,observed=as.numeric(value),box_value=as.numeric(expected),difference=as.numeric(value-expected),passed=passed,status=status,unknown_events=if(metric=='fg3a')unknown_attempts else 0L,version=reconstruction_version)
-      if(status=='mismatch')issues<-c(issues,paste('PBP/box',team,metric,value,'!=',expected))
+      checks[[length(checks)+1L]]<-data.frame(game_id=e$game_id[1],team_id=team,metric=metric,observed=as.numeric(value),box_value=as.numeric(box_value),difference=as.numeric(value-expected),passed=passed,status=status,unknown_events=if(metric=='fg3a')unknown_attempts else 0L,version=reconstruction_version,benchmark_type=benchmark_type,benchmark_dataset_id=benchmark_dataset_id,benchmark_game_id=benchmark_game_id,benchmark_value=as.numeric(expected))
+      if(status=='mismatch')issues<-c(issues,paste(if(benchmark_type=='independent_reference')'PBP/reference' else 'PBP/box',team,metric,value,'!=',expected))
       if(status=='unavailable' && metric!='fg3a')issues<-c(issues,paste('PBP/box critical metric unavailable',team,metric))
     }
   }

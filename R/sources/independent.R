@@ -46,8 +46,10 @@ normalize_reference <- function(item,years=2016:2027) {
   idx<-match(paste(id,as.character(d$teamId)),key)
   out$reported_turnovers<-out$turnovers
   out$turnovers<-as.integer(item$player_totals$player_turnovers[idx])
+  out$mapped_player_team_rows<-as.integer(item$player_totals$mapped_team_rows[idx])
+  out$reference_player_rows<-as.integer(item$player_totals$player_rows[idx])
   out$total_turnovers<-if('turnoversTeam'%in%names(d))as.integer(out$turnovers+d$turnoversTeam) else NA_integer_
-  out$dataset_id<-paste0('kaggle:team_player_v1:',item$revision,':',item$sha256,':',item$player_sha256,':',item$player_transform_id)
+  out$dataset_id<-paste0('kaggle:team_player_v2:',item$revision,':',item$sha256,':',item$player_sha256,':',item$player_transform_id)
   deduplicate(out,c('source_id','source_game_id','team_id'))
 }
 
@@ -62,7 +64,7 @@ import_reference <- function(con,item=fetch_independent_totals()) {
     arrow::write_parquet(d,normalized_path)
     manifest<-data.frame(dataset_id=c(raw_team_id,raw_player_id,unique(d$dataset_id)),source_id='eoin_moore_nba',url=c(item$url,item$player_url,item$url),revision=item$revision,retrieved_at=c(file.info(item$path)$mtime,file.info(item$player_path)$mtime,Sys.time()),sha256=c(item$sha256,item$player_sha256,file_sha256(normalized_path)),raw_path=c(item$path,item$player_path,normalized_path),row_count=c(nrow(item$data),item$player_row_count,nrow(d)))
     upsert_rows(con,'datasets',manifest,'dataset_id')
-    dependencies<-data.frame(dataset_id=unique(d$dataset_id),parent_dataset_id=c(raw_team_id,raw_player_id),transformation='Team totals joined to independent player turnover sums; v1')
+    dependencies<-data.frame(dataset_id=unique(d$dataset_id),parent_dataset_id=c(raw_team_id,raw_player_id),transformation='Observed player turnover sums; missing team IDs require unique same-provider game/home/team/opponent metadata; v2')
     upsert_rows(con,'dataset_dependencies',dependencies,c('dataset_id','parent_dataset_id'))
     # A selected snapshot replaces the normalized reference scope. Preserve
     # old raw/manifests, but never silently retain a withdrawn reference row.

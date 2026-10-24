@@ -1,12 +1,20 @@
+game_reference_signature <- function(checks,totals) {
+  rownames(checks)<-NULL;rownames(totals)<-NULL
+  digest::digest(list(checks=checks,totals=totals),algo='sha256')
+}
+
 reconstruct_season <- function(con,season,force=FALSE,batch_size=50L) {
   games<-DBI::dbGetQuery(con,'SELECT * FROM games WHERE season=? ORDER BY game_date,game_id',params=list(season))
   done<-DBI::dbGetQuery(con,'SELECT game_id,dataset_id,reference_signature FROM reconstruction_status WHERE season=? AND version=?',params=list(season,reconstruction_version))
   events<-DBI::dbGetQuery(con,'SELECT e.* FROM pbp_events e JOIN games g USING(game_id) WHERE g.season=? ORDER BY e.game_id,e.event_order',params=list(season))
   boxes<-DBI::dbGetQuery(con,'SELECT p.* FROM player_box_scores p JOIN games g USING(game_id) WHERE g.season=?',params=list(season))
   teams<-DBI::dbGetQuery(con,'SELECT t.* FROM team_box_scores t JOIN games g USING(game_id) WHERE g.season=?',params=list(season))
-  independent_failures<-DBI::dbGetQuery(con,'SELECT DISTINCT game_id FROM reconciliation_checks WHERE passed IS DISTINCT FROM TRUE')$game_id
+  independent_failures<-DBI::dbGetQuery(con,'SELECT DISTINCT game_id FROM reconciliation_checks WHERE passed IS FALSE')$game_id
+  reference_totals<-DBI::dbGetQuery(con,'SELECT DISTINCT c.game_id,r.team_id,r.total_turnovers,r.dataset_id,r.source_game_id,r.source_id FROM reconciliation_checks c JOIN independent_team_totals r ON c.reference_dataset_id=r.dataset_id AND c.reference_game_id=r.source_game_id AND c.team_id=r.team_id JOIN games g ON c.game_id=g.game_id WHERE g.season=? ORDER BY c.game_id,r.team_id',params=list(season))
+  source_ids<-DBI::dbGetQuery(con,'SELECT dataset_id,source_id FROM datasets')
   reference<-DBI::dbGetQuery(con,'SELECT c.* FROM reconciliation_checks c JOIN games g USING(game_id) WHERE g.season=? ORDER BY c.game_id,c.team_id,c.metric',params=list(season))
-  signatures<-lapply(split(reference,reference$game_id),function(d)digest::digest(d,algo='sha256'))
+  check_groups<-split(reference,reference$game_id);total_groups<-split(reference_totals,reference_totals$game_id)
+  signatures<-lapply(names(check_groups),function(id)game_reference_signature(check_groups[[id]],total_groups[[id]]));names(signatures)<-names(check_groups)
   ei<-split(seq_len(nrow(events)),events$game_id);pi<-split(seq_len(nrow(boxes)),boxes$game_id);ti<-split(seq_len(nrow(teams)),teams$game_id)
   for(batch in split(seq_len(nrow(games)),ceiling(seq_len(nrow(games))/batch_size))) {
     results<-list()
@@ -17,7 +25,9 @@ reconstruct_season <- function(con,season,force=FALSE,batch_size=50L) {
       result<-tryCatch({
         f<-event_features(e,p)
         pos<-reconstruct_possessions(e,g,p,f);lu<-reconstruct_lineups(e,g,p,f)
-        common<-reconcile_pbp_box(e,t,f)
+        benchmark<-reference_totals[reference_totals$game_id==id,,drop=FALSE]
+        benchmark$independent<-benchmark$source_id!=source_ids$source_id[match(e$dataset_id[1],source_ids$dataset_id)]
+        common<-reconcile_pbp_box(e,t,f,benchmark)
         checks<-attr(common,'checks')
         if(id%in%independent_failures)common<-c(common,'independent game-level totals disagree')
         pos$issues<-unique(c(pos$issues,common))
@@ -47,7 +57,7 @@ reconstruct_season <- function(con,season,force=FALSE,batch_size=50L) {
         if(!is.null(r$checks)) {
           queue('pbp_reconciliation_checks',r$checks)
           unavailable<-r$checks[r$checks$status=='unavailable',,drop=FALSE]
-          if(nrow(unavailable))queue('quality_exceptions',exception_rows(r$id,season,'pbp_metric','unavailable_attempt_classification',paste(unavailable$team_id,unavailable$metric,'unknown events',unavailable$unknown_events),severity='warning',dataset_id=r$dataset_id))
+          if(nrow(unavailable))queue('quality_exceptions',exception_rows(r$id,season,'pbp_metric',ifelse(unavailable$metric=='fg3a','unavailable_attempt_classification','unavailable_reconciliation_benchmark'),paste(unavailable$team_id,unavailable$metric,'unknown events',unavailable$unknown_events,'benchmark',unavailable$benchmark_type),severity='warning',dataset_id=r$dataset_id))
         }
         if(po_ok) {
           queue('possessions',r$pos$possessions)

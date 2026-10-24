@@ -110,10 +110,29 @@ player benchmark is summed directly from the independent player file, never
 selected by whichever total matches ESPN. Duplicate/missing observations do
 not become verified zeros. Reported values remain available; normalized
 records link to both raw parents through `dataset_dependencies`.
+Some independent player rows omit their team ID. A missing ID resolves only
+through a unique record in the same provider's team file sharing the game ID,
+home/away flag, team name and opponent name. Present conflicting identifiers
+are not overridden. No statistic is filled from this match. Resolution counts
+and affected games are recorded; ambiguous identity or missing/fractional
+turnover observations leave the benchmark unavailable.
 Team-inclusive turnovers additionally validate PBP/box
 counts. Missing values do not pass. Unmatched games, reference-only games and
 contradictions have separate report categories. Neither feed is assumed
 complete or error-free; agreement is not proof of independent ground truth.
+
+An unavailable independent metric is not a contradiction. Internally
+reconciled possessions and lineups can be published when every available
+comparison agrees; full independent certification still requires every
+requested reference metric. Actual contradictions withdraw publication.
+
+When an ESPN team-inclusive turnover field is absent, its value remains NULL.
+The observed PBP count may instead be compared directly with an explicit,
+uniquely matched independent total. `pbp_reconciliation_checks` retains the
+original `box_value` alongside `benchmark_value`, `benchmark_type`,
+`benchmark_dataset_id` and `benchmark_game_id`. A missing or contradictory
+required benchmark withholds reconstruction. Reference refresh rechecks these
+direct comparisons immediately; checkpoints include their actual values.
 
 An invalid/missing ESPN team box may be replaced by an **entire** uniquely
 matched NBA-derived team record, attributed to its dataset. It must still
@@ -140,6 +159,13 @@ Rscript scripts/reconstruct.R
 Rscript scripts/report_completeness.R
 Rscript scripts/test.R
 ```
+
+For a full recomputation, `Rscript scripts/reconstruct_parallel.R` runs isolated
+season workers (default four; set `WYB_WORKERS` to change the limit). The parent
+keeps the warehouse write lock, freezes input Parquet snapshots, and publishes
+all selected seasons in one transaction after every worker passes integrity.
+The workers use the same parser as the serial command; real-fixture tests
+compare their possession, lineup, minute, benchmark and status outputs.
 
 The audit defaults to 2015–16 through the pinned 2026–27 snapshot. Optional
 numeric arguments select individual end years, e.g. `2016 2025` selects two
