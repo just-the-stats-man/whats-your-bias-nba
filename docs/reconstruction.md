@@ -88,6 +88,14 @@ the same check before reconstruction, refresh and completeness reporting;
 conflicting games and their derived rows are withdrawn while raw data,
 manifests and diagnostic history remain intact.
 
+Reconstruction entrypoints also revalidate cached quarantines under the current
+quality gate. A game is readmitted only if its complete normalized source
+records pass that gate; prior failures and normalization notes are retained.
+This prevents superseded validation failures from becoming permanent gaps.
+Readmission does not certify possessions or lineups: their separate gates still
+run, and unknown event actors remain unknown. Completeness reporting alone does
+not readmit games.
+
 An aggregate difference is not automatically a source error. From 2025–26,
 qualifying missed heaves count against team attempts without affecting
 individual attempts ([NBA explanation](https://www.nba.com/news/nba-heaves-rule-change-early-results)).

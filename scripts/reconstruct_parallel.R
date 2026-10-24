@@ -5,6 +5,7 @@ con<-connect_warehouse()
 tryCatch({
   quarantine_inconsistent_player_totals(con)
   withdraw_quarantined(con)
+  refresh_quarantine_diagnostics(con,recover=TRUE,seasons=if(length(args))args else NULL)
   import_reference(con)
   recover_reference_boxes(con)
   reconcile_game_totals(con)
