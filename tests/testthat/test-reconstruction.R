@@ -152,3 +152,19 @@ testthat::test_that('missing independent metrics remain unavailable and block fa
   reconstruct_season(con,'2024-25')
   testthat::expect_equal(nrow(DBI::dbReadTable(con,'possessions')),0L)
 })
+
+testthat::test_that('a replacement reference snapshot withdraws absent normalized rows but keeps provenance', {
+  con<-connect_warehouse(':memory:');on.exit(DBI::dbDisconnect(con,shutdown=TRUE))
+  ref<-load_reference_fixture();import_reference(con,ref)
+  before<-DBI::dbReadTable(con,'independent_team_totals')
+  manifests<-DBI::dbReadTable(con,'datasets')
+  ref$data<-ref$data[-c(1L,2L),,drop=FALSE]
+  ref$path<-tempfile(fileext='.csv');on.exit(unlink(ref$path),add=TRUE)
+  utils::write.csv(ref$data,ref$path,row.names=FALSE)
+  ref$sha256<-file_sha256(ref$path);ref$revision<-'fixture-with-withdrawn-records'
+  import_reference(con,ref)
+  testthat::expect_equal(nrow(DBI::dbReadTable(con,'independent_team_totals')),nrow(before)-2L)
+  testthat::expect_equal(nrow(DBI::dbReadTable(con,'dataset_dependencies')),4L)
+  testthat::expect_true(all(manifests$dataset_id%in%DBI::dbReadTable(con,'datasets')$dataset_id))
+  testthat::expect_equal(vapply(manifests$raw_path,file_sha256,character(1),USE.NAMES=FALSE),manifests$sha256)
+})

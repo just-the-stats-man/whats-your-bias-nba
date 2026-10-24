@@ -11,6 +11,7 @@ tryCatch({
   recover_reference_boxes(con)
   reconcile_game_totals(con)
   reconstruct_season(con,season)
+  assert_warehouse_integrity(con)
   completeness_report(con,directory='data/processed/reports')
   export_parquet(con)
 },finally=DBI::dbDisconnect(con,shutdown=TRUE))

@@ -16,6 +16,11 @@ testthat::test_that('alternative team-box recovery preserves provenance and labe
   checks<-DBI::dbReadTable(con,'reconciliation_checks')
   testthat::expect_equal(sum(!checks$independent),18L)
   testthat::expect_true(all(checks$independent[checks$metric=='schedule_points']))
+  reconstruct_season(con,'2024-25')
+  report<-completeness_report(con,years=2025,directory=tempfile())
+  testthat::expect_equal(report$reference_dependent_box_games,1L)
+  testthat::expect_equal(report$reference_agree_games,1L)
+  testthat::expect_equal(report$fully_reconciled_games,0L)
   # A different snapshot from the same provider still is not independent.
   original<-DBI::dbReadTable(con,'datasets')
   original<-original[original$dataset_id%in%unique(DBI::dbReadTable(con,'team_box_scores')$dataset_id),,drop=FALSE]

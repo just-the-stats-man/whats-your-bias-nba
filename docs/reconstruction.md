@@ -108,6 +108,10 @@ schedule/PBP comparisons remain possible; recovered games are counted
 separately. Raw ESPN records and original failures survive.
 
 Contradictory reference updates immediately withdraw published derived rows.
+The normalized reference scope is replaced on snapshot selection; withdrawn
+reference records are not silently carried forward. Older raw files and
+manifests remain preserved. Fully reconciled season counts exclude games with
+reference-dependent box scores, even when all reported values agree.
 Missing PBP/player statistics and ambiguous identities remain unresolved.
 Selected gaps were also checked in the licensed raw JSON archive: empty play
 lists and unchanged inconsistent original totals do not permit safe repair.

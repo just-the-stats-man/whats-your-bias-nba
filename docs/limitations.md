@@ -38,7 +38,8 @@ uncertainty. A binomial interval would describe that simplified experiment,
 not establish defensive ability or causality. No ranking/model is included.
 
 Validation checks internal consistency, not truth of the feed. Some seasons
-can fail because of upstream missing or conflicting data; reports remain local.
+can fail because of upstream missing or conflicting data. Compact season/game
+status and exception summaries are committed; detailed event diagnostics stay local.
 No access controls are bypassed. The CC BY publisher declaration is not an
 independent audit of upstream rights. This project does not grant licenses to
 NBA trademarks, imagery, videos or restricted tracking feeds.

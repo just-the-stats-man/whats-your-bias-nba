@@ -64,6 +64,9 @@ import_reference <- function(con,item=fetch_independent_totals()) {
     upsert_rows(con,'datasets',manifest,'dataset_id')
     dependencies<-data.frame(dataset_id=unique(d$dataset_id),parent_dataset_id=c(raw_team_id,raw_player_id),transformation='Team totals joined to independent player turnover sums; v1')
     upsert_rows(con,'dataset_dependencies',dependencies,c('dataset_id','parent_dataset_id'))
+    # A selected snapshot replaces the normalized reference scope. Preserve
+    # old raw/manifests, but never silently retain a withdrawn reference row.
+    for(season in season_label(2016:2027))DBI::dbExecute(con,'DELETE FROM independent_team_totals WHERE source_id=? AND season=?',params=list('eoin_moore_nba',season))
     upsert_rows(con,'independent_team_totals',d,c('source_id','source_game_id','team_id'))
   })
   invisible(nrow(d))
