@@ -5,7 +5,9 @@ counted as passed. Startup locale notices and package patch-version notices
 occur in this managed environment, outside test expectations.
 
 - Real CC BY fixture: three games, no quality findings; no network required.
-- Automated suite includes keys, schema drift, joins, team assignments, dates,
+- Automated suite: **47 assertions passed, 0 failures, 0 test warnings, 0 skips**
+  in a separate clone using the isolated restored library. Tests include keys,
+  schema drift, joins, team assignments, dates,
   seasons, shooting totals, event completeness, failures, idempotence,
   incremental skips, transaction rollback, integer64 IDs and historical schemas.
 - DuckDB initialization, related-table queries, local offensive-efficiency
@@ -43,5 +45,8 @@ though the publisher marks them season_type=2. Franchise IDs are validated.
 The original repository was inspected through connected GitHub metadata and
 its public file listing; its files and history were left intact. New code was
 committed and pushed to `just-the-stats-man/whats-your-bias-nba`.
-Clean-clone verification and final CI status are recorded after final checks.
+Clean-clone offline tests, analytical example and targets builds passed.
+The first targets run built the warehouse; the second skipped all completed
+targets. CI uses the same pinned restore on Windows to avoid costly Linux
+source compilation. Final hosted CI status is reported separately.
 No paid feed, restricted scraping, defender model or salary optimizer was used.

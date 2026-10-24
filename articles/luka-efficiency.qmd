@@ -10,12 +10,16 @@ demonstration, not an estimate of season-long or defensive ability.
 
 ```{r}
 # Render from the project root: quarto render articles/luka-efficiency.qmd
-source('scripts/load.R')
-con <- connect_warehouse('data/processed/article-demo.duckdb')
-ingest_bundle(con, readRDS('data/sample/bundle.rds'), '2024-25')
-games <- get_player_games('Luka Doncic', '2024-25', con)
-knitr::kable(offensive_efficiency(games), digits = 3)
-DBI::dbDisconnect(con, shutdown = TRUE)
+project_root <- if (file.exists('scripts/load.R')) '.' else '..'
+withr::with_dir(project_root, {
+  source('scripts/load.R')
+  con <- connect_warehouse('data/processed/article-demo.duckdb')
+  ingest_bundle(con, readRDS('data/sample/bundle.rds'), '2024-25')
+  games <- get_player_games('Luka Doncic', '2024-25', con)
+  result <- offensive_efficiency(games)
+  DBI::dbDisconnect(con, shutdown = TRUE)
+  knitr::kable(result, digits = 3)
+})
 ```
 
 Effective FG% weights made threes by 1.5. True shooting uses the conventional
