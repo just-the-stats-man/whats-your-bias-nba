@@ -22,7 +22,9 @@ Stable player keys use namespaced ESPN IDs; `player_identifiers` can map
 additional provider IDs onto the same key. Names are lookup conveniences,
 never identity joins. Ambiguous names require an explicit key. Teams have
 provider keys and season-specific identity records, avoiding a fixed present-
-day abbreviation on historical games. Cross-provider mappings are not yet loaded.
+day abbreviation on historical games. An explicit franchise crosswalk maps the
+independent NBA-derived totals onto ESPN team keys; player identifiers remain
+provider-specific.
 
 The archive partitions files by season, not game. An unchanged pinned
 season is downloaded once. Game and player selection operate on that cache;

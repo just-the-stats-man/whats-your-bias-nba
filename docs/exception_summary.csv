@@ -1,0 +1,834 @@
+"season","stage","state","severity","category","findings"
+"2015-16","ingestion","active","warning","PBP final score differs from schedule",4
+"2017-18","ingestion","active","warning","PBP final score differs from schedule",6
+"2018-19","ingestion","active","warning","PBP final score differs from schedule",4
+"2021-22","ingestion","active","warning","PBP final score differs from schedule",2
+"2022-23","ingestion","active","warning","PBP final score differs from schedule",6
+"2023-24","ingestion","active","warning","PBP final score differs from schedule",2
+"2025-26","ingestion","active","warning","PBP final score differs from schedule",2
+"2015-16","possessions","active","error","PBP scoring does not equal final score",658
+"2016-17","possessions","active","error","PBP scoring does not equal final score",34
+"2017-18","possessions","active","error","PBP scoring does not equal final score",16
+"2018-19","possessions","active","error","PBP scoring does not equal final score",5
+"2019-20","possessions","active","error","PBP scoring does not equal final score",1
+"2021-22","possessions","active","error","PBP scoring does not equal final score",3
+"2022-23","possessions","active","error","PBP scoring does not equal final score",5
+"2023-24","possessions","active","error","PBP scoring does not equal final score",7
+"2024-25","possessions","active","error","PBP scoring does not equal final score",2
+"2025-26","possessions","active","error","PBP scoring does not equal final score",2
+"2015-16","possessions","historical","error","PBP scoring does not equal final score",2616
+"2016-17","possessions","historical","error","PBP scoring does not equal final score",1364
+"2017-18","possessions","historical","error","PBP scoring does not equal final score",1336
+"2018-19","possessions","historical","error","PBP scoring does not equal final score",1279
+"2019-20","possessions","historical","error","PBP scoring does not equal final score",113
+"2020-21","possessions","historical","error","PBP scoring does not equal final score",1
+"2021-22","possessions","historical","error","PBP scoring does not equal final score",3
+"2022-23","possessions","historical","error","PBP scoring does not equal final score",5
+"2023-24","possessions","historical","error","PBP scoring does not equal final score",7
+"2024-25","possessions","historical","error","PBP scoring does not equal final score",2
+"2025-26","possessions","historical","error","PBP scoring does not equal final score",2
+"2015-16","lineups","active","error","PBP/box",4492
+"2016-17","lineups","active","error","PBP/box",339
+"2017-18","lineups","active","error","PBP/box",180
+"2018-19","lineups","active","error","PBP/box",224
+"2019-20","lineups","active","error","PBP/box",126
+"2020-21","lineups","active","error","PBP/box",98
+"2021-22","lineups","active","error","PBP/box",149
+"2022-23","lineups","active","error","PBP/box",77
+"2023-24","lineups","active","error","PBP/box",110
+"2024-25","lineups","active","error","PBP/box",93
+"2025-26","lineups","active","error","PBP/box",2015
+"2026-27","lineups","active","error","PBP/box",21
+"2015-16","possessions","active","error","PBP/box",4492
+"2016-17","possessions","active","error","PBP/box",339
+"2017-18","possessions","active","error","PBP/box",180
+"2018-19","possessions","active","error","PBP/box",224
+"2019-20","possessions","active","error","PBP/box",126
+"2020-21","possessions","active","error","PBP/box",98
+"2021-22","possessions","active","error","PBP/box",149
+"2022-23","possessions","active","error","PBP/box",77
+"2023-24","possessions","active","error","PBP/box",110
+"2024-25","possessions","active","error","PBP/box",93
+"2025-26","possessions","active","error","PBP/box",2015
+"2026-27","possessions","active","error","PBP/box",21
+"2015-16","lineups","historical","error","PBP/box",16552
+"2016-17","lineups","historical","error","PBP/box",5652
+"2017-18","lineups","historical","error","PBP/box",5668
+"2018-19","lineups","historical","error","PBP/box",6198
+"2019-20","lineups","historical","error","PBP/box",3812
+"2020-21","lineups","historical","error","PBP/box",3536
+"2021-22","lineups","historical","error","PBP/box",149
+"2022-23","lineups","historical","error","PBP/box",77
+"2023-24","lineups","historical","error","PBP/box",110
+"2024-25","lineups","historical","error","PBP/box",93
+"2025-26","lineups","historical","error","PBP/box",2003
+"2026-27","lineups","historical","error","PBP/box",21
+"2015-16","possessions","historical","error","PBP/box",16552
+"2016-17","possessions","historical","error","PBP/box",5652
+"2017-18","possessions","historical","error","PBP/box",5668
+"2018-19","possessions","historical","error","PBP/box",6198
+"2019-20","possessions","historical","error","PBP/box",3812
+"2020-21","possessions","historical","error","PBP/box",3536
+"2021-22","possessions","historical","error","PBP/box",149
+"2022-23","possessions","historical","error","PBP/box",77
+"2023-24","possessions","historical","error","PBP/box",110
+"2024-25","possessions","historical","error","PBP/box",93
+"2025-26","possessions","historical","error","PBP/box",2003
+"2026-27","possessions","historical","error","PBP/box",21
+"2017-18","lineups","historical","error","PBP/box critical metric unavailable",5212
+"2017-18","possessions","historical","error","PBP/box critical metric unavailable",5212
+"2017-18","lineups","active","error","PBP/reference",162
+"2017-18","possessions","active","error","PBP/reference",162
+"2015-16","possessions","active","error","ambiguous team defensive rebound",119
+"2016-17","possessions","active","error","ambiguous team defensive rebound",26
+"2017-18","possessions","active","error","ambiguous team defensive rebound",52
+"2018-19","possessions","active","error","ambiguous team defensive rebound",21
+"2019-20","possessions","active","error","ambiguous team defensive rebound",15
+"2020-21","possessions","active","error","ambiguous team defensive rebound",15
+"2021-22","possessions","active","error","ambiguous team defensive rebound",19
+"2022-23","possessions","active","error","ambiguous team defensive rebound",25
+"2023-24","possessions","active","error","ambiguous team defensive rebound",22
+"2024-25","possessions","active","error","ambiguous team defensive rebound",26
+"2025-26","possessions","active","error","ambiguous team defensive rebound",21
+"2015-16","possessions","historical","error","ambiguous team defensive rebound",377
+"2016-17","possessions","historical","error","ambiguous team defensive rebound",125
+"2017-18","possessions","historical","error","ambiguous team defensive rebound",156
+"2018-19","possessions","historical","error","ambiguous team defensive rebound",45
+"2019-20","possessions","historical","error","ambiguous team defensive rebound",30
+"2020-21","possessions","historical","error","ambiguous team defensive rebound",30
+"2021-22","possessions","historical","error","ambiguous team defensive rebound",19
+"2022-23","possessions","historical","error","ambiguous team defensive rebound",25
+"2023-24","possessions","historical","error","ambiguous team defensive rebound",22
+"2024-25","possessions","historical","error","ambiguous team defensive rebound",26
+"2025-26","possessions","historical","error","ambiguous team defensive rebound",20
+"2025-26","normalization","active","warning","anonymous_nonplaying_roster_placeholder",42
+"2016-17","ingestion","active","error","broken event player joins",1
+"2017-18","ingestion","active","error","broken event player joins",1
+"2018-19","ingestion","active","error","broken event player joins",2
+"2020-21","ingestion","active","error","broken event player joins",2
+"2025-26","ingestion","active","error","broken event player joins",4
+"2016-17","ingestion","historical","error","broken event player joins",3
+"2017-18","ingestion","historical","error","broken event player joins",2
+"2018-19","ingestion","historical","error","broken event player joins",6
+"2019-20","ingestion","historical","error","broken event player joins",1
+"2020-21","ingestion","historical","error","broken event player joins",4
+"2021-22","ingestion","historical","error","broken event player joins",4
+"2022-23","ingestion","historical","error","broken event player joins",3
+"2023-24","ingestion","historical","error","broken event player joins",1
+"2024-25","ingestion","historical","error","broken event player joins",1
+"2025-26","ingestion","historical","error","broken event player joins",39
+"2015-16","possessions","active","warning","causal_dependency",1440
+"2016-17","possessions","active","warning","causal_dependency",2256
+"2017-18","possessions","active","warning","causal_dependency",219
+"2018-19","possessions","active","warning","causal_dependency",167
+"2019-20","possessions","active","warning","causal_dependency",154
+"2020-21","possessions","active","warning","causal_dependency",188
+"2021-22","possessions","active","warning","causal_dependency",225
+"2022-23","possessions","active","warning","causal_dependency",185
+"2023-24","possessions","active","warning","causal_dependency",172
+"2024-25","possessions","active","warning","causal_dependency",189
+"2025-26","possessions","active","warning","causal_dependency",223
+"2015-16","possessions","historical","warning","causal_dependency",3058
+"2016-17","possessions","historical","warning","causal_dependency",4699
+"2017-18","possessions","historical","warning","causal_dependency",639
+"2018-19","possessions","historical","warning","causal_dependency",330
+"2019-20","possessions","historical","warning","causal_dependency",290
+"2020-21","possessions","historical","warning","causal_dependency",364
+"2021-22","possessions","historical","warning","causal_dependency",225
+"2022-23","possessions","historical","warning","causal_dependency",185
+"2023-24","possessions","historical","warning","causal_dependency",173
+"2024-25","possessions","historical","warning","causal_dependency",189
+"2025-26","possessions","historical","warning","causal_dependency",220
+"2015-16","normalization","active","warning","explicit_DNP_flag_correction",9
+"2016-17","normalization","active","warning","explicit_DNP_flag_correction",10
+"2017-18","normalization","active","warning","explicit_DNP_flag_correction",10
+"2018-19","normalization","active","warning","explicit_DNP_flag_correction",5
+"2020-21","normalization","active","warning","explicit_DNP_flag_correction",5
+"2024-25","normalization","active","warning","explicit_DNP_flag_correction",3
+"2025-26","normalization","active","warning","explicit_DNP_flag_correction",34
+"2015-16","possessions","active","error","implausible possession count imbalance",96
+"2016-17","possessions","active","error","implausible possession count imbalance",12
+"2017-18","possessions","active","error","implausible possession count imbalance",21
+"2018-19","possessions","active","error","implausible possession count imbalance",4
+"2022-23","possessions","active","error","implausible possession count imbalance",2
+"2023-24","possessions","active","error","implausible possession count imbalance",3
+"2024-25","possessions","active","error","implausible possession count imbalance",2
+"2025-26","possessions","active","error","implausible possession count imbalance",1
+"2026-27","possessions","active","error","implausible possession count imbalance",1
+"2015-16","possessions","historical","error","implausible possession count imbalance",379
+"2016-17","possessions","historical","error","implausible possession count imbalance",188
+"2017-18","possessions","historical","error","implausible possession count imbalance",63
+"2018-19","possessions","historical","error","implausible possession count imbalance",9
+"2020-21","possessions","historical","error","implausible possession count imbalance",1
+"2022-23","possessions","historical","error","implausible possession count imbalance",2
+"2023-24","possessions","historical","error","implausible possession count imbalance",3
+"2024-25","possessions","historical","error","implausible possession count imbalance",2
+"2025-26","possessions","historical","error","implausible possession count imbalance",1
+"2026-27","possessions","historical","error","implausible possession count imbalance",1
+"2015-16","possessions","active","error","inconsistent jump/turnover causal dependency",1
+"2016-17","possessions","active","error","inconsistent jump/turnover causal dependency",1
+"2017-18","possessions","active","error","inconsistent jump/turnover causal dependency",1
+"2025-26","possessions","active","error","inconsistent jump/turnover causal dependency",1
+"2015-16","possessions","historical","error","inconsistent jump/turnover causal dependency",6
+"2016-17","possessions","historical","error","inconsistent jump/turnover causal dependency",4
+"2017-18","possessions","historical","error","inconsistent jump/turnover causal dependency",3
+"2025-26","possessions","historical","error","inconsistent jump/turnover causal dependency",1
+"2015-16","lineups","active","error","independent game-level totals disagree",4
+"2016-17","lineups","active","error","independent game-level totals disagree",6
+"2017-18","lineups","active","error","independent game-level totals disagree",7
+"2019-20","lineups","active","error","independent game-level totals disagree",2
+"2020-21","lineups","active","error","independent game-level totals disagree",6
+"2022-23","lineups","active","error","independent game-level totals disagree",2
+"2023-24","lineups","active","error","independent game-level totals disagree",3
+"2024-25","lineups","active","error","independent game-level totals disagree",1
+"2025-26","lineups","active","error","independent game-level totals disagree",7
+"2015-16","possessions","active","error","independent game-level totals disagree",4
+"2016-17","possessions","active","error","independent game-level totals disagree",6
+"2017-18","possessions","active","error","independent game-level totals disagree",7
+"2019-20","possessions","active","error","independent game-level totals disagree",2
+"2020-21","possessions","active","error","independent game-level totals disagree",6
+"2022-23","possessions","active","error","independent game-level totals disagree",2
+"2023-24","possessions","active","error","independent game-level totals disagree",3
+"2024-25","possessions","active","error","independent game-level totals disagree",1
+"2025-26","possessions","active","error","independent game-level totals disagree",7
+"2015-16","lineups","historical","error","independent game-level totals disagree",1815
+"2016-17","lineups","historical","error","independent game-level totals disagree",1833
+"2017-18","lineups","historical","error","independent game-level totals disagree",1825
+"2018-19","lineups","historical","error","independent game-level totals disagree",921
+"2019-20","lineups","historical","error","independent game-level totals disagree",801
+"2020-21","lineups","historical","error","independent game-level totals disagree",875
+"2021-22","lineups","historical","error","independent game-level totals disagree",1318
+"2022-23","lineups","historical","error","independent game-level totals disagree",2
+"2023-24","lineups","historical","error","independent game-level totals disagree",4
+"2024-25","lineups","historical","error","independent game-level totals disagree",2
+"2025-26","lineups","historical","error","independent game-level totals disagree",4
+"2015-16","possessions","historical","error","independent game-level totals disagree",1815
+"2016-17","possessions","historical","error","independent game-level totals disagree",1833
+"2017-18","possessions","historical","error","independent game-level totals disagree",1825
+"2018-19","possessions","historical","error","independent game-level totals disagree",921
+"2019-20","possessions","historical","error","independent game-level totals disagree",801
+"2020-21","possessions","historical","error","independent game-level totals disagree",875
+"2021-22","possessions","historical","error","independent game-level totals disagree",1318
+"2022-23","possessions","historical","error","independent game-level totals disagree",2
+"2023-24","possessions","historical","error","independent game-level totals disagree",4
+"2024-25","possessions","historical","error","independent game-level totals disagree",2
+"2025-26","possessions","historical","error","independent game-level totals disagree",4
+"2015-16","lineups","active","error","lineup intervals fail complete game-time coverage",53
+"2016-17","lineups","active","error","lineup intervals fail complete game-time coverage",63
+"2017-18","lineups","active","error","lineup intervals fail complete game-time coverage",472
+"2018-19","lineups","active","error","lineup intervals fail complete game-time coverage",473
+"2019-20","lineups","active","error","lineup intervals fail complete game-time coverage",377
+"2020-21","lineups","active","error","lineup intervals fail complete game-time coverage",80
+"2021-22","lineups","active","error","lineup intervals fail complete game-time coverage",74
+"2022-23","lineups","active","error","lineup intervals fail complete game-time coverage",90
+"2023-24","lineups","active","error","lineup intervals fail complete game-time coverage",83
+"2024-25","lineups","active","error","lineup intervals fail complete game-time coverage",105
+"2025-26","lineups","active","error","lineup intervals fail complete game-time coverage",112
+"2026-27","lineups","active","error","lineup intervals fail complete game-time coverage",3
+"2015-16","lineups","historical","error","lineup intervals fail complete game-time coverage",159
+"2016-17","lineups","historical","error","lineup intervals fail complete game-time coverage",189
+"2017-18","lineups","historical","error","lineup intervals fail complete game-time coverage",1416
+"2018-19","lineups","historical","error","lineup intervals fail complete game-time coverage",992
+"2019-20","lineups","historical","error","lineup intervals fail complete game-time coverage",754
+"2020-21","lineups","historical","error","lineup intervals fail complete game-time coverage",160
+"2021-22","lineups","historical","error","lineup intervals fail complete game-time coverage",74
+"2022-23","lineups","historical","error","lineup intervals fail complete game-time coverage",89
+"2023-24","lineups","historical","error","lineup intervals fail complete game-time coverage",83
+"2024-25","lineups","historical","error","lineup intervals fail complete game-time coverage",105
+"2025-26","lineups","historical","error","lineup intervals fail complete game-time coverage",103
+"2026-27","lineups","historical","error","lineup intervals fail complete game-time coverage",3
+"2015-16","lineups","active","error","missing or unrostered shooter identity",12
+"2016-17","lineups","active","error","missing or unrostered shooter identity",1
+"2018-19","lineups","active","error","missing or unrostered shooter identity",2
+"2020-21","lineups","active","error","missing or unrostered shooter identity",2
+"2022-23","lineups","active","error","missing or unrostered shooter identity",1
+"2015-16","lineups","historical","error","missing or unrostered shooter identity",36
+"2016-17","lineups","historical","error","missing or unrostered shooter identity",3
+"2018-19","lineups","historical","error","missing or unrostered shooter identity",4
+"2020-21","lineups","historical","error","missing or unrostered shooter identity",4
+"2022-23","lineups","historical","error","missing or unrostered shooter identity",1
+"2022-23","possessions","active","error","missing periods",1
+"2022-23","possessions","historical","error","missing periods",1
+"2015-16","ingestion","active","error","missing play-by-play",3
+"2017-18","ingestion","active","error","missing play-by-play",4
+"2019-20","ingestion","active","error","missing play-by-play",6
+"2025-26","ingestion","active","error","missing play-by-play",1
+"2015-16","ingestion","historical","error","missing play-by-play",9
+"2017-18","ingestion","historical","error","missing play-by-play",12
+"2019-20","ingestion","historical","error","missing play-by-play",18
+"2025-26","ingestion","historical","error","missing play-by-play",2
+"2015-16","ingestion","active","error","missing player statistics",13
+"2016-17","ingestion","active","error","missing player statistics",12
+"2017-18","ingestion","active","error","missing player statistics",3
+"2018-19","ingestion","active","error","missing player statistics",12
+"2015-16","ingestion","historical","error","missing player statistics",48
+"2016-17","ingestion","historical","error","missing player statistics",44
+"2017-18","ingestion","historical","error","missing player statistics",17
+"2018-19","ingestion","historical","error","missing player statistics",41
+"2016-17","ingestion","active","error","missing team box scores",1
+"2017-18","ingestion","active","error","missing team box scores",1
+"2020-21","ingestion","active","error","missing team box scores",6
+"2016-17","ingestion","historical","error","missing team box scores",3
+"2017-18","ingestion","historical","error","missing team box scores",3
+"2020-21","ingestion","historical","error","missing team box scores",12
+"2016-17","possessions","active","error","missing zero-clock end-period event",2
+"2017-18","possessions","active","error","missing zero-clock end-period event",2
+"2018-19","possessions","active","error","missing zero-clock end-period event",3
+"2022-23","possessions","active","error","missing zero-clock end-period event",2
+"2025-26","possessions","active","error","missing zero-clock end-period event",1
+"2016-17","possessions","historical","error","missing zero-clock end-period event",6
+"2017-18","possessions","historical","error","missing zero-clock end-period event",6
+"2018-19","possessions","historical","error","missing zero-clock end-period event",6
+"2022-23","possessions","historical","error","missing zero-clock end-period event",2
+"2025-26","possessions","historical","error","missing zero-clock end-period event",1
+"2021-22","reference_identity_resolution","active","warning","missing_team_id_resolved_by_provider_metadata",2644
+"2023-24","reference_identity_resolution","active","warning","missing_team_id_resolved_by_provider_metadata",2
+"2024-25","reference_identity_resolution","active","warning","missing_team_id_resolved_by_provider_metadata",35
+"2025-26","reference_identity_resolution","active","warning","missing_team_id_resolved_by_provider_metadata",30
+"2015-16","possessions","active","error","opponent points inside possession",449
+"2016-17","possessions","active","error","opponent points inside possession",177
+"2017-18","possessions","active","error","opponent points inside possession",195
+"2018-19","possessions","active","error","opponent points inside possession",105
+"2019-20","possessions","active","error","opponent points inside possession",36
+"2020-21","possessions","active","error","opponent points inside possession",48
+"2021-22","possessions","active","error","opponent points inside possession",39
+"2022-23","possessions","active","error","opponent points inside possession",46
+"2023-24","possessions","active","error","opponent points inside possession",32
+"2024-25","possessions","active","error","opponent points inside possession",42
+"2025-26","possessions","active","error","opponent points inside possession",36
+"2026-27","possessions","active","error","opponent points inside possession",2
+"2015-16","possessions","historical","error","opponent points inside possession",1521
+"2016-17","possessions","historical","error","opponent points inside possession",942
+"2017-18","possessions","historical","error","opponent points inside possession",559
+"2018-19","possessions","historical","error","opponent points inside possession",200
+"2019-20","possessions","historical","error","opponent points inside possession",81
+"2020-21","possessions","historical","error","opponent points inside possession",99
+"2021-22","possessions","historical","error","opponent points inside possession",39
+"2022-23","possessions","historical","error","opponent points inside possession",46
+"2023-24","possessions","historical","error","opponent points inside possession",32
+"2024-25","possessions","historical","error","opponent points inside possession",42
+"2025-26","possessions","historical","error","opponent points inside possession",36
+"2026-27","possessions","historical","error","opponent points inside possession",2
+"2022-23","lineups","active","error","parser failure: missing value where TRUE/FALSE needed",1
+"2022-23","possessions","active","error","parser failure: missing value where TRUE/FALSE needed",1
+"2022-23","lineups","historical","error","parser failure: missing value where TRUE/FALSE needed",1
+"2022-23","possessions","historical","error","parser failure: missing value where TRUE/FALSE needed",1
+"2015-16","lineups","active","error","period 1",5
+"2016-17","lineups","active","error","period 1",12
+"2017-18","lineups","active","error","period 1",118
+"2018-19","lineups","active","error","period 1",137
+"2019-20","lineups","active","error","period 1",109
+"2020-21","lineups","active","error","period 1",12
+"2021-22","lineups","active","error","period 1",15
+"2022-23","lineups","active","error","period 1",17
+"2023-24","lineups","active","error","period 1",17
+"2024-25","lineups","active","error","period 1",14
+"2025-26","lineups","active","error","period 1",20
+"2026-27","lineups","active","error","period 1",1
+"2015-16","lineups","historical","error","period 1",15
+"2016-17","lineups","historical","error","period 1",36
+"2017-18","lineups","historical","error","period 1",354
+"2018-19","lineups","historical","error","period 1",295
+"2019-20","lineups","historical","error","period 1",216
+"2020-21","lineups","historical","error","period 1",24
+"2021-22","lineups","historical","error","period 1",15
+"2022-23","lineups","historical","error","period 1",17
+"2023-24","lineups","historical","error","period 1",17
+"2024-25","lineups","historical","error","period 1",14
+"2025-26","lineups","historical","error","period 1",19
+"2026-27","lineups","historical","error","period 1",1
+"2015-16","lineups","active","error","period 2",11
+"2016-17","lineups","active","error","period 2",16
+"2017-18","lineups","active","error","period 2",175
+"2018-19","lineups","active","error","period 2",168
+"2019-20","lineups","active","error","period 2",125
+"2020-21","lineups","active","error","period 2",20
+"2021-22","lineups","active","error","period 2",15
+"2022-23","lineups","active","error","period 2",21
+"2023-24","lineups","active","error","period 2",23
+"2024-25","lineups","active","error","period 2",29
+"2025-26","lineups","active","error","period 2",31
+"2026-27","lineups","active","error","period 2",1
+"2015-16","lineups","historical","error","period 2",33
+"2016-17","lineups","historical","error","period 2",48
+"2017-18","lineups","historical","error","period 2",525
+"2018-19","lineups","historical","error","period 2",354
+"2019-20","lineups","historical","error","period 2",250
+"2020-21","lineups","historical","error","period 2",40
+"2021-22","lineups","historical","error","period 2",15
+"2022-23","lineups","historical","error","period 2",21
+"2023-24","lineups","historical","error","period 2",23
+"2024-25","lineups","historical","error","period 2",29
+"2025-26","lineups","historical","error","period 2",30
+"2026-27","lineups","historical","error","period 2",1
+"2025-26","lineups","active","error","period 2 invalid clock coverage",1
+"2025-26","lineups","historical","error","period 2 invalid clock coverage",1
+"2015-16","lineups","active","error","period 3",7
+"2016-17","lineups","active","error","period 3",15
+"2017-18","lineups","active","error","period 3",130
+"2018-19","lineups","active","error","period 3",116
+"2019-20","lineups","active","error","period 3",93
+"2020-21","lineups","active","error","period 3",17
+"2021-22","lineups","active","error","period 3",22
+"2022-23","lineups","active","error","period 3",12
+"2023-24","lineups","active","error","period 3",16
+"2024-25","lineups","active","error","period 3",29
+"2025-26","lineups","active","error","period 3",23
+"2026-27","lineups","active","error","period 3",1
+"2015-16","lineups","historical","error","period 3",21
+"2016-17","lineups","historical","error","period 3",45
+"2017-18","lineups","historical","error","period 3",390
+"2018-19","lineups","historical","error","period 3",242
+"2019-20","lineups","historical","error","period 3",186
+"2020-21","lineups","historical","error","period 3",34
+"2021-22","lineups","historical","error","period 3",22
+"2022-23","lineups","historical","error","period 3",11
+"2023-24","lineups","historical","error","period 3",16
+"2024-25","lineups","historical","error","period 3",29
+"2025-26","lineups","historical","error","period 3",23
+"2026-27","lineups","historical","error","period 3",1
+"2022-23","lineups","active","error","period 3 invalid clock coverage",1
+"2022-23","lineups","historical","error","period 3 invalid clock coverage",1
+"2015-16","lineups","active","error","period 4",22
+"2016-17","lineups","active","error","period 4",17
+"2017-18","lineups","active","error","period 4",166
+"2018-19","lineups","active","error","period 4",158
+"2019-20","lineups","active","error","period 4",137
+"2020-21","lineups","active","error","period 4",22
+"2021-22","lineups","active","error","period 4",18
+"2022-23","lineups","active","error","period 4",21
+"2023-24","lineups","active","error","period 4",23
+"2024-25","lineups","active","error","period 4",27
+"2025-26","lineups","active","error","period 4",38
+"2026-27","lineups","active","error","period 4",1
+"2015-16","lineups","historical","error","period 4",66
+"2016-17","lineups","historical","error","period 4",51
+"2017-18","lineups","historical","error","period 4",498
+"2018-19","lineups","historical","error","period 4",331
+"2019-20","lineups","historical","error","period 4",274
+"2020-21","lineups","historical","error","period 4",44
+"2021-22","lineups","historical","error","period 4",18
+"2022-23","lineups","historical","error","period 4",21
+"2023-24","lineups","historical","error","period 4",23
+"2024-25","lineups","historical","error","period 4",27
+"2025-26","lineups","historical","error","period 4",29
+"2026-27","lineups","historical","error","period 4",1
+"2016-17","lineups","active","error","period 4 invalid clock coverage",1
+"2017-18","lineups","active","error","period 4 invalid clock coverage",1
+"2018-19","lineups","active","error","period 4 invalid clock coverage",3
+"2022-23","lineups","active","error","period 4 invalid clock coverage",1
+"2016-17","lineups","historical","error","period 4 invalid clock coverage",3
+"2017-18","lineups","historical","error","period 4 invalid clock coverage",3
+"2018-19","lineups","historical","error","period 4 invalid clock coverage",6
+"2022-23","lineups","historical","error","period 4 invalid clock coverage",1
+"2015-16","lineups","active","error","period 5",11
+"2016-17","lineups","active","error","period 5",6
+"2017-18","lineups","active","error","period 5",17
+"2018-19","lineups","active","error","period 5",14
+"2019-20","lineups","active","error","period 5",15
+"2020-21","lineups","active","error","period 5",11
+"2021-22","lineups","active","error","period 5",6
+"2022-23","lineups","active","error","period 5",21
+"2023-24","lineups","active","error","period 5",8
+"2024-25","lineups","active","error","period 5",11
+"2025-26","lineups","active","error","period 5",9
+"2015-16","lineups","historical","error","period 5",33
+"2016-17","lineups","historical","error","period 5",18
+"2017-18","lineups","historical","error","period 5",51
+"2018-19","lineups","historical","error","period 5",29
+"2019-20","lineups","historical","error","period 5",34
+"2020-21","lineups","historical","error","period 5",22
+"2021-22","lineups","historical","error","period 5",6
+"2022-23","lineups","historical","error","period 5",21
+"2023-24","lineups","historical","error","period 5",8
+"2024-25","lineups","historical","error","period 5",11
+"2025-26","lineups","historical","error","period 5",9
+"2016-17","lineups","active","error","period 5 invalid clock coverage",1
+"2017-18","lineups","active","error","period 5 invalid clock coverage",1
+"2016-17","lineups","historical","error","period 5 invalid clock coverage",3
+"2017-18","lineups","historical","error","period 5 invalid clock coverage",3
+"2015-16","lineups","active","error","period 6",1
+"2016-17","lineups","active","error","period 6",2
+"2017-18","lineups","active","error","period 6",1
+"2018-19","lineups","active","error","period 6",2
+"2019-20","lineups","active","error","period 6",1
+"2020-21","lineups","active","error","period 6",2
+"2021-22","lineups","active","error","period 6",2
+"2023-24","lineups","active","error","period 6",1
+"2024-25","lineups","active","error","period 6",1
+"2015-16","lineups","historical","error","period 6",3
+"2016-17","lineups","historical","error","period 6",6
+"2017-18","lineups","historical","error","period 6",3
+"2018-19","lineups","historical","error","period 6",4
+"2019-20","lineups","historical","error","period 6",2
+"2020-21","lineups","historical","error","period 6",4
+"2021-22","lineups","historical","error","period 6",2
+"2023-24","lineups","historical","error","period 6",1
+"2024-25","lineups","historical","error","period 6",1
+"2015-16","lineups","active","error","period 8",1
+"2015-16","lineups","historical","error","period 8",3
+"2018-19","ingestion","active","error","player assists differs from team total",27
+"2025-26","ingestion","active","error","player assists differs from team total",4
+"2018-19","ingestion","historical","error","player assists differs from team total",30
+"2025-26","ingestion","historical","error","player assists differs from team total",4
+"2015-16","ingestion","active","error","player assists unavailable for team reconciliation",13
+"2016-17","ingestion","active","error","player assists unavailable for team reconciliation",12
+"2017-18","ingestion","active","error","player assists unavailable for team reconciliation",3
+"2018-19","ingestion","active","error","player assists unavailable for team reconciliation",12
+"2015-16","ingestion","historical","error","player assists unavailable for team reconciliation",13
+"2016-17","ingestion","historical","error","player assists unavailable for team reconciliation",12
+"2017-18","ingestion","historical","error","player assists unavailable for team reconciliation",3
+"2018-19","ingestion","historical","error","player assists unavailable for team reconciliation",12
+"2018-19","ingestion","active","error","player fg3a differs from team total",27
+"2019-20","ingestion","active","error","player fg3a differs from team total",1
+"2020-21","ingestion","active","error","player fg3a differs from team total",1
+"2023-24","ingestion","active","error","player fg3a differs from team total",1
+"2025-26","ingestion","active","error","player fg3a differs from team total",7
+"2018-19","ingestion","historical","error","player fg3a differs from team total",28
+"2019-20","ingestion","historical","error","player fg3a differs from team total",1
+"2020-21","ingestion","historical","error","player fg3a differs from team total",11
+"2023-24","ingestion","historical","error","player fg3a differs from team total",2
+"2025-26","ingestion","historical","error","player fg3a differs from team total",7
+"2015-16","ingestion","active","error","player fg3a unavailable for team reconciliation",13
+"2016-17","ingestion","active","error","player fg3a unavailable for team reconciliation",12
+"2017-18","ingestion","active","error","player fg3a unavailable for team reconciliation",3
+"2018-19","ingestion","active","error","player fg3a unavailable for team reconciliation",12
+"2015-16","ingestion","historical","error","player fg3a unavailable for team reconciliation",13
+"2016-17","ingestion","historical","error","player fg3a unavailable for team reconciliation",12
+"2017-18","ingestion","historical","error","player fg3a unavailable for team reconciliation",3
+"2018-19","ingestion","historical","error","player fg3a unavailable for team reconciliation",12
+"2018-19","ingestion","active","error","player fg3m differs from team total",18
+"2019-20","ingestion","active","error","player fg3m differs from team total",1
+"2025-26","ingestion","active","error","player fg3m differs from team total",2
+"2018-19","ingestion","historical","error","player fg3m differs from team total",18
+"2019-20","ingestion","historical","error","player fg3m differs from team total",1
+"2025-26","ingestion","historical","error","player fg3m differs from team total",2
+"2015-16","ingestion","active","error","player fg3m unavailable for team reconciliation",13
+"2016-17","ingestion","active","error","player fg3m unavailable for team reconciliation",12
+"2017-18","ingestion","active","error","player fg3m unavailable for team reconciliation",3
+"2018-19","ingestion","active","error","player fg3m unavailable for team reconciliation",12
+"2015-16","ingestion","historical","error","player fg3m unavailable for team reconciliation",13
+"2016-17","ingestion","historical","error","player fg3m unavailable for team reconciliation",12
+"2017-18","ingestion","historical","error","player fg3m unavailable for team reconciliation",3
+"2018-19","ingestion","historical","error","player fg3m unavailable for team reconciliation",12
+"2018-19","ingestion","active","error","player fga differs from team total",29
+"2019-20","ingestion","active","error","player fga differs from team total",2
+"2020-21","ingestion","active","error","player fga differs from team total",2
+"2025-26","ingestion","active","error","player fga differs from team total",12
+"2018-19","ingestion","historical","error","player fga differs from team total",32
+"2019-20","ingestion","historical","error","player fga differs from team total",2
+"2020-21","ingestion","historical","error","player fga differs from team total",51
+"2025-26","ingestion","historical","error","player fga differs from team total",12
+"2015-16","ingestion","active","error","player fga unavailable for team reconciliation",13
+"2016-17","ingestion","active","error","player fga unavailable for team reconciliation",12
+"2017-18","ingestion","active","error","player fga unavailable for team reconciliation",3
+"2018-19","ingestion","active","error","player fga unavailable for team reconciliation",12
+"2015-16","ingestion","historical","error","player fga unavailable for team reconciliation",13
+"2016-17","ingestion","historical","error","player fga unavailable for team reconciliation",12
+"2017-18","ingestion","historical","error","player fga unavailable for team reconciliation",3
+"2018-19","ingestion","historical","error","player fga unavailable for team reconciliation",12
+"2018-19","ingestion","active","error","player fgm differs from team total",23
+"2019-20","ingestion","active","error","player fgm differs from team total",2
+"2020-21","ingestion","active","error","player fgm differs from team total",1
+"2025-26","ingestion","active","error","player fgm differs from team total",7
+"2018-19","ingestion","historical","error","player fgm differs from team total",23
+"2019-20","ingestion","historical","error","player fgm differs from team total",2
+"2020-21","ingestion","historical","error","player fgm differs from team total",1
+"2025-26","ingestion","historical","error","player fgm differs from team total",7
+"2015-16","ingestion","active","error","player fgm unavailable for team reconciliation",13
+"2016-17","ingestion","active","error","player fgm unavailable for team reconciliation",12
+"2017-18","ingestion","active","error","player fgm unavailable for team reconciliation",3
+"2018-19","ingestion","active","error","player fgm unavailable for team reconciliation",12
+"2015-16","ingestion","historical","error","player fgm unavailable for team reconciliation",13
+"2016-17","ingestion","historical","error","player fgm unavailable for team reconciliation",12
+"2017-18","ingestion","historical","error","player fgm unavailable for team reconciliation",3
+"2018-19","ingestion","historical","error","player fgm unavailable for team reconciliation",12
+"2018-19","ingestion","active","error","player fta differs from team total",12
+"2019-20","ingestion","active","error","player fta differs from team total",1
+"2020-21","ingestion","active","error","player fta differs from team total",1
+"2025-26","ingestion","active","error","player fta differs from team total",3
+"2018-19","ingestion","historical","error","player fta differs from team total",12
+"2019-20","ingestion","historical","error","player fta differs from team total",2
+"2020-21","ingestion","historical","error","player fta differs from team total",1
+"2025-26","ingestion","historical","error","player fta differs from team total",3
+"2015-16","ingestion","active","error","player fta unavailable for team reconciliation",13
+"2016-17","ingestion","active","error","player fta unavailable for team reconciliation",12
+"2017-18","ingestion","active","error","player fta unavailable for team reconciliation",3
+"2018-19","ingestion","active","error","player fta unavailable for team reconciliation",12
+"2015-16","ingestion","historical","error","player fta unavailable for team reconciliation",13
+"2016-17","ingestion","historical","error","player fta unavailable for team reconciliation",12
+"2017-18","ingestion","historical","error","player fta unavailable for team reconciliation",3
+"2018-19","ingestion","historical","error","player fta unavailable for team reconciliation",12
+"2018-19","ingestion","active","error","player ftm differs from team total",12
+"2020-21","ingestion","active","error","player ftm differs from team total",1
+"2025-26","ingestion","active","error","player ftm differs from team total",1
+"2018-19","ingestion","historical","error","player ftm differs from team total",12
+"2020-21","ingestion","historical","error","player ftm differs from team total",1
+"2025-26","ingestion","historical","error","player ftm differs from team total",1
+"2015-16","ingestion","active","error","player ftm unavailable for team reconciliation",13
+"2016-17","ingestion","active","error","player ftm unavailable for team reconciliation",12
+"2017-18","ingestion","active","error","player ftm unavailable for team reconciliation",3
+"2018-19","ingestion","active","error","player ftm unavailable for team reconciliation",12
+"2015-16","ingestion","historical","error","player ftm unavailable for team reconciliation",13
+"2016-17","ingestion","historical","error","player ftm unavailable for team reconciliation",12
+"2017-18","ingestion","historical","error","player ftm unavailable for team reconciliation",3
+"2018-19","ingestion","historical","error","player ftm unavailable for team reconciliation",12
+"2015-16","ingestion","active","error","player points differ from team total",1
+"2018-19","ingestion","active","error","player points differ from team total",26
+"2019-20","ingestion","active","error","player points differ from team total",2
+"2020-21","ingestion","active","error","player points differ from team total",1
+"2025-26","ingestion","active","error","player points differ from team total",7
+"2015-16","ingestion","historical","error","player points differ from team total",3
+"2018-19","ingestion","historical","error","player points differ from team total",78
+"2019-20","ingestion","historical","error","player points differ from team total",6
+"2020-21","ingestion","historical","error","player points differ from team total",3
+"2025-26","ingestion","historical","error","player points differ from team total",14
+"2018-19","ingestion","active","error","player turnovers differs from team total",21
+"2019-20","ingestion","active","error","player turnovers differs from team total",1
+"2025-26","ingestion","active","error","player turnovers differs from team total",3
+"2015-16","ingestion","historical","error","player turnovers differs from team total",3
+"2016-17","ingestion","historical","error","player turnovers differs from team total",6
+"2018-19","ingestion","historical","error","player turnovers differs from team total",26
+"2019-20","ingestion","historical","error","player turnovers differs from team total",4
+"2025-26","ingestion","historical","error","player turnovers differs from team total",3
+"2015-16","ingestion","active","error","player turnovers unavailable for team reconciliation",13
+"2016-17","ingestion","active","error","player turnovers unavailable for team reconciliation",12
+"2017-18","ingestion","active","error","player turnovers unavailable for team reconciliation",3
+"2018-19","ingestion","active","error","player turnovers unavailable for team reconciliation",12
+"2015-16","ingestion","historical","error","player turnovers unavailable for team reconciliation",13
+"2016-17","ingestion","historical","error","player turnovers unavailable for team reconciliation",12
+"2017-18","ingestion","historical","error","player turnovers unavailable for team reconciliation",3
+"2018-19","ingestion","historical","error","player turnovers unavailable for team reconciliation",12
+"2025-26","ingestion","historical","error","player_box_scores missing identifiers",66
+"2025-26","ingestion","historical","error","player_identifiers missing identifiers",1349
+"2025-26","ingestion","historical","error","players missing identifiers",1349
+"2015-16","possessions","active","error","possession plus non-possession points fail final score reconciliation",737
+"2016-17","possessions","active","error","possession plus non-possession points fail final score reconciliation",194
+"2017-18","possessions","active","error","possession plus non-possession points fail final score reconciliation",199
+"2018-19","possessions","active","error","possession plus non-possession points fail final score reconciliation",107
+"2019-20","possessions","active","error","possession plus non-possession points fail final score reconciliation",37
+"2020-21","possessions","active","error","possession plus non-possession points fail final score reconciliation",48
+"2021-22","possessions","active","error","possession plus non-possession points fail final score reconciliation",42
+"2022-23","possessions","active","error","possession plus non-possession points fail final score reconciliation",49
+"2023-24","possessions","active","error","possession plus non-possession points fail final score reconciliation",37
+"2024-25","possessions","active","error","possession plus non-possession points fail final score reconciliation",43
+"2025-26","possessions","active","error","possession plus non-possession points fail final score reconciliation",38
+"2026-27","possessions","active","error","possession plus non-possession points fail final score reconciliation",2
+"2015-16","possessions","historical","error","possession plus non-possession points fail final score reconciliation",2774
+"2016-17","possessions","historical","error","possession plus non-possession points fail final score reconciliation",1684
+"2017-18","possessions","historical","error","possession plus non-possession points fail final score reconciliation",1702
+"2018-19","possessions","historical","error","possession plus non-possession points fail final score reconciliation",1390
+"2019-20","possessions","historical","error","possession plus non-possession points fail final score reconciliation",188
+"2020-21","possessions","historical","error","possession plus non-possession points fail final score reconciliation",100
+"2021-22","possessions","historical","error","possession plus non-possession points fail final score reconciliation",42
+"2022-23","possessions","historical","error","possession plus non-possession points fail final score reconciliation",49
+"2023-24","possessions","historical","error","possession plus non-possession points fail final score reconciliation",37
+"2024-25","possessions","historical","error","possession plus non-possession points fail final score reconciliation",43
+"2025-26","possessions","historical","error","possession plus non-possession points fail final score reconciliation",38
+"2026-27","possessions","historical","error","possession plus non-possession points fail final score reconciliation",2
+"2019-20","normalization","active","warning","quarantine_revalidated_current_gate",1
+"2021-22","normalization","active","warning","quarantine_revalidated_current_gate",4
+"2022-23","normalization","active","warning","quarantine_revalidated_current_gate",3
+"2023-24","normalization","active","warning","quarantine_revalidated_current_gate",1
+"2024-25","normalization","active","warning","quarantine_revalidated_current_gate",1
+"2025-26","normalization","active","warning","quarantine_revalidated_current_gate",12
+"2015-16","lineups","active","error","reconstructed player minutes exceed source precision bounds",53
+"2016-17","lineups","active","error","reconstructed player minutes exceed source precision bounds",66
+"2017-18","lineups","active","error","reconstructed player minutes exceed source precision bounds",474
+"2018-19","lineups","active","error","reconstructed player minutes exceed source precision bounds",473
+"2019-20","lineups","active","error","reconstructed player minutes exceed source precision bounds",378
+"2020-21","lineups","active","error","reconstructed player minutes exceed source precision bounds",82
+"2021-22","lineups","active","error","reconstructed player minutes exceed source precision bounds",74
+"2022-23","lineups","active","error","reconstructed player minutes exceed source precision bounds",126
+"2023-24","lineups","active","error","reconstructed player minutes exceed source precision bounds",84
+"2024-25","lineups","active","error","reconstructed player minutes exceed source precision bounds",169
+"2025-26","lineups","active","error","reconstructed player minutes exceed source precision bounds",126
+"2026-27","lineups","active","error","reconstructed player minutes exceed source precision bounds",3
+"2015-16","lineups","historical","error","reconstructed player minutes exceed source precision bounds",159
+"2016-17","lineups","historical","error","reconstructed player minutes exceed source precision bounds",198
+"2017-18","lineups","historical","error","reconstructed player minutes exceed source precision bounds",1422
+"2018-19","lineups","historical","error","reconstructed player minutes exceed source precision bounds",992
+"2019-20","lineups","historical","error","reconstructed player minutes exceed source precision bounds",756
+"2020-21","lineups","historical","error","reconstructed player minutes exceed source precision bounds",164
+"2021-22","lineups","historical","error","reconstructed player minutes exceed source precision bounds",74
+"2022-23","lineups","historical","error","reconstructed player minutes exceed source precision bounds",125
+"2023-24","lineups","historical","error","reconstructed player minutes exceed source precision bounds",84
+"2024-25","lineups","historical","error","reconstructed player minutes exceed source precision bounds",169
+"2025-26","lineups","historical","error","reconstructed player minutes exceed source precision bounds",117
+"2026-27","lineups","historical","error","reconstructed player minutes exceed source precision bounds",3
+"2023-24","independent_reconciliation","active","error","reference_assists",2
+"2025-26","independent_reconciliation","active","error","reference_assists",3
+"2023-24","independent_reconciliation","historical","error","reference_assists",6
+"2015-16","independent_reconciliation","active","error","reference_fg3a",4
+"2016-17","independent_reconciliation","active","error","reference_fg3a",5
+"2017-18","independent_reconciliation","active","error","reference_fg3a",1
+"2019-20","independent_reconciliation","active","error","reference_fg3a",1
+"2022-23","independent_reconciliation","active","error","reference_fg3a",1
+"2025-26","independent_reconciliation","active","error","reference_fg3a",2
+"2015-16","independent_reconciliation","historical","error","reference_fg3a",12
+"2016-17","independent_reconciliation","historical","error","reference_fg3a",15
+"2017-18","independent_reconciliation","historical","error","reference_fg3a",3
+"2019-20","independent_reconciliation","historical","error","reference_fg3a",3
+"2020-21","independent_reconciliation","historical","error","reference_fg3a",15
+"2022-23","independent_reconciliation","historical","error","reference_fg3a",3
+"2025-26","independent_reconciliation","historical","error","reference_fg3a",6
+"2016-17","independent_reconciliation","active","error","reference_fga",6
+"2017-18","independent_reconciliation","active","error","reference_fga",1
+"2019-20","independent_reconciliation","active","error","reference_fga",2
+"2020-21","independent_reconciliation","active","error","reference_fga",3
+"2022-23","independent_reconciliation","active","error","reference_fga",1
+"2023-24","independent_reconciliation","active","error","reference_fga",2
+"2025-26","independent_reconciliation","active","error","reference_fga",1
+"2016-17","independent_reconciliation","historical","error","reference_fga",18
+"2017-18","independent_reconciliation","historical","error","reference_fga",3
+"2019-20","independent_reconciliation","historical","error","reference_fga",6
+"2020-21","independent_reconciliation","historical","error","reference_fga",81
+"2022-23","independent_reconciliation","historical","error","reference_fga",3
+"2023-24","independent_reconciliation","historical","error","reference_fga",6
+"2025-26","independent_reconciliation","historical","error","reference_fga",3
+"2022-23","independent_reconciliation","active","error","reference_fta",1
+"2022-23","independent_reconciliation","historical","error","reference_fta",3
+"2017-18","independent_reconciliation","active","error","reference_points",1
+"2017-18","independent_reconciliation","historical","error","reference_points",3
+"2017-18","independent_reconciliation","active","error","reference_schedule_points",1
+"2017-18","independent_reconciliation","historical","error","reference_schedule_points",3
+"2016-17","independent_reconciliation","active","error","reference_turnovers",2
+"2017-18","independent_reconciliation","active","error","reference_turnovers",5
+"2019-20","independent_reconciliation","active","error","reference_turnovers",1
+"2020-21","independent_reconciliation","active","error","reference_turnovers",6
+"2024-25","independent_reconciliation","active","error","reference_turnovers",1
+"2025-26","independent_reconciliation","active","error","reference_turnovers",1
+"2015-16","independent_reconciliation","historical","error","reference_turnovers",2362
+"2016-17","independent_reconciliation","historical","error","reference_turnovers",2325
+"2017-18","independent_reconciliation","historical","error","reference_turnovers",2325
+"2018-19","independent_reconciliation","historical","error","reference_turnovers",2110
+"2019-20","independent_reconciliation","historical","error","reference_turnovers",2122
+"2020-21","independent_reconciliation","historical","error","reference_turnovers",2116
+"2021-22","independent_reconciliation","historical","error","reference_turnovers",5356
+"2022-23","independent_reconciliation","historical","error","reference_turnovers",2576
+"2023-24","independent_reconciliation","historical","error","reference_turnovers",2732
+"2024-25","independent_reconciliation","historical","error","reference_turnovers",17
+"2025-26","independent_reconciliation","historical","error","reference_turnovers",3
+"2024-25","ingestion","historical","error","team_box_scores inconsistent scoring totals",2
+"2015-16","possessions","active","error","unassigned offensive event",10
+"2016-17","possessions","active","error","unassigned offensive event",6
+"2017-18","possessions","active","error","unassigned offensive event",4
+"2018-19","possessions","active","error","unassigned offensive event",2
+"2019-20","possessions","active","error","unassigned offensive event",2
+"2020-21","possessions","active","error","unassigned offensive event",3
+"2021-22","possessions","active","error","unassigned offensive event",3
+"2022-23","possessions","active","error","unassigned offensive event",3
+"2023-24","possessions","active","error","unassigned offensive event",4
+"2024-25","possessions","active","error","unassigned offensive event",1
+"2025-26","possessions","active","error","unassigned offensive event",3
+"2015-16","possessions","historical","error","unassigned offensive event",30
+"2016-17","possessions","historical","error","unassigned offensive event",18
+"2017-18","possessions","historical","error","unassigned offensive event",12
+"2018-19","possessions","historical","error","unassigned offensive event",4
+"2019-20","possessions","historical","error","unassigned offensive event",4
+"2020-21","possessions","historical","error","unassigned offensive event",6
+"2021-22","possessions","historical","error","unassigned offensive event",3
+"2022-23","possessions","historical","error","unassigned offensive event",3
+"2023-24","possessions","historical","error","unassigned offensive event",4
+"2024-25","possessions","historical","error","unassigned offensive event",1
+"2025-26","possessions","historical","error","unassigned offensive event",3
+"2015-16","pbp_metric","active","warning","unavailable_attempt_classification",2600
+"2016-17","pbp_metric","active","warning","unavailable_attempt_classification",2592
+"2017-18","pbp_metric","active","warning","unavailable_attempt_classification",2608
+"2018-19","pbp_metric","active","warning","unavailable_attempt_classification",2540
+"2019-20","pbp_metric","active","warning","unavailable_attempt_classification",2265
+"2020-21","pbp_metric","active","warning","unavailable_attempt_classification",2213
+"2021-22","pbp_metric","active","warning","unavailable_attempt_classification",2646
+"2022-23","pbp_metric","active","warning","unavailable_attempt_classification",2619
+"2023-24","pbp_metric","active","warning","unavailable_attempt_classification",2620
+"2015-16","pbp_metric","historical","warning","unavailable_attempt_classification",5200
+"2016-17","pbp_metric","historical","warning","unavailable_attempt_classification",5184
+"2017-18","pbp_metric","historical","warning","unavailable_attempt_classification",10428
+"2018-19","pbp_metric","historical","warning","unavailable_attempt_classification",2746
+"2019-20","pbp_metric","historical","warning","unavailable_attempt_classification",2267
+"2020-21","pbp_metric","historical","warning","unavailable_attempt_classification",2215
+"2021-22","pbp_metric","historical","warning","unavailable_attempt_classification",2638
+"2022-23","pbp_metric","historical","warning","unavailable_attempt_classification",2613
+"2023-24","pbp_metric","historical","warning","unavailable_attempt_classification",2620
+"2016-17","possessions","active","error","unclosed period possession",1
+"2017-18","possessions","active","error","unclosed period possession",1
+"2025-26","possessions","active","error","unclosed period possession",1
+"2016-17","possessions","historical","error","unclosed period possession",3
+"2017-18","possessions","historical","error","unclosed period possession",3
+"2025-26","possessions","historical","error","unclosed period possession",1
+"2015-16","possessions","active","error","unexplained change of offensive control",2597
+"2016-17","possessions","active","error","unexplained change of offensive control",884
+"2017-18","possessions","active","error","unexplained change of offensive control",853
+"2018-19","possessions","active","error","unexplained change of offensive control",462
+"2019-20","possessions","active","error","unexplained change of offensive control",186
+"2020-21","possessions","active","error","unexplained change of offensive control",200
+"2021-22","possessions","active","error","unexplained change of offensive control",204
+"2022-23","possessions","active","error","unexplained change of offensive control",243
+"2023-24","possessions","active","error","unexplained change of offensive control",201
+"2024-25","possessions","active","error","unexplained change of offensive control",245
+"2025-26","possessions","active","error","unexplained change of offensive control",241
+"2026-27","possessions","active","error","unexplained change of offensive control",6
+"2015-16","possessions","historical","error","unexplained change of offensive control",9965
+"2016-17","possessions","historical","error","unexplained change of offensive control",6134
+"2017-18","possessions","historical","error","unexplained change of offensive control",2587
+"2018-19","possessions","historical","error","unexplained change of offensive control",1013
+"2019-20","possessions","historical","error","unexplained change of offensive control",398
+"2020-21","possessions","historical","error","unexplained change of offensive control",418
+"2021-22","possessions","historical","error","unexplained change of offensive control",204
+"2022-23","possessions","historical","error","unexplained change of offensive control",242
+"2023-24","possessions","historical","error","unexplained change of offensive control",200
+"2024-25","possessions","historical","error","unexplained change of offensive control",245
+"2025-26","possessions","historical","error","unexplained change of offensive control",238
+"2026-27","possessions","historical","error","unexplained change of offensive control",6
+"2015-16","possessions","active","error","unknown scoring team",1
+"2016-17","possessions","active","error","unknown scoring team",1
+"2017-18","possessions","active","error","unknown scoring team",1
+"2015-16","possessions","historical","error","unknown scoring team",2
+"2016-17","possessions","historical","error","unknown scoring team",2
+"2017-18","possessions","historical","error","unknown scoring team",2
+"2015-16","possessions","active","error","unresolved held jump ball",70
+"2016-17","possessions","active","error","unresolved held jump ball",77
+"2017-18","possessions","active","error","unresolved held jump ball",74
+"2018-19","possessions","active","error","unresolved held jump ball",77
+"2019-20","possessions","active","error","unresolved held jump ball",66
+"2020-21","possessions","active","error","unresolved held jump ball",71
+"2021-22","possessions","active","error","unresolved held jump ball",83
+"2022-23","possessions","active","error","unresolved held jump ball",64
+"2023-24","possessions","active","error","unresolved held jump ball",69
+"2024-25","possessions","active","error","unresolved held jump ball",84
+"2025-26","possessions","active","error","unresolved held jump ball",88
+"2015-16","possessions","historical","error","unresolved held jump ball",210
+"2016-17","possessions","historical","error","unresolved held jump ball",231
+"2017-18","possessions","historical","error","unresolved held jump ball",222
+"2018-19","possessions","historical","error","unresolved held jump ball",157
+"2019-20","possessions","historical","error","unresolved held jump ball",132
+"2020-21","possessions","historical","error","unresolved held jump ball",142
+"2021-22","possessions","historical","error","unresolved held jump ball",83
+"2022-23","possessions","historical","error","unresolved held jump ball",64
+"2023-24","possessions","historical","error","unresolved held jump ball",69
+"2024-25","possessions","historical","error","unresolved held jump ball",84
+"2025-26","possessions","historical","error","unresolved held jump ball",87
+"2015-16","lineups","active","error","unrostered live-event participant",54
+"2016-17","lineups","active","error","unrostered live-event participant",49
+"2018-19","lineups","active","error","unrostered live-event participant",2
+"2020-21","lineups","active","error","unrostered live-event participant",2
+"2025-26","lineups","active","error","unrostered live-event participant",4
+"2015-16","lineups","historical","error","unrostered live-event participant",162
+"2016-17","lineups","historical","error","unrostered live-event participant",147
+"2018-19","lineups","historical","error","unrostered live-event participant",4
+"2020-21","lineups","historical","error","unrostered live-event participant",4
+"2015-16","reference_recovery","active","warning","whole_team_box_from_alternative_provider",1
+"2016-17","reference_recovery","active","warning","whole_team_box_from_alternative_provider",3
+"2018-19","reference_recovery","active","warning","whole_team_box_from_alternative_provider",2
+"2019-20","reference_recovery","active","warning","whole_team_box_from_alternative_provider",1
+"2020-21","reference_recovery","active","warning","whole_team_box_from_alternative_provider",26
+"2024-25","reference_recovery","active","warning","whole_team_box_from_alternative_provider",1
+"2015-16","validation_migration","historical","warning","withdraw_superseded_canonical_snapshot",1
+"2016-17","validation_migration","historical","warning","withdraw_superseded_canonical_snapshot",3
+"2018-19","validation_migration","historical","warning","withdraw_superseded_canonical_snapshot",5
+"2019-20","validation_migration","historical","warning","withdraw_superseded_canonical_snapshot",4
+"2020-21","validation_migration","historical","warning","withdraw_superseded_canonical_snapshot",29
+"2021-22","validation_migration","historical","warning","withdraw_superseded_canonical_snapshot",4
+"2022-23","validation_migration","historical","warning","withdraw_superseded_canonical_snapshot",3
+"2023-24","validation_migration","historical","warning","withdraw_superseded_canonical_snapshot",2
+"2024-25","validation_migration","historical","warning","withdraw_superseded_canonical_snapshot",1

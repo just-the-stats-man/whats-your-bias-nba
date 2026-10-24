@@ -37,6 +37,7 @@ Rscript scripts/audited_backfill.R
 Rscript scripts/reconstruct.R
 Rscript scripts/reconstruct_parallel.R
 Rscript scripts/report_completeness.R
+Rscript scripts/verify_historical.R
 quarto render articles/luka-efficiency.qmd
 ```
 
@@ -57,6 +58,9 @@ available, but use the audited commands above for research-ready processing.
 The serial and parallel reconstruction commands are alternatives. Parallel
 processing uses isolated season databases and publishes only after all workers
 pass integrity checks; it can substantially reduce a full historical rerun.
+After the historical caches are populated, `verify_historical.R` checks every
+canonical game's method, warehouse integrity, registered file hashes and raw-gap
+probes, then writes final verification reports and refreshes Parquet exports.
 
 The scheduled GitHub workflow retrieves licensed SDV and Kaggle archives,
 reconstructs, reconciles and reports; it does not scrape NBA/ESPN websites.
