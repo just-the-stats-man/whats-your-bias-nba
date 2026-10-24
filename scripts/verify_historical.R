@@ -46,4 +46,3 @@ tryCatch({
   # Include diagnostics and inventory changes made by the final report refresh.
   export_parquet(con)
 },finally=DBI::dbDisconnect(con,shutdown=TRUE))
-
