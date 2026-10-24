@@ -44,8 +44,8 @@ completeness_report <- function(con,years=2016:2027,directory='docs') {
     state<-DBI::dbReadTable(con,'reconstruction_status');loaded<-DBI::dbGetQuery(con,'SELECT game_id FROM games')$game_id
     conflict<-DBI::dbGetQuery(con,'SELECT DISTINCT game_id FROM reconciliation_checks WHERE passed IS DISTINCT FROM TRUE')$game_id
     exceptions$state<-'historical'
-    exceptions$state[exceptions$stage%in%c('normalization','reference_recovery') | (exceptions$stage=='ingestion' & (!exceptions$game_id%in%loaded | exceptions$severity=='warning')) | (exceptions$stage=='independent_reconciliation' & exceptions$game_id%in%conflict)]<-'active'
     current<-exceptions$version==reconstruction_version
+    exceptions$state[exceptions$stage%in%c('normalization','reference_recovery') | (exceptions$stage=='ingestion' & ((current & !exceptions$game_id%in%loaded) | exceptions$severity=='warning')) | (exceptions$stage=='independent_reconciliation' & exceptions$game_id%in%conflict) | (current & exceptions$stage=='pbp_metric')]<-'active'
     exceptions$state[current & exceptions$stage=='possessions' & (exceptions$game_id%in%state$game_id[state$possessions_status!='reconciled'] | exceptions$severity=='warning')]<-'active'
     exceptions$state[current & exceptions$stage=='lineups' & exceptions$game_id%in%state$game_id[state$lineups_status!='reconciled']]<-'active'
     exceptions$category<-sub(' (espn:|[0-9]{5,}).*','',exceptions$rule)

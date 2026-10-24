@@ -30,13 +30,17 @@ accessibility and open-source client code do not grant data redistribution right
 ## Recommendations
 
 The reconstruction milestone connects [Eoin Moore's NBA dataset](https://www.kaggle.com/datasets/eoinamoore/historical-nba-data-and-player-box-scores)
-through Kaggle's public dataset API. `TeamStatistics.csv` v524 and its metadata
+through Kaggle's public dataset API. `TeamStatistics.csv`, `PlayerStatistics.csv`
+v524 and their dataset metadata
 were downloaded on 2026-10-23. Official metadata declares **CC0: Public Domain**;
 price $0, no paid credentials. NBA-derived historical team/game totals include
 regular season, playoffs, play-ins and Cup finals. This is distinct from the
 ESPN feed, not guaranteed independent observation of the underlying event.
 Cadence is publisher-controlled; no SLA/fixed download quota was verified.
-Raw CSV, metadata and SHA-256 are preserved. Ten team rows, 135 player rows and derived
+Raw CSV, metadata and SHA-256 are preserved. Independent player records supply
+the player-turnover benchmark because the reported team turnover field changes
+definitions across eras. Unknown or duplicated player observations do not
+become verified zeros. Ten team rows, 135 player rows and derived
 diagnostics are committed. The publisher declaration supports this archive
 integration; underlying NBA rights are not independently audited. Automated
 refresh checks the license before selecting a new version and stops on change.
@@ -58,5 +62,5 @@ agreement beyond this budget. No free public feed was verified to provide
 possession responsibility, help and switching ground truth.
 
 This is an evaluated candidate inventory, not a claim that every provider
-was successfully connected. SDV and the versioned Kaggle team-total archive
+was successfully connected. SDV and the versioned Kaggle team/player archive
 are enabled; direct NBA/ESPN website scraping remains disabled.

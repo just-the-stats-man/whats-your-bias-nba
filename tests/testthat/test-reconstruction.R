@@ -141,3 +141,14 @@ testthat::test_that('independent turnovers come from player records across chang
   testthat::expect_equal(current$turnovers,12L)
   testthat::expect_equal(current$total_turnovers,13L)
 })
+
+testthat::test_that('missing independent metrics remain unavailable and block false certification', {
+  con<-connect_warehouse(':memory:');on.exit(DBI::dbDisconnect(con,shutdown=TRUE))
+  ingest_bundle(con,sample_bundle(),'2024-25');import_reference(con,load_reference_fixture())
+  DBI::dbExecute(con,"UPDATE independent_team_totals SET turnovers=NULL WHERE team_id='espn:13'")
+  testthat::expect_silent(suppressMessages(reconcile_game_totals(con)))
+  checks<-DBI::dbReadTable(con,'reconciliation_checks')
+  testthat::expect_equal(sum(is.na(checks$passed)),3L)
+  reconstruct_season(con,'2024-25')
+  testthat::expect_equal(nrow(DBI::dbReadTable(con,'possessions')),0L)
+})

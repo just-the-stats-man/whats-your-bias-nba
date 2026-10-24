@@ -27,6 +27,7 @@ connect_warehouse <- function(path = 'data/processed/nba.duckdb') {
   migrations<-c(migrations,'independent_team_totals ADD COLUMN IF NOT EXISTS reported_turnovers INTEGER')
   migrations<-c(migrations,'possessions ADD COLUMN IF NOT EXISTS start_seconds DOUBLE','possessions ADD COLUMN IF NOT EXISTS end_seconds DOUBLE','possessions ADD COLUMN IF NOT EXISTS duration_seconds DOUBLE')
   for (migration in migrations) DBI::dbExecute(con,paste('ALTER TABLE',migration))
+  DBI::dbExecute(con,'ALTER TABLE reconciliation_checks ALTER COLUMN passed DROP NOT NULL')
   con
 }
 
