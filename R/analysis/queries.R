@@ -29,8 +29,14 @@ get_player_shots <- function(player,season,con) {
   out
 }
 get_team_lineups <- function(team,season,con) {
-  out <- DBI::dbGetQuery(con,'SELECT l.* FROM lineups l JOIN games g USING(game_id) JOIN team_identities t ON l.team_id=t.team_id AND g.season=t.season WHERE t.abbreviation=? AND g.season=?',params=list(team,season))
+  out <- DBI::dbGetQuery(con,'SELECT l.*, list(lp.player_id ORDER BY lp.player_id) player_ids FROM lineups l JOIN lineup_players lp USING(lineup_id) JOIN games g USING(game_id) JOIN team_identities t ON l.team_id=t.team_id AND g.season=t.season WHERE t.abbreviation=? AND g.season=? GROUP BY ALL ORDER BY l.game_id,l.period,l.start_seconds',params=list(team,season))
   if (!nrow(out)) stop('Lineups unavailable: substitutions alone do not establish all five players; a validated lineup source is required')
+  out
+}
+
+get_game_possessions <- function(game_id,con) {
+  out<-DBI::dbGetQuery(con,'SELECT * FROM possessions WHERE game_id=? ORDER BY period,start_order',params=list(game_id))
+  if(!nrow(out))stop('Possessions unavailable or unresolved: inspect reconstruction_status and quality_exceptions for this game')
   out
 }
 get_player_salary <- function(player,season,con) {

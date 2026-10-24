@@ -16,7 +16,7 @@ normalize_name <- function(x) tolower(iconv(x, from = 'UTF-8', to = 'ASCII//TRAN
 # All-Star showcase teams have separate IDs despite season_type == 2.
 is_nba_team <- function(x) as.character(x) %in% as.character(1:30)
 eligible_schedule <- function(s) {
-  s$status_type_completed %in% TRUE & s$season_type %in% c(2,3) &
+  s$status_type_completed %in% TRUE & s$season_type %in% c(2,3,5) &
     is_nba_team(s$home_id) & is_nba_team(s$away_id)
 }
 
@@ -44,6 +44,11 @@ fetch_cached <- function(url, path, refresh = FALSE, perform = httr2::req_perfor
 }
 
 fetch_season <- function(season, revision = archive_revision, refresh = FALSE) {
+  if(!grepl('^[0-9a-f]{40}$',revision)) {
+    response<-httr2::request(paste0('https://api.github.com/repos/sportsdataverse/hoopR-nba-data/commits/',utils::URLencode(revision,reserved=TRUE))) |> httr2::req_retry(max_tries=4) |> httr2::req_perform()
+    revision<-httr2::resp_body_json(response)$sha
+    if(is.null(revision) || !grepl('^[0-9a-f]{40}$',revision))stop('Unable to resolve an immutable archive revision')
+  }
   year <- season_end(season)
   specs <- c(schedules = 'nba_schedule', player_box = 'player_box', team_box = 'team_box', pbp = 'play_by_play')
   out <- lapply(names(specs), function(kind) {

@@ -17,3 +17,13 @@ The archive publisher's license is the basis for this integration; we have
 not independently established rights to every upstream contribution.
 Recheck publisher terms before expanding public redistribution. Large raw
 files remain local and ignored by Git. MIT does not relicense these data.
+
+`independent_team_totals.csv` contains six filtered real team rows from Eoin
+Moore, [NBA Dataset: Box Scores and Stats](https://www.kaggle.com/datasets/eoinamoore/historical-nba-data-and-player-box-scores),
+version 524, `TeamStatistics.csv`, published under CC0 1.0 (verified through
+Kaggle's official dataset metadata on 2026-10-23). Upstream: NBA.com.
+It is independent of the ESPN-derived fixture for reconciliation purposes;
+independence of statistical providers does not imply independent observation
+of every underlying sporting event. Filtering and CSV serialization are the
+only fixture modifications. Publisher grants are not an independent audit
+of upstream rights; no direct NBA/ESPN scraping is performed.

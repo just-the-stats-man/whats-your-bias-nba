@@ -27,3 +27,29 @@ Effective FG% weights made threes by 1.5. True shooting uses the conventional
 The warehouse preserves raw records and provider attribution. A six-attempt
 matchup omits free throws, passes, turnovers and selection effects; it cannot
 establish a defender's underlying ability.
+
+The warehouse also reconstructs possessions and five-player stints against a
+separate NBA-derived totals fixture. These do not identify a responsible defender.
+
+```{r}
+withr::with_dir(project_root, {
+  con <- connect_warehouse('data/processed/article-demo.duckdb')
+  import_reference(con, load_reference_fixture())
+  reconcile_game_totals(con)
+  reconstruct_season(con, '2024-25')
+  assert_warehouse_integrity(con)
+  checks <- DBI::dbGetQuery(con, paste(
+    'SELECT s.game_id, s.possessions_status, s.lineups_status,',
+    '(SELECT count(*) FROM possessions p WHERE p.game_id=s.game_id) possessions,',
+    '(SELECT count(*) FROM lineups l WHERE l.game_id=s.game_id) team_stints',
+    'FROM reconstruction_status s ORDER BY s.game_id'
+  ))
+  DBI::dbDisconnect(con, shutdown = TRUE)
+  knitr::kable(checks)
+})
+```
+
+Technical and retained-possession FT points are separate. Possession points
+plus those points must equal the score. Stints require five unique players,
+complete period coverage and minute reconciliation. Failed games remain
+unresolved rather than receiving guessed players or defender roles.

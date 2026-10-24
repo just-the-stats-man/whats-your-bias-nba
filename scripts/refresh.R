@@ -1,8 +1,16 @@
 source('scripts/load.R')
 con <- connect_warehouse()
 tryCatch({
-  # Mutable main: conditional ETags avoid unchanged downloads. Refresh replaces
-  # selected fact snapshots so upstream corrections are not silently ignored.
-  ingest_season(con,Sys.getenv('WYB_SEASON','2026-27'),revision='main',refresh=TRUE)
+  season<-Sys.getenv('WYB_SEASON','2026-27')
+  # Resolve main to a commit before caching: old raw bytes are never overwritten.
+  audit_ingest_season(con,season,revision='main')
+  withdraw_quarantined(con)
+  reference<-Sys.getenv('WYB_REFERENCE_VERSION')
+  version<-if(nzchar(reference))as.integer(reference) else resolve_reference_version()
+  import_reference(con,fetch_independent_totals(version=version))
+  recover_reference_boxes(con)
+  reconcile_game_totals(con)
+  reconstruct_season(con,season)
+  completeness_report(con,directory='data/processed/reports')
   export_parquet(con)
 },finally=DBI::dbDisconnect(con,shutdown=TRUE))

@@ -1,13 +1,12 @@
 # Research limitations and interpretation
 
-The initial offline deliverable contains three 2024–25 games, not all seasons.
+The offline deliverable contains three 2024–25 games, not all seasons.
 Backfill support starts at 2015–16; archive coverage is not a completeness
-guarantee. Only completed regular-season and playoff games are selected.
+guarantee. Completed regular-season, playoff, play-in and Cup-final games are selected.
 Preseason, All-Star showcases and ongoing games are excluded. ESPN IDs 1–30
 are the franchise allowlist for the covered era; expansion needs an explicit
-policy update. The NBA Cup final may be classified
-by the provider alongside other regular-season games; filter the raw schedule
-metadata when constructing official season totals. ESPN and NBA IDs differ.
+policy update. `games.competition` separates Cup finals from official regular
+season totals. ESPN and NBA IDs differ; no score-based or fuzzy matching is used.
 
 Box scores and PBP are provider-attributed records of observed outcomes.
 Some older archives lack points_attempted; these retain PBP but do not
@@ -23,7 +22,7 @@ We preserve descriptions without inferring defender responsibility.
 | Period, clock, play descriptions | Provider-attributed, ingested |
 | Shot coordinates | Provider-attributed, incomplete and uncalibrated |
 | Shooting fouls, free throws drawn | Descriptions available; no validated attribution extractor |
-| Possession outcomes, lineup/on-off | Require validated possession/stint reconstruction |
+| Possession outcomes and five-player stints | Reconstructed only for games passing documented gates; coverage varies by season |
 | Primary defender, help, switches, nearest defender | Unavailable |
 | Potential assists, advantage-creating passes | Unavailable |
 | Expected shot value, opponent-adjusted effects | Model-estimated, deliberately deferred |

@@ -5,6 +5,27 @@ connect_warehouse <- function(path = 'data/processed/nba.duckdb') {
   for (statement in strsplit(sql, ';', fixed = TRUE)[[1]]) {
     if (nzchar(trimws(statement))) DBI::dbExecute(con, statement)
   }
+  migrations <- c(
+    'games ADD COLUMN IF NOT EXISTS competition VARCHAR',
+    'schedule_inventory ADD COLUMN IF NOT EXISTS competition VARCHAR',
+    'player_box_scores ADD COLUMN IF NOT EXISTS starter BOOLEAN',
+    'team_box_scores ADD COLUMN IF NOT EXISTS total_turnovers INTEGER',
+    'pbp_events ADD COLUMN IF NOT EXISTS secondary_player_id VARCHAR',
+    'pbp_events ADD COLUMN IF NOT EXISTS tertiary_player_id VARCHAR',
+    'pbp_events ADD COLUMN IF NOT EXISTS type_id INTEGER',
+    'pbp_events ADD COLUMN IF NOT EXISTS shooting_play BOOLEAN',
+    'pbp_events ADD COLUMN IF NOT EXISTS scoring_play BOOLEAN',
+    'pbp_events ADD COLUMN IF NOT EXISTS score_value INTEGER',
+    'pbp_events ADD COLUMN IF NOT EXISTS points_attempted INTEGER',
+    'lineups ADD COLUMN IF NOT EXISTS period INTEGER',
+    'lineups ADD COLUMN IF NOT EXISTS start_seconds DOUBLE',
+    'lineups ADD COLUMN IF NOT EXISTS end_seconds DOUBLE',
+    'lineups ADD COLUMN IF NOT EXISTS duration_seconds DOUBLE',
+    'reconstruction_status ADD COLUMN IF NOT EXISTS dataset_id VARCHAR',
+    'reconstruction_status ADD COLUMN IF NOT EXISTS reference_signature VARCHAR')
+  migrations<-c(migrations,'independent_team_totals ADD COLUMN IF NOT EXISTS total_turnovers INTEGER','reconciliation_checks ADD COLUMN IF NOT EXISTS independent BOOLEAN')
+  migrations<-c(migrations,'possessions ADD COLUMN IF NOT EXISTS start_seconds DOUBLE','possessions ADD COLUMN IF NOT EXISTS end_seconds DOUBLE','possessions ADD COLUMN IF NOT EXISTS duration_seconds DOUBLE')
+  for (migration in migrations) DBI::dbExecute(con,paste('ALTER TABLE',migration))
   con
 }
 
@@ -22,7 +43,8 @@ upsert_rows <- function(con, table, rows, keys) {
 
 export_parquet <- function(con, directory = 'data/processed/parquet') {
   dir.create(directory, recursive = TRUE, showWarnings = FALSE)
-  tables <- setdiff(DBI::dbListTables(con), '_incoming')
-  for (table in tables) arrow::write_parquet(DBI::dbReadTable(con, table), file.path(directory, paste0(table, '.parquet')))
+  tables <- setdiff(DBI::dbListTables(con), c('_incoming','_selected_games'))
+  # Stream through DuckDB rather than materialize multi-million-row tables in R.
+  for (table in tables) DBI::dbExecute(con,sprintf('COPY (SELECT * FROM %s) TO %s (FORMAT PARQUET)',DBI::dbQuoteIdentifier(con,table),DBI::dbQuoteString(con,normalizePath(file.path(directory,paste0(table,'.parquet')),mustWork=FALSE))))
   invisible(directory)
 }

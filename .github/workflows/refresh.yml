@@ -34,7 +34,7 @@ jobs:
           path: data
           key: archive-${{ github.run_id }}
           restore-keys: archive-
-      - name: Refresh published CC BY archive only
+      - name: Refresh licensed archives, reconstruct and reconcile
         env:
           WYB_SEASON: ${{ inputs.season || '2026-27' }}
         run: Rscript scripts/refresh.R

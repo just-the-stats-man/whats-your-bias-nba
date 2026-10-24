@@ -1,14 +1,16 @@
-ingest_bundle <- function(con, bundle, season, game_ids=NULL) {
+ingest_bundle <- function(con, bundle, season, game_ids=NULL, normalized=NULL, validated_report=NULL) {
   run <- paste0('run:', format(Sys.time(),'%Y%m%d%H%M%OS6'),':',sample.int(1e9,1))
   DBI::dbExecute(con,"INSERT OR IGNORE INTO sources VALUES ('sportsdataverse','https://github.com/sportsdataverse/hoopR-nba-data','CC-BY-4.0','hoopR.nba authors; ESPN upstream; normalized by Whats Your Bias')")
   DBI::dbExecute(con,'INSERT INTO ingestion_runs VALUES (?, ?, ?, ?, NULL, ?, NULL)',params=list(run,'sportsdataverse',season,Sys.time(),'running'))
   tryCatch({
-    x <- normalize_bundle(bundle,season,game_ids)
+    x <- if(is.null(normalized)) normalize_bundle(bundle,season,game_ids) else normalized
     if (!nrow(x$games)) stop('No completed regular-season or playoff games selected')
-    report <- quality_report(x)
+    # The audited backfill supplies its already-computed per-game report. All
+    # ordinary entrypoints still validate here; batch key constraints also run.
+    report <- if(is.null(validated_report)) quality_report(x) else validated_report
     dir.create('data/processed/quality',recursive=TRUE,showWarnings=FALSE)
     utils::write.csv(report,file.path('data/processed/quality',paste0(gsub(':','-',run),'.csv')),row.names=FALSE)
-    assert_quality(x)
+    if(any(report$severity=='error')) stop('Data quality failed: ',paste(unique(report$check[report$severity=='error']),collapse='; '))
     datasets <- do.call(rbind,lapply(names(bundle),function(kind) {
       z <- bundle[[kind]]; hash <- file_sha256(z$path)
       data.frame(dataset_id=paste0('sdv:',kind,':',season,':',hash),source_id='sportsdataverse',url=z$url,revision=z$revision,retrieved_at=Sys.time(),sha256=hash,raw_path=z$path,row_count=nrow(z$data))
@@ -16,6 +18,9 @@ ingest_bundle <- function(con, bundle, season, game_ids=NULL) {
     DBI::dbWithTransaction(con, {
       upsert_rows(con,'datasets',datasets,'dataset_id')
       DBI::dbWriteTable(con,'_selected_games',x$games['game_id'],temporary=TRUE,overwrite=TRUE)
+      # Derived facts must never survive replacement of their input snapshot.
+      DBI::dbExecute(con,'DELETE FROM lineup_players WHERE lineup_id IN (SELECT lineup_id FROM lineups WHERE game_id IN (SELECT game_id FROM _selected_games))')
+      for(derived in c('lineups','possessions','possession_events','non_possession_points','lineup_minute_checks','reconstruction_status'))DBI::dbExecute(con,paste('DELETE FROM',derived,'WHERE game_id IN (SELECT game_id FROM _selected_games)'))
       for (table in names(x)) {
         rows <- deduplicate(x[[table]],table_keys[[table]])
         # Historical entities are shared across seasons; fact snapshots replace selected games.

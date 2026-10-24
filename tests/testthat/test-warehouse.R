@@ -81,6 +81,8 @@ testthat::test_that('All-Star showcase teams are excluded despite regular season
   testthat::expect_true(all(eligible_schedule(s)))
   s$home_id[1]<-130579L
   testthat::expect_false(eligible_schedule(s)[1])
+  s$home_id[1]<-13L;s$season_type[1]<-5L
+  testthat::expect_true(eligible_schedule(s)[1])
 })
 
 testthat::test_that('database write failure rolls back the complete fact transaction', {

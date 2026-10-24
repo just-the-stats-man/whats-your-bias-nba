@@ -32,25 +32,32 @@ running the fixture tests; it does not test installation without a network.
 ```sh
 Rscript -e "source('scripts/load.R'); targets::tar_make()"
 Rscript scripts/ingest.R 2024-25
-Rscript scripts/backfill.R 2016 2027
+Rscript scripts/audited_backfill.R
+Rscript scripts/reconstruct.R
+Rscript scripts/report_completeness.R
 quarto render articles/luka-efficiency.qmd
 ```
 
-Backfill parameters are **season end years**: 2016 means 2015–16. The default
-revision is pinned in `R/sources/sportsdataverse.R`; newer archive revisions
-can be selected with `WYB_ARCHIVE_REVISION` for backfill. To update a current
+The audited backfill defaults to season end years 2016–2027; optional numeric
+arguments select individual end years (2016 means 2015–16). It processes every
+eligible game, logs exceptions and quarantines unresolved records. Its default
+revision is pinned in `R/sources/sportsdataverse.R`. To update a current
 season from the publisher's mutable branch, set `WYB_SEASON=2026-27` in your
 environment and run `Rscript scripts/refresh.R`.
 
-Raw season files are cached once per revision. Existing completed games are
-skipped. Failed batches are retried game-by-game, and failed games are logged
-and excluded. An incomplete season returns a nonzero exit; rerun after an
-upstream correction to fill gaps. Reports live in `data/processed/quality/`
-and statuses in `ingestion_runs`. Cached archive files have season granularity:
-a changed current-season file still requires a complete object download.
+Raw season files are cached once per immutable revision. Audited ingestion
+revalidates snapshots; reconstruction checkpoints skip unchanged event and
+reference inputs under the same method fingerprint. Failed games are explicit
+in `quality_exceptions` and the season report, not silently repaired. A fatal
+season/download failure returns nonzero. Quarantined games can coexist with a
+completed audit attempt. The original incremental `backfill.R` remains
+available, but use the audited commands above for research-ready processing.
 
-The scheduled GitHub workflow retrieves only the CC BY archive; it does not
-scrape NBA/ESPN websites. Its warehouse artifact expires after 14 days and
+The scheduled GitHub workflow retrieves licensed SDV and Kaggle archives,
+reconstructs, reconciles and reports; it does not scrape NBA/ESPN websites.
+Mutable archive references resolve to immutable commits before caching. A
+changed independent license disables automatic retrieval for review.
+Its warehouse artifact expires after 14 days and
 Actions cache is best-effort, so local storage is recommended for durable use.
 
 ## Query locally
@@ -62,14 +69,18 @@ games <- get_player_games('Luka Doncic', seasons = '2024-25', con = con)
 offensive_efficiency(games)
 get_game_pbp(games$game_id[1], con = con)
 get_player_shots('Luka Doncic', '2024-25', con = con)
+get_game_possessions(games$game_id[1], con = con)
+get_team_lineups('LAL', '2024-25', con = con)
 DBI::dbDisconnect(con, shutdown = TRUE)
 ```
 
 The offline fixture has three games. Add other seasons through ingestion
 before querying them. Accent-insensitive lookup supports Luka Dončić;
 ambiguous names require a stable player key. Queries never call remote APIs.
-`get_team_lineups()` and `get_player_salary()` report missing sources until
-validated data is imported. Effective FG% and approximate true shooting are
+Possessions and lineups are published only for games passing their respective
+reconstruction gates. Unresolved queries explain which status/exception tables
+to inspect. `get_player_salary()` still requires a licensed source.
+Effective FG% and approximate true shooting are
 computed from local shot/FT totals; DNP and missing-data rules are documented.
 
 ## Design, sources and limits
@@ -80,22 +91,25 @@ computed from local shot/FT totals; DNP and missing-data rules are documented.
 - [Limitations](docs/limitations.md): gaps and defensive attribution cautions.
 - [Sample attribution](data/sample/ATTRIBUTION.md): exact revision and license.
 - [Verification report](docs/verification.md): executed checks and data counts.
+- [Season completeness](docs/season_completeness.md): current per-season denominators and exceptions.
+- [Reconstruction methods](docs/reconstruction.md): control boundaries, lineup constraints and reconciliation.
 
-DuckDB initializes 20 related tables. Game metadata, player/team boxes, PBP,
-PBP-derived field-goal attempts and substitution descriptions are implemented.
-Lineups, defender matchups, contracts and injuries have reserved schemas.
+DuckDB includes game metadata, player/team boxes, PBP, shot attempts,
+reconstructed possessions, five-player stints, minute checks, independent
+totals, reconciliation checks and a source inventory. Defender matchups,
+contracts and injuries remain reserved schemas.
 No unavailable tracking variables are represented as observations. Large
 files, databases and secrets stay out of Git. A six-shot matchup alone cannot
 establish defensive ability; opponent context and unobserved contributions
 remain essential.
 
-Local backfill verification loaded 1,314 games from 2024–25 (one upstream
-inconsistent game excluded), plus three games each from 2015–16, 2025–26 and
-2026–27. The latest verified game date is 2026-10-22. These large datasets
-remain local; a clone starts with the three-game fixture. Other historical
-seasons are supported by resumable ingestion but have not been backfilled.
+Every available season from 2015–16 through the current 2026–27 snapshot is
+audited. See the generated completeness report for loaded, quarantined,
+reconstructed and independently reconciled counts; these are different
+denominators. Large datasets remain local. A clone starts with a three-game
+fixture and a separate six-row NBA-derived reference fixture.
 
-Next milestone: complete audited historical backfill and validate possession/
-lineup reconstruction against independently permitted reference data. Player
+Next milestone: resolve the documented source exceptions and independently
+audit a stratified sample of possession boundaries and substitution sequences. Player
 impact metrics, Bayesian matchup models, championship models, cap optimization
 and a production website are intentionally deferred.

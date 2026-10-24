@@ -1,6 +1,7 @@
 # Data dictionary
 
-The exact column names and SQL types are in `config/schema.sql`.
+Column names and SQL types are in `config/schema.sql` and the idempotent
+existing-warehouse migrations in `R/database/warehouse.R`.
 All identifiers are VARCHAR, counts INTEGER, money DOUBLE in nominal USD,
 dates DATE and ingestion/report times TIMESTAMP (UTC from R system time).
 Rates are computed from counts rather than stored rounded percentages.
@@ -21,16 +22,25 @@ Rates are computed from counts rather than stored rounded percentages.
 | pbp_events | game_id, event_id | Provider order, period/clock, description, participants, cumulative scores |
 | shot_attempts | game_id, event_id | PBP-derived 2/3-point attempts, made flag, provider coordinates |
 | substitutions | game_id, event_id | Provider substitution description; no unverified in/out assignment |
-| lineups | lineup_id | Reserved validated stint boundaries; unavailable in initial ingestion |
-| lineup_players | lineup_id, player_id | Five-player membership bridge; reserved |
+| lineups | lineup_id | Reconciled team/period stint, elapsed start/end/duration and attribution |
+| lineup_players | lineup_id, player_id | Exactly five unique players per published stint |
 | matchup_observations | observation_id | Assignment type and epistemic category required; reserved |
 | contracts | contract_id | Player agreement, signing date, guarantees; reserved |
 | salaries | contract_id, season, team_id | Salary, cap hit, option; reserved |
 | injuries | report_id | Timestamped reported status/reason; reserved |
+| possessions | possession_id | Game/period offense, event/time boundaries, points and ending reason |
+| possession_events | game_id, event_id | Possession mapping or neutral/administrative/retained-FT attribution |
+| non_possession_points | game_id, event_id | Separately conserved technical/retained-FT points |
+| reconstruction_status | game_id | Method, input/reference signatures, statuses and period denominators |
+| lineup_minute_checks | game_id, player_id | Reconstructed/box seconds, precision bound and pass flag |
+| independent_team_totals | source_id, source_game_id, team_id | Attributed NBA-derived reference totals |
+| reconciliation_checks | game_id, team_id, reference_dataset_id, metric | Values, difference, nullable pass and independence flag |
+| schedule_inventory | game_id | All raw eligible games, table-presence flags, competition and quarantine status |
+| quality_exceptions | exception_id | Persistent game/season/stage/rule diagnostics, dataset, severity and method |
 
 Every analytical fact has a dataset_id. Player/team IDs referenced by facts
 join their dimensions; games join seasons. Shots/substitutions join event
-keys. Reserved tables have schemas but no ingestion adapters or fabricated
+keys. Defender, contract, salary and injury tables have no ingestion adapters or fabricated
 rows. Their future writers must enforce the same referential validation.
 
 Missing means unknown/unobserved, never zero. DNP rows retain provider null
@@ -42,3 +52,10 @@ Event IDs are preserved as exact strings, including 64-bit provider integers.
 PBP ordering is provider sequence, not a repaired causal ordering. Missing
 events, duplicate order and broken joins are quality errors. Final PBP score
 disagreements are warnings requiring review before possession analysis.
+
+Games distinguish regular season, playoffs, play-in and NBA Cup final.
+ESPN season_type=5 is play-in; Cup finals otherwise share season_type=2.
+PBP retains secondary/tertiary participants, type IDs and scoring annotations.
+Player boxes store starters; team boxes store both player and team-inclusive
+turnovers. Explicit-evidence DNP corrections and excluded anonymous non-playing
+placeholders are logged with raw row indexes. See reconstruction.md for gates.

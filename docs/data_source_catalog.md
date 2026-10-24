@@ -29,6 +29,25 @@ accessibility and open-source client code do not grant data redistribution right
 
 ## Recommendations
 
+The reconstruction milestone connects [Eoin Moore's NBA dataset](https://www.kaggle.com/datasets/eoinamoore/historical-nba-data-and-player-box-scores)
+through Kaggle's public dataset API. `TeamStatistics.csv` v524 and its metadata
+were downloaded on 2026-10-23. Official metadata declares **CC0: Public Domain**;
+price $0, no paid credentials. NBA-derived historical team/game totals include
+regular season, playoffs, play-ins and Cup finals. This is distinct from the
+ESPN feed, not guaranteed independent observation of the underlying event.
+Cadence is publisher-controlled; no SLA/fixed download quota was verified.
+Raw CSV, metadata and SHA-256 are preserved. Only a six-row fixture and derived
+diagnostics are committed. The publisher declaration supports this archive
+integration; underlying NBA rights are not independently audited. Automated
+refresh checks the license before selecting a new version and stops on change.
+
+The [SDV raw JSON archive](https://github.com/sportsdataverse/hoopR-nba-raw)
+publishes [CC BY 4.0](https://github.com/sportsdataverse/hoopR-nba-raw/blob/main/LICENSE.md).
+Gap probes pin `e2c40720c72a98f427f8964deba8dd0e22ff1303`, preserve JSON bytes
+and log availability. Empty play lists and unchanged erroneous original totals
+cannot be repaired by guesses. This shares ESPN provenance, so is not the
+independent totals reference.
+
 Start at $0 with the pinned SDV archive, local DuckDB and bundled attributed
 fixtures. Treat missing/invalid games as research gaps. For manual historical
 cross-checks, Stathead is inexpensive but does not replace a warehouse feed.
@@ -39,4 +58,5 @@ agreement beyond this budget. No free public feed was verified to provide
 possession responsibility, help and switching ground truth.
 
 This is an evaluated candidate inventory, not a claim that every provider
-was successfully connected. Only SportsDataverse archive ingestion is enabled.
+was successfully connected. SDV and the versioned Kaggle team-total archive
+are enabled; direct NBA/ESPN website scraping remains disabled.

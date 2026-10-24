@@ -43,3 +43,31 @@ durable hosting: run locally for persistent historical storage.
 
 No API credentials are currently required. Future adapters must read keys
 from environment variables and never log them. `.Renviron` is ignored.
+
+## Audited reconstruction milestone
+
+`scripts/audited_backfill.R` partitions by game, records source failures and
+revalidates snapshots. It includes play-in type 5 and separates Cup finals.
+Unlike the incremental loader, it does not skip an earlier validation decision
+because a game ID exists. The raw schedule inventory includes quarantined
+games. Superseded canonical games failing the current gate are withdrawn;
+raw records, manifests and historical exceptions remain intact.
+
+Reconstruction uses enriched event actors, scoring annotations, starters and
+team-inclusive turnovers. Games commit in resumable batches. Only reconciled
+game-level possessions and five-player stints are published. Statuses preserve
+partial period resolution and minute discrepancies without ambiguous lineups.
+See reconstruction.md for the rules and denominator definitions.
+
+Independent NBA-derived totals use a versioned CC0-published Kaggle download
+and exact date/franchise matching. Changed reference signatures invalidate
+checkpoints; contradictions immediately withdraw derived rows. Alternative
+whole-team-box recovery retains its provider and flags dependent comparisons.
+Mutable SDV branches resolve to commits before caching; Kaggle versions have
+separate paths. Scheduled refresh rejects an unrecognized independent license.
+
+Parquet export streams from DuckDB rather than loading the entire warehouse
+into R. Git contains compact aggregate/per-game status reports; raw files,
+databases and full event diagnostics remain local or in expiring artifacts.
+Run writers sequentially: DuckDB permits one writer process. Offline tests
+and fixtures never require source HTTP requests.
