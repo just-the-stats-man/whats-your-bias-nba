@@ -13,6 +13,10 @@ testthat::test_that('real sample passes validation, joins, queries and repeat in
   testthat::expect_true(all(grepl('^[0-9]+$',get_game_pbp(g$game_id[1],con)$event_id)))
   testthat::expect_gt(nrow(get_player_shots('Luka Doncic','2024-25',con)),0)
   testthat::expect_true(is.finite(offensive_efficiency(g)$true_shooting))
+  missing <- g; missing$fga[1]<-NA_integer_
+  testthat::expect_error(offensive_efficiency(missing),'missing statistics')
+  dnp <- g; dnp$did_not_play[1]<-TRUE
+  testthat::expect_equal(offensive_efficiency(dnp)$games,2L)
   testthat::expect_error(get_team_lineups('LAL','2024-25',con),'Lineups unavailable')
   testthat::expect_error(get_player_salary('Luka Doncic','2024-25',con),'Salary unavailable')
   testthat::expect_error(get_player_games('Nobody',con=con),'Player unavailable')

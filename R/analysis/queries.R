@@ -40,6 +40,9 @@ get_player_salary <- function(player,season,con) {
   out
 }
 offensive_efficiency <- function(games) {
-  totals <- colSums(as.data.frame(games)[c('points','fgm','fga','fg3m','fta','assists','turnovers')],na.rm=TRUE)
+  games <- games[!games$did_not_play %in% TRUE, , drop=FALSE]
+  fields <- c('points','fgm','fga','fg3m','fta','assists','turnovers')
+  if (anyNA(games[fields])) stop('Efficiency unavailable: missing statistics for a non-DNP game')
+  totals <- colSums(as.data.frame(games)[fields])
   data.frame(games=nrow(games),points=totals[['points']],efg=if(totals[['fga']]>0) (totals[['fgm']]+0.5*totals[['fg3m']])/totals[['fga']] else NA_real_,true_shooting=if(totals[['fga']]+0.44*totals[['fta']]>0) totals[['points']]/(2*(totals[['fga']]+0.44*totals[['fta']])) else NA_real_,assists=totals[['assists']],turnovers=totals[['turnovers']])
 }
