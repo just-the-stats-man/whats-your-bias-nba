@@ -1,0 +1,25 @@
+---
+title: "Luka Dončić: a reproducible warehouse example"
+format: html
+execute:
+  echo: true
+---
+
+The bundled sample contains three real 2024–25 games. It is an infrastructure
+demonstration, not an estimate of season-long or defensive ability.
+
+```{r}
+# Render from the project root: quarto render articles/luka-efficiency.qmd
+source('scripts/load.R')
+con <- connect_warehouse()
+ingest_bundle(con, readRDS('data/sample/bundle.rds'), '2024-25')
+games <- get_player_games('Luka Doncic', '2024-25', con)
+knitr::kable(offensive_efficiency(games), digits = 3)
+DBI::dbDisconnect(con, shutdown = TRUE)
+```
+
+Effective FG% weights made threes by 1.5. True shooting uses the conventional
+0.44 free-throw coefficient, an approximation rather than observed possessions.
+The warehouse preserves raw records and provider attribution. A six-attempt
+matchup omits free throws, passes, turnovers and selection effects; it cannot
+establish a defender's underlying ability.

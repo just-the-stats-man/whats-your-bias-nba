@@ -1,0 +1,9 @@
+Package: whatsyourbiasnba
+Title: Reproducible NBA Research Warehouse
+Version: 0.1.0
+Authors@R: person("Adam", "Jauregui", role = c("aut", "cre"), email = "adamkjauregui@gmail.com")
+Description: Local NBA warehouse with provenance, validation and resumable ingestion.
+License: MIT
+Encoding: UTF-8
+Imports: DBI, duckdb, arrow, bit64, dplyr, dbplyr, httr2, jsonlite, digest, targets, renv
+Suggests: testthat, withr, knitr, rmarkdown
