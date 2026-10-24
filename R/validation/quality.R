@@ -46,6 +46,13 @@ quality_report <- function(x) {
       add('player points differ from team total',as.integer(total != tg$points[tg$team_id==team]))
       official <- if (team==gg$home_team_id) gg$home_score else gg$away_score
       add('team points differ from schedule',as.integer(tg$points[tg$team_id==team] != official))
+      for(metric in c('fgm','fga','fg3m','fg3a','ftm','fta','assists','turnovers')) {
+        values<-pg[[metric]][pg$team_id==team & !pg$did_not_play%in%TRUE]
+        expected<-tg[[metric]][tg$team_id==team]
+        unknown<-anyNA(values) || anyNA(expected)
+        add(paste('player',metric,'unavailable for team reconciliation'),as.integer(unknown))
+        if(!unknown)add(paste('player',metric,'differs from team total'),as.integer(sum(values)!=expected))
+      }
     }
   }
   issues

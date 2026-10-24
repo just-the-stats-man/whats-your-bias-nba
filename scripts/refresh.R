@@ -4,6 +4,7 @@ tryCatch({
   season<-Sys.getenv('WYB_SEASON','2026-27')
   # Resolve main to a commit before caching: old raw bytes are never overwritten.
   audit_ingest_season(con,season,revision='main')
+  quarantine_inconsistent_player_totals(con)
   withdraw_quarantined(con)
   reference<-Sys.getenv('WYB_REFERENCE_VERSION')
   version<-if(nzchar(reference))as.integer(reference) else resolve_reference_version()

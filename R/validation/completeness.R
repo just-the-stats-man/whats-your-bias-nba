@@ -35,17 +35,18 @@ completeness_report <- function(con,years=2016:2027,directory='docs') {
   utils::write.csv(ref_only,file.path(directory,'reference_only_games.csv'),row.names=FALSE)
   inventory_only<-DBI::dbGetQuery(con,'SELECT i.season,i.game_id,i.game_date,i.home_team_id,i.away_team_id FROM schedule_inventory i LEFT JOIN independent_team_totals r ON r.home AND r.season=i.season AND r.game_date=i.game_date AND r.team_id=i.home_team_id AND r.opponent_team_id=i.away_team_id WHERE r.source_game_id IS NULL ORDER BY i.season,i.game_date')
   utils::write.csv(inventory_only,file.path(directory,'source_only_games.csv'),row.names=FALSE)
-  status<-DBI::dbGetQuery(con,'SELECT i.season,i.game_id,i.competition,i.validation_status,coalesce(s.possessions_status,\'not_reconstructed\') possessions_status,coalesce(s.lineups_status,\'not_reconstructed\') lineups_status FROM schedule_inventory i LEFT JOIN reconstruction_status s ON i.game_id=s.game_id ORDER BY i.season,i.game_id')
+  status<-DBI::dbGetQuery(con,'SELECT i.season,i.game_id,i.competition,i.validation_status,coalesce(s.possessions_status,\'not_reconstructed\') possessions_status,coalesce(s.lineups_status,\'not_reconstructed\') lineups_status FROM schedule_inventory i LEFT JOIN reconstruction_status s ON i.game_id=s.game_id AND s.version=? ORDER BY i.season,i.game_id',params=list(reconstruction_version))
   utils::write.csv(status,file.path(directory,'game_validation_status.csv'),row.names=FALSE)
   # Full event-level diagnostics remain local; publish a compact category
   # summary without turning the Git repository into a data distribution mirror.
   exceptions<-DBI::dbReadTable(con,'quality_exceptions')
   if(nrow(exceptions)) {
     state<-DBI::dbReadTable(con,'reconstruction_status');loaded<-DBI::dbGetQuery(con,'SELECT game_id FROM games')$game_id
-    conflict<-DBI::dbGetQuery(con,'SELECT DISTINCT game_id FROM reconciliation_checks WHERE passed IS DISTINCT FROM TRUE')$game_id
+    conflict<-DBI::dbGetQuery(con,"SELECT DISTINCT game_id,reference_dataset_id dataset_id,'reference_' || metric metric_rule FROM reconciliation_checks WHERE passed IS DISTINCT FROM TRUE")
+    current_reference_issue<-paste(exceptions$game_id,exceptions$dataset_id,exceptions$rule)%in%paste(conflict$game_id,conflict$dataset_id,conflict$metric_rule)
     exceptions$state<-'historical'
     current<-exceptions$version==reconstruction_version
-    exceptions$state[exceptions$stage%in%c('normalization','reference_recovery') | (exceptions$stage=='ingestion' & ((current & !exceptions$game_id%in%loaded) | exceptions$severity=='warning')) | (exceptions$stage=='independent_reconciliation' & exceptions$game_id%in%conflict) | (current & exceptions$stage=='pbp_metric')]<-'active'
+    exceptions$state[exceptions$stage%in%c('normalization','reference_recovery') | (exceptions$stage=='ingestion' & ((current & !exceptions$game_id%in%loaded) | exceptions$severity=='warning')) | (exceptions$stage=='independent_reconciliation' & current_reference_issue) | (current & exceptions$stage=='pbp_metric')]<-'active'
     exceptions$state[current & exceptions$stage=='possessions' & (exceptions$game_id%in%state$game_id[state$possessions_status!='reconciled'] | exceptions$severity=='warning')]<-'active'
     exceptions$state[current & exceptions$stage=='lineups' & exceptions$game_id%in%state$game_id[state$lineups_status!='reconciled']]<-'active'
     exceptions$category<-sub(' (espn:|[0-9]{5,}).*','',exceptions$rule)

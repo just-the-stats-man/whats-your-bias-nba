@@ -81,6 +81,13 @@ remain for diagnosis; partial stints are not published as complete coverage.
 
 ## Independent reconciliation and recovery
 
+Canonical player totals must sum to their team record for FGM/FGA, 3PM/3PA,
+FTM/FTA, assists and player turnovers, in addition to points. Unknown playing
+player values cannot pass this aggregate gate. Existing warehouses receive
+the same check before reconstruction, refresh and completeness reporting;
+conflicting games and their derived rows are withdrawn while raw data,
+manifests and diagnostic history remain intact.
+
 Eoin Moore's CC0-published Kaggle `TeamStatistics.csv` and `PlayerStatistics.csv` v524 are NBA-derived,
 distinct from the ESPN-derived SDV archive. Raw CSV, metadata, source version
 and SHA-256 are retained. `config/team_crosswalk.csv` maps the 30 franchises.

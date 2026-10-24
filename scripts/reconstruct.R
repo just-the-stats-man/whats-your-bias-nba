@@ -3,6 +3,7 @@ args<-commandArgs(trailingOnly=TRUE)
 seasons<-if(length(args))args else season_label(2016:2027)
 con<-connect_warehouse()
 tryCatch({
+  quarantine_inconsistent_player_totals(con)
   withdraw_quarantined(con)
   import_reference(con)
   recover_reference_boxes(con)
