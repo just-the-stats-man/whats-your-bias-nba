@@ -1,5 +1,17 @@
 withr::local_dir(Sys.getenv('WYB_ROOT'))
 fixture <- function() readRDS('data/sample/bundle.rds')
+
+testthat::test_that('scoped raw gaps normalize without manufacturing facts', {
+  for(kind in c('player_box','team_box','pbp')) {
+    b<-fixture();id<-as.character(b$schedules$data$game_id[1])
+    b[[kind]]$data<-b[[kind]]$data[as.character(b[[kind]]$data$game_id)!=id,,drop=FALSE]
+    x<-normalize_bundle(b,'2024-25',game_ids=id)
+    table<-c(player_box='player_box_scores',team_box='team_box_scores',pbp='pbp_events')[[kind]]
+    testthat::expect_equal(nrow(x[[table]]),0L)
+    testthat::expect_equal(x$games$game_id,id)
+    testthat::expect_error(assert_quality(x),'quality failed')
+  }
+})
 testthat::test_that('real sample passes validation, joins, queries and repeat ingestion', {
   con <- connect_warehouse(':memory:'); on.exit(DBI::dbDisconnect(con,shutdown=TRUE))
   b <- fixture()
