@@ -19,6 +19,12 @@ event_features <- function(e,roster) {
   dreb<-grepl('defensive rebound',type)
   oreb<-grepl('offensive rebound',type)
   jump<-grepl('jumpball|jump ball',type)
+  late_oreb<-rep(FALSE,nrow(e))
+  for(i in which(oreb)) {
+    j<-i-1L
+    previous_shot<-tail(which(fg & seq_len(nrow(e))<j),1)
+    if(j>=1L && length(previous_shot))late_oreb[i]<-previous_shot==j-1L && fg[j] && made[j] && !made[previous_shot] && e$period[j]==e$period[i] && e$period[previous_shot]==e$period[i] && e$clock[j]==e$clock[i] && e$team_id[j]%in%e$team_id[i] && e$team_id[previous_shot]%in%e$team_id[i] && !is.na(e$player_id[i]) && e$player_id[j]%in%e$player_id[i]
+  }
   deadball<-rep(FALSE,nrow(e))
   for(i in which(dreb|oreb)) {
     before<-which(seq_len(nrow(e))<i & e$period==e$period[i] & (fg|ft|tov|dreb|oreb))
@@ -27,16 +33,25 @@ event_features <- function(e,roster) {
     if(length(prev) && length(next_event))deadball[i]<-ft[prev] && !finalft[prev] && !made[prev] && ft[next_event] && !retained[prev] && !retained[next_event] && e$clock[prev]==e$clock[i] && e$clock[next_event]==e$clock[i]
   }
   points<-ifelse(made,as.integer(e$score_value),0L)
+  # Historical ESPN records explicitly mark made NBA free throws but encode
+  # their scoreValue as zero. One made NBA FT is unambiguously one point.
+  points[ft & made]<-1L
   value<-as.integer(e$points_attempted)
   # Historical FG value comes from an explicit provider description, never a
   # location model. Missing shot-value annotations do not create coordinates.
-  value[fg & is.na(value)]<-ifelse(grepl('three point|3-point|3 point',text[fg & is.na(value)]),3L,2L)
+  value[!value%in%c(2L,3L)]<-NA_integer_
+  value[fg & made & e$score_value%in%c(2L,3L)]<-as.integer(e$score_value[fg & made & e$score_value%in%c(2L,3L)])
+  unknown<-fg & is.na(value)
+  three<-grepl('three.point|3.point|3.pt|three pointer',text)
+  two<-grepl('two.point|2.point|layup|lay up|dunk|tip shot|hook shot',text)
+  value[unknown & three]<-3L
+  value[unknown & !three & two]<-2L
   action<-(fg|ft|tov|dreb|oreb|jump|grepl('personal foul|shooting foul|loose ball foul|offensive foul|offensive charge|goaltend|kicked ball|blocking foul',type)) & !grepl('technical|flagrant|ejection',type)
   clock<-strsplit(as.character(e$clock),':',fixed=TRUE)
   remain<-vapply(clock,function(x)if(length(x)==2L)as.numeric(x[1])*60+as.numeric(x[2]) else NA_real_,numeric(1))
   length_sec<-ifelse(e$period<=4L,720,300)
   elapsed<-length_sec-remain
-  list(type=type,ft=ft,retained=retained,fg=fg,made=made,tov=tov,finalft=finalft,dreb=dreb,oreb=oreb,deadball=deadball,jump=jump,points=points,value=value,action=action,elapsed=elapsed,sub=grepl('substitution',type),end_period=grepl('end period|end of.*quarter|end of.*period',type))
+  list(type=type,ft=ft,retained=retained,fg=fg,made=made,tov=tov,finalft=finalft,dreb=dreb,oreb=oreb,late_oreb=late_oreb,deadball=deadball,jump=jump,points=points,value=value,action=action,elapsed=elapsed,sub=grepl('substitution',type),end_period=grepl('end period|end of.*quarter|end of.*period',type))
 }
 
 reconstruct_possessions <- function(e,game,roster,features=event_features(e,roster)) {
@@ -65,10 +80,16 @@ reconstruct_possessions <- function(e,game,roster,features=event_features(e,rost
       if(any(!team[scoring]%in%current))add('opponent points inside possession')
       points<-sum(f$points[scoring],na.rm=TRUE)
       pos[[length(pos)+1L]]<<-list(possession_id=id,game_id=game$game_id,period=as.integer(period),offense_team_id=current,start_event_id=e$event_id[start],end_event_id=e$event_id[i],start_order=e$event_order[start],end_order=e$event_order[i],points=as.integer(points),end_reason=reason,reconstruction_version=reconstruction_version,dataset_id=e$dataset_id[i],start_seconds=as.numeric(start_seconds),end_seconds=as.numeric(f$elapsed[i]),duration_seconds=as.numeric(f$elapsed[i]-start_seconds))
-      regular<-range[!f$retained[range] & !f$jump[range]];assigned[regular]<<-id;attr[regular]<<-'possession'
+      regular<-range[!f$retained[range] & !f$jump[range] & !f$late_oreb[range]];assigned[regular]<<-id;attr[regular]<<-'possession'
       current<<-NA_character_;start<<-i+1L;start_seconds<<-f$elapsed[i]
     }
     for(i in ix) {
+      if(f$late_oreb[i]) {
+        notes<-c(notes,paste('same-clock rebound recorded after its made putback',e$event_id[i-1L],e$event_id[i]))
+        if(length(pos) && !is.na(assigned[i-1L]))assigned[i]<-assigned[i-1L]
+        attr[i]<-'late_recorded_putback_rebound'
+        next
+      }
       if(f$retained[i]) {
         attr[i]<-'retained_or_technical_free_throw'
         if(f$points[i]>0)extra[[length(extra)+1L]]<-list(game_id=game$game_id,event_id=e$event_id[i],team_id=team[i],points=as.integer(f$points[i]),reason='technical_or_retained_possession_free_throw')
@@ -104,6 +125,7 @@ reconstruct_possessions <- function(e,game,roster,features=event_features(e,rost
         ahead<-ix[ix>i & e$clock[ix]==e$clock[i]]
         continuation<-FALSE
         for(j in ahead) {
+          if(f$late_oreb[j])next
           if(f$ft[j] && !f$retained[j]) {continuation<-team[j]%in%team[i] && grepl('1 of 1',f$type[j]);break}
           if(f$fg[j] || f$tov[j] || f$dreb[j] || f$oreb[j] || f$jump[j])break
         }
@@ -135,6 +157,7 @@ reconstruct_possessions <- function(e,game,roster,features=event_features(e,rost
   if(any((f$fg | (f$ft & !f$retained) | f$tov) & is.na(assigned)))add('unassigned offensive event')
   counts<-table(factor(pf$offense_team_id,levels=teams))
   if(abs(diff(as.integer(counts)))>max(e$period))add('implausible possession count imbalance')
+  for(i in which(f$late_oreb))assigned[i]<-assigned[i-1L]
   list(possessions=pf,events=data.frame(game_id=e$game_id,event_id=e$event_id,possession_id=assigned,attribution=attr),extra=ef,issues=issues,notes=unique(notes))
 }
 
@@ -218,11 +241,19 @@ reconstruct_lineups <- function(e,game,roster,features=event_features(e,roster))
 }
 
 reconcile_pbp_box <- function(e,box,features) {
-  f<-features;issues<-character()
+  f<-features;issues<-character();checks<-list()
   for(i in seq_len(nrow(box))) {
     team<-box$team_id[i];sel<-e$team_id%in%team
-    observed<-c(points=sum(f$points[sel],na.rm=TRUE),fgm=sum(sel & f$fg & f$made),fga=sum(sel & f$fg),fg3m=sum(sel & f$fg & f$made & f$value%in%3),fg3a=sum(sel & f$fg & f$value%in%3),ftm=sum(sel & f$ft & f$made),fta=sum(sel & f$ft),total_turnovers=sum(sel & f$tov))
-    for(metric in names(observed))if(!is.na(box[[metric]][i]) && observed[[metric]]!=box[[metric]][i])issues<-c(issues,paste('PBP/box',team,metric,observed[[metric]],'!=',box[[metric]][i]))
+    unknown_attempts<-sum(sel & f$fg & is.na(f$value))
+    observed<-c(points=sum(f$points[sel],na.rm=TRUE),fgm=sum(sel & f$fg & f$made),fga=sum(sel & f$fg),fg3m=sum(sel & f$fg & f$made & f$value%in%3),fg3a=if(unknown_attempts)NA_real_ else sum(sel & f$fg & f$value%in%3),ftm=sum(sel & f$ft & f$made),fta=sum(sel & f$ft),total_turnovers=sum(sel & f$tov))
+    for(metric in names(observed)) {
+      value<-observed[[metric]];expected<-box[[metric]][i]
+      passed<-if(is.na(value) || is.na(expected))NA else value==expected
+      status<-if(is.na(passed))'unavailable' else if(passed)'match' else 'mismatch'
+      checks[[length(checks)+1L]]<-data.frame(game_id=e$game_id[1],team_id=team,metric=metric,observed=as.numeric(value),box_value=as.numeric(expected),difference=as.numeric(value-expected),passed=passed,status=status,unknown_events=if(metric=='fg3a')unknown_attempts else 0L,version=reconstruction_version)
+      if(status=='mismatch')issues<-c(issues,paste('PBP/box',team,metric,value,'!=',expected))
+      if(status=='unavailable' && metric!='fg3a')issues<-c(issues,paste('PBP/box critical metric unavailable',team,metric))
+    }
   }
-  unique(issues)
+  issues<-unique(issues);attr(issues,'checks')<-do.call(rbind,checks);issues
 }

@@ -1,5 +1,17 @@
 # Sample data license and provenance
 
+`independent_player_rows.csv` contains 135 corresponding player records from
+the same Kaggle release's `PlayerStatistics.csv`, under the CC0 publisher
+declaration below. They establish player-turnover sums independently of ESPN
+and test historical/current team-total conventions. Values are not adjusted
+to match another provider.
+
+`historical_2016.rds` is an additional single-game regression fixture from the
+same SDV revision/license below: game 400878160, Cleveland–Golden State,
+2016-06-19. It filters all four archive tables into one RDS bundle. It retains
+the source's zero-valued made-FT annotations and putback/rebound ordering so
+the historical parser is tested against those real source characteristics.
+
 Data: hoopR.nba authors, [hoopR-nba-data](https://github.com/sportsdataverse/hoopR-nba-data).
 License: [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/).
 Publisher declaration: [LICENSE.md](https://github.com/sportsdataverse/hoopR-nba-data/blob/13f2e6ac8aed3cb6cfea6e81a0db088006357e95/LICENSE.md).
@@ -18,7 +30,7 @@ not independently established rights to every upstream contribution.
 Recheck publisher terms before expanding public redistribution. Large raw
 files remain local and ignored by Git. MIT does not relicense these data.
 
-`independent_team_totals.csv` contains six filtered real team rows from Eoin
+`independent_team_totals.csv` contains ten filtered real team rows from Eoin
 Moore, [NBA Dataset: Box Scores and Stats](https://www.kaggle.com/datasets/eoinamoore/historical-nba-data-and-player-box-scores),
 version 524, `TeamStatistics.csv`, published under CC0 1.0 (verified through
 Kaggle's official dataset metadata on 2026-10-23). Upstream: NBA.com.

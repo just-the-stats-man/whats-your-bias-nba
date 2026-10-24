@@ -1,8 +1,7 @@
 withr::local_dir(Sys.getenv('WYB_ROOT'))
 sample_bundle <- function() readRDS('data/sample/bundle.rds')
 reference_fixture <- function() {
-  path<-'data/sample/independent_team_totals.csv'
-  list(data=read.csv(path,stringsAsFactors=FALSE),path=path,url=reference_url,revision='kaggle-v524-filtered-fixture',sha256=file_sha256(path))
+  load_reference_fixture()
 }
 
 testthat::test_that('independent NBA-derived totals match the real ESPN sample', {
@@ -102,4 +101,43 @@ testthat::test_that('DNP normalization needs explicit evidence and never discard
   b$player_box$data$reason[nrow(b$player_box$data)]<-"COACH'S DECISION";b$player_box$data$points[nrow(b$player_box$data)]<-1
   x<-normalize_bundle(b,'2024-25')
   testthat::expect_false(x$player_box_scores$did_not_play[x$player_box_scores$player_id=='espn:987654321'])
+})
+
+testthat::test_that('historical FT encoding and putback order reconcile without inventing missed-shot values', {
+  b<-readRDS('data/sample/historical_2016.rds');x<-normalize_bundle(b,'2015-16')
+  e<-x$pbp_events;p<-x$player_box_scores;g<-x$games
+  f<-event_features(e,p)
+  testthat::expect_true(any(f$ft & f$made & e$score_value==0L))
+  testthat::expect_true(all(f$points[f$ft & f$made]==1L))
+  testthat::expect_true(any(f$fg & !f$made & is.na(f$value)))
+  q<-reconcile_pbp_box(e,x$team_box_scores,f);checks<-attr(q,'checks')
+  testthat::expect_length(q,0L)
+  testthat::expect_true(all(is.na(checks$passed[checks$metric=='fg3a'])))
+  testthat::expect_true(all(checks$status[checks$metric=='fg3a']=='unavailable'))
+  r<-reconstruct_possessions(e,g,p,f)
+  testthat::expect_length(r$issues,0L)
+  testthat::expect_true(any(grepl('made putback',r$notes)))
+  testthat::expect_equal(sum(r$possessions$points)+sum(r$extra$points),182L)
+  l<-reconstruct_lineups(e,g,p,f)
+  testthat::expect_length(l$issues,0L)
+  testthat::expect_true(all(l$checks$passed))
+  con<-connect_warehouse(':memory:');on.exit(DBI::dbDisconnect(con,shutdown=TRUE))
+  ingest_bundle(con,b,'2015-16');import_reference(con,reference_fixture())
+  testthat::expect_equal(nrow(reconcile_game_totals(con)),0L)
+  reconstruct_season(con,'2015-16')
+  testthat::expect_true(all(DBI::dbReadTable(con,'reconstruction_status')$possessions_status=='reconciled'))
+  testthat::expect_true(all(DBI::dbReadTable(con,'pbp_reconciliation_checks')$status[DBI::dbReadTable(con,'pbp_reconciliation_checks')$metric=='fg3a']=='unavailable'))
+  testthat::expect_silent(assert_warehouse_integrity(con))
+})
+
+testthat::test_that('independent turnovers come from player records across changing team-total conventions', {
+  ref<-normalize_reference(load_reference_fixture())
+  cle<-ref[ref$source_game_id=='0021500002' & ref$team_id=='espn:5',]
+  testthat::expect_equal(cle$reported_turnovers,11L)
+  testthat::expect_equal(cle$turnovers,10L)
+  testthat::expect_equal(cle$total_turnovers,11L)
+  current<-ref[ref$source_game_id=='0022401185' & ref$team_id=='espn:13',]
+  testthat::expect_equal(current$reported_turnovers,12L)
+  testthat::expect_equal(current$turnovers,12L)
+  testthat::expect_equal(current$total_turnovers,13L)
 })

@@ -36,7 +36,7 @@ price $0, no paid credentials. NBA-derived historical team/game totals include
 regular season, playoffs, play-ins and Cup finals. This is distinct from the
 ESPN feed, not guaranteed independent observation of the underlying event.
 Cadence is publisher-controlled; no SLA/fixed download quota was verified.
-Raw CSV, metadata and SHA-256 are preserved. Only a six-row fixture and derived
+Raw CSV, metadata and SHA-256 are preserved. Ten team rows, 135 player rows and derived
 diagnostics are committed. The publisher declaration supports this archive
 integration; underlying NBA rights are not independently audited. Automated
 refresh checks the license before selecting a new version and stops on change.

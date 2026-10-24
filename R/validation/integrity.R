@@ -13,6 +13,7 @@ warehouse_integrity_report <- function(con) {
     invalid_possession_event_links='SELECT count(*) FROM possession_events e LEFT JOIN possessions p USING(possession_id) WHERE e.possession_id IS NOT NULL AND p.possession_id IS NULL',
     contradictory_reference_publication='SELECT count(*) FROM possessions p WHERE p.game_id IN (SELECT game_id FROM reconciliation_checks WHERE passed IS DISTINCT FROM TRUE)',
     failed_minute_checks_published='SELECT count(*) FROM lineup_minute_checks c WHERE NOT c.passed AND c.game_id IN (SELECT game_id FROM lineups)',
+    failed_pbp_metric_published="SELECT count(*) FROM pbp_reconciliation_checks c WHERE (c.passed IS FALSE OR (c.metric!='fg3a' AND c.passed IS NULL)) AND c.game_id IN (SELECT game_id FROM possessions UNION SELECT game_id FROM lineups)",
     invented_defender_observations='SELECT count(*) FROM matchup_observations')
   result<-data.frame(check=names(queries),violations=vapply(queries,function(q)as.integer(DBI::dbGetQuery(con,q)[[1]][1]),integer(1)))
   result$passed<-result$violations==0L

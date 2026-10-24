@@ -1,5 +1,6 @@
 archive_revision <- '13f2e6ac8aed3cb6cfea6e81a0db088006357e95'
 file_sha256 <- function(path) {
+  if(file.access(path,4L)==0L)return(digest::digest(file=path,algo='sha256'))
   # Read directly: Windows managed filesystems can report file.access() == -1
   # for readable OneDrive files, which digest(file=...) rejects.
   digest::digest(readBin(path, 'raw', n=file.info(path)$size),algo='sha256',serialize=FALSE)

@@ -37,6 +37,8 @@ Rates are computed from counts rather than stored rounded percentages.
 | reconciliation_checks | game_id, team_id, reference_dataset_id, metric | Values, difference, nullable pass and independence flag |
 | schedule_inventory | game_id | All raw eligible games, table-presence flags, competition and quarantine status |
 | quality_exceptions | exception_id | Persistent game/season/stage/rule diagnostics, dataset, severity and method |
+| pbp_reconciliation_checks | game_id, team_id, metric | PBP/box values, nullable pass, match/mismatch/unavailable status and unknown-event count |
+| dataset_dependencies | dataset_id, parent_dataset_id | Raw-parent lineage for normalized independent team/player records |
 
 Every analytical fact has a dataset_id. Player/team IDs referenced by facts
 join their dimensions; games join seasons. Shots/substitutions join event

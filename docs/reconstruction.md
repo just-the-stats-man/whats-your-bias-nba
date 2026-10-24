@@ -38,8 +38,24 @@ elapsed seconds within a period; zero-duration same-clock possessions are
 possible. Regulation periods are 720 seconds, overtime periods 300.
 
 A game is withheld from `possessions` if clock/period coverage, scoring
-conservation, FG/3P/FT/turnover totals, control continuity, or available
+conservation, available FG/FT/turnover totals, control continuity, or available
 independent totals disagree. No probability model fills missing events.
+
+Some historical records encode a made NBA FT with scoreValue=0. The explicit
+made-FT event contributes its rule-defined one point; the original field stays
+unchanged. Made FG values use explicit scoring values. Missing attempt values
+are classified only by explicit point annotations or unambiguous shot types;
+an unspecified missed jumper remains unknown. Distance is not used to guess.
+A historical PBP 3PA check can therefore be **unavailable**, distinct from
+pass/fail, in `pbp_reconciliation_checks`. That missing annotation alone does
+not invalidate control or lineup reconstruction. Independent box-level 3PA
+comparison still runs; box totals never allocate unknown attempts.
+
+A documented source-order correction handles three consecutive events: a
+missed FG, a made putback, and the same shooter's same-clock offensive rebound.
+The rebound links back to the made basket's possession and cannot start a
+phantom possession. Raw order stays unchanged; a causal warning records the
+IDs. Other rebound ambiguities remain errors.
 
 ## Five-player stints
 
@@ -65,14 +81,20 @@ remain for diagnosis; partial stints are not published as complete coverage.
 
 ## Independent reconciliation and recovery
 
-Eoin Moore's CC0-published Kaggle `TeamStatistics.csv` v524 is NBA-derived,
+Eoin Moore's CC0-published Kaggle `TeamStatistics.csv` and `PlayerStatistics.csv` v524 are NBA-derived,
 distinct from the ESPN-derived SDV archive. Raw CSV, metadata, source version
 and SHA-256 are retained. `config/team_crosswalk.csv` maps the 30 franchises.
 Matching requires an exact date, home/away pair, and a unique reciprocal
 reference game. Scores are never matching keys; there is no fuzzy matching.
 
 Checks compare final scores and both teams' FGM/FGA, 3PM/3PA, FTM/FTA, assists
-and player turnovers. Team-inclusive turnovers additionally validate PBP/box
+and player turnovers. NBA's reported team turnover field changes conventions
+across eras: some records include team turnovers, others do not. The independent
+player benchmark is summed directly from the independent player file, never
+selected by whichever total matches ESPN. Duplicate/missing observations do
+not become verified zeros. Reported values remain available; normalized
+records link to both raw parents through `dataset_dependencies`.
+Team-inclusive turnovers additionally validate PBP/box
 counts. Missing values do not pass. Unmatched games, reference-only games and
 contradictions have separate report categories. Neither feed is assumed
 complete or error-free; agreement is not proof of independent ground truth.
@@ -81,7 +103,7 @@ An invalid/missing ESPN team box may be replaced by an **entire** uniquely
 matched NBA-derived team record, attributed to its dataset. It must still
 pass the player/schedule/PBP gates. Individual cells are never adjusted to
 force a score identity. `reconciliation_checks.independent=FALSE` marks checks
-against the same reference record used for recovery. Independent ESPN
+against the same provider used for recovery, even across snapshots. Independent ESPN
 schedule/PBP comparisons remain possible; recovered games are counted
 separately. Raw ESPN records and original failures survive.
 

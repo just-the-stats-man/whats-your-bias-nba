@@ -18,12 +18,13 @@ reconstruct_season <- function(con,season,force=FALSE,batch_size=50L) {
         f<-event_features(e,p)
         pos<-reconstruct_possessions(e,g,p,f);lu<-reconstruct_lineups(e,g,p,f)
         common<-reconcile_pbp_box(e,t,f)
+        checks<-attr(common,'checks')
         if(id%in%independent_failures)common<-c(common,'independent game-level totals disagree')
         pos$issues<-unique(c(pos$issues,common))
         # Lineup reconciliation must also account for every FG/FT/TOV in the
         # box feed: five consistent names alone are insufficient evidence.
         lu$issues<-unique(c(lu$issues,common))
-        list(pos=pos,lu=lu,error=NULL)
+        list(pos=pos,lu=lu,checks=checks,error=NULL)
       },error=function(err)list(error=conditionMessage(err)))
       if(!is.null(result$error)) {
         result$pos<-list(issues=paste('parser failure:',result$error));result$lu<-list(issues=paste('parser failure:',result$error),resolved=0L,expected=2L*max(e$period))
@@ -36,13 +37,18 @@ reconstruct_season <- function(con,season,force=FALSE,batch_size=50L) {
       ids<-vapply(results,function(r)r$id,character(1))
       DBI::dbWriteTable(con,'_reconstruct_games',data.frame(game_id=ids),temporary=TRUE,overwrite=TRUE)
       DBI::dbExecute(con,'DELETE FROM lineup_players WHERE lineup_id IN (SELECT lineup_id FROM lineups WHERE game_id IN (SELECT game_id FROM _reconstruct_games))')
-      for(table in c('lineups','possessions','possession_events','non_possession_points','lineup_minute_checks','reconstruction_status'))DBI::dbExecute(con,paste('DELETE FROM',table,'WHERE game_id IN (SELECT game_id FROM _reconstruct_games)'))
+      for(table in c('lineups','possessions','possession_events','non_possession_points','lineup_minute_checks','reconstruction_status','pbp_reconciliation_checks'))DBI::dbExecute(con,paste('DELETE FROM',table,'WHERE game_id IN (SELECT game_id FROM _reconstruct_games)'))
       output<-list()
       queue<-function(table,rows) {
         if(nrow(rows))output[[table]][[length(output[[table]])+1L]]<<-rows
       }
       for(r in results) {
         po_ok<-!length(r$pos$issues);lu_ok<-!length(r$lu$issues)
+        if(!is.null(r$checks)) {
+          queue('pbp_reconciliation_checks',r$checks)
+          unavailable<-r$checks[r$checks$status=='unavailable',,drop=FALSE]
+          if(nrow(unavailable))queue('quality_exceptions',exception_rows(r$id,season,'pbp_metric','unavailable_attempt_classification',paste(unavailable$team_id,unavailable$metric,'unknown events',unavailable$unknown_events),severity='warning',dataset_id=r$dataset_id))
+        }
         if(po_ok) {
           queue('possessions',r$pos$possessions)
           queue('possession_events',r$pos$events)
@@ -59,7 +65,7 @@ reconstruct_season <- function(con,season,force=FALSE,batch_size=50L) {
         status<-data.frame(game_id=r$id,season=season,version=reconstruction_version,possessions_status=if(po_ok)'reconciled' else 'unresolved',lineups_status=if(lu_ok)'reconciled' else 'unresolved',resolved_team_periods=as.integer(r$lu$resolved),expected_team_periods=as.integer(r$lu$expected),updated_at=Sys.time(),dataset_id=r$dataset_id,reference_signature=r$reference_signature)
         queue('reconstruction_status',status)
       }
-      keys<-list(possessions='possession_id',possession_events=c('game_id','event_id'),non_possession_points=c('game_id','event_id'),lineups='lineup_id',lineup_players=c('lineup_id','player_id'),lineup_minute_checks=c('game_id','player_id'),quality_exceptions='exception_id',reconstruction_status='game_id')
+      keys<-list(possessions='possession_id',possession_events=c('game_id','event_id'),non_possession_points=c('game_id','event_id'),lineups='lineup_id',lineup_players=c('lineup_id','player_id'),lineup_minute_checks=c('game_id','player_id'),quality_exceptions='exception_id',reconstruction_status='game_id',pbp_reconciliation_checks=c('game_id','team_id','metric'))
       for(table in names(output))upsert_rows(con,table,do.call(rbind,output[[table]]),keys[[table]])
       DBI::dbRemoveTable(con,'_reconstruct_games')
     })

@@ -107,7 +107,7 @@ Every available season from 2015–16 through the current 2026–27 snapshot is
 audited. See the generated completeness report for loaded, quarantined,
 reconstructed and independently reconciled counts; these are different
 denominators. Large datasets remain local. A clone starts with a three-game
-fixture and a separate six-row NBA-derived reference fixture.
+fixture, a 2016 regression game, and ten team/135 player NBA-derived reference rows.
 
 Next milestone: resolve the documented source exceptions and independently
 audit a stratified sample of possession boundaries and substitution sequences. Player
