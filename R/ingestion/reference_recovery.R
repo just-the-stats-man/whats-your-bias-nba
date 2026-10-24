@@ -1,5 +1,5 @@
 recover_reference_boxes <- function(con) {
-  candidates<-DBI::dbGetQuery(con,"SELECT DISTINCT i.* FROM schedule_inventory i JOIN quality_exceptions q USING(game_id) WHERE i.validation_status='quarantined' AND q.stage='ingestion' AND q.rule IN ('missing team box scores','team_box_scores inconsistent scoring totals','player points differ from team total','team points differ from schedule')")
+  candidates<-DBI::dbGetQuery(con,"SELECT DISTINCT i.* FROM schedule_inventory i JOIN quality_exceptions q USING(game_id) WHERE i.validation_status='quarantined' AND q.stage='ingestion' AND (q.rule IN ('missing team box scores','team_box_scores inconsistent scoring totals','player points differ from team total','team points differ from schedule') OR q.rule LIKE 'player % differs from team total')")
   recovered<-character()
   for(season in unique(candidates$season)) {
     bundle<-fetch_season(season)

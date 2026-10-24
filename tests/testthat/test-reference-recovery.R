@@ -6,8 +6,8 @@ testthat::test_that('alternative team-box recovery preserves provenance and labe
   import_reference(con,load_reference_fixture())
   inv<-data.frame(game_id=id,season='2024-25',game_date=as.Date(s$game_date),home_team_id=provider_id(s$home_id),away_team_id=provider_id(s$away_id),has_player_box=TRUE,has_team_box=TRUE,has_pbp=TRUE,validation_status='quarantined',dataset_id='synthetic-invalid-box')
   upsert_rows(con,'schedule_inventory',inv,'game_id')
-  upsert_rows(con,'quality_exceptions',exception_rows(id,'2024-25','ingestion','team_box_scores inconsistent scoring totals','synthetic regression'),'exception_id')
-  b$team_box$data$field_goals_made[as.character(b$team_box$data$game_id)==id]<-0L
+  upsert_rows(con,'quality_exceptions',exception_rows(id,'2024-25','ingestion','player fga differs from team total','synthetic regression'),'exception_id')
+  b$team_box$data$field_goals_attempted[as.character(b$team_box$data$game_id)==id]<-b$team_box$data$field_goals_attempted[as.character(b$team_box$data$game_id)==id]-1L
   fn<-recover_reference_boxes;scope<-new.env(parent=environment(fn));scope$fetch_season<-function(...)b;environment(fn)<-scope
   testthat::expect_message(recovered<-fn(con),'Recovered 1')
   testthat::expect_equal(recovered,id)
