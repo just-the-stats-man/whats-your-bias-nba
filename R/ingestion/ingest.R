@@ -41,7 +41,7 @@ ingest_season <- function(con,season,revision=archive_revision,refresh=FALSE,max
     stop(err)
   })
   s <- bundle$schedules$data
-  eligible <- as.character(s$game_id[s$status_type_completed %in% TRUE & s$season_type %in% c(2,3)])
+  eligible <- as.character(s$game_id[eligible_schedule(s)])
   existing <- DBI::dbGetQuery(con,'SELECT game_id FROM games WHERE season=?',params=list(season))$game_id
   ids <- if (refresh) eligible else setdiff(eligible,existing)
   ids <- head(ids,max_games)

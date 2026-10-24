@@ -20,9 +20,15 @@ normalize_bundle <- function(bundle, season, game_ids = NULL) {
   require_fields(s, c('game_id','season','season_type','game_date','home_id','away_id','home_score','away_score','status_type_completed','home_abbreviation','away_abbreviation','home_display_name','away_display_name'), 'schedules')
   require_fields(p, c('game_id','athlete_id','athlete_display_name','team_id','minutes','field_goals_made','field_goals_attempted','three_point_field_goals_made','three_point_field_goals_attempted','free_throws_made','free_throws_attempted','points','assists','turnovers','rebounds','did_not_play'), 'player_box')
   require_fields(t, c('game_id','team_id','team_score','field_goals_made','field_goals_attempted','three_point_field_goals_made','three_point_field_goals_attempted','free_throws_made','free_throws_attempted','assists','turnovers'), 'team_box')
-  require_fields(e, c('game_id','id','game_play_number','period_number','clock_display_value','type_text','text','team_id','athlete_id_1','home_score','away_score','shooting_play','points_attempted','scoring_play','coordinate_x','coordinate_y'), 'pbp')
+  require_fields(e, c('game_id','id','game_play_number','period_number','clock_display_value','type_text','text','team_id','athlete_id_1','home_score','away_score','shooting_play','scoring_play','coordinate_x','coordinate_y'), 'pbp')
+  # Known historical variant: absence of attempt value prevents reliable
+  # separation of field goals and free throws. Preserve PBP, omit derived shots.
+  if (!'points_attempted' %in% names(e)) {
+    e$points_attempted <- rep(NA_integer_,nrow(e))
+    message('Historical schema lacks points_attempted; derived shots unavailable')
+  }
   if (any(s$season != season_end(season), na.rm = TRUE)) stop('Incorrect source season')
-  s <- s[s$status_type_completed %in% TRUE & s$season_type %in% c(2,3), ]
+  s <- s[eligible_schedule(s), ]
   if (!is.null(game_ids)) s <- s[as.character(s$game_id) %in% game_ids, ]
   if (!nrow(s)) stop('No completed regular-season or playoff games selected')
   ids <- as.character(s$game_id)
@@ -40,7 +46,7 @@ normalize_bundle <- function(bundle, season, game_ids = NULL) {
   events$player_id[!events$player_id %in% players$player_id] <- NA_character_
   # Field-goal attempts only: ESPN shooting_play also includes free throws.
   shot <- e$shooting_play %in% TRUE & e$points_attempted %in% c(2,3)
-  shots <- data.frame(game_id=as.character(e$game_id[shot]),event_id=as.character(e$id[shot]),player_id=events$player_id[shot],team_id=events$team_id[shot],points_attempted=as.integer(e$points_attempted[shot]),made=as.logical(e$scoring_play[shot]),x=as.numeric(e$coordinate_x[shot]),y=as.numeric(e$coordinate_y[shot]),coordinate_system='sportsdataverse ESPN transformed; uncalibrated',observation_type='provider_attributed',dataset_id=ds('pbp'))
+  shots <- data.frame(game_id=as.character(e$game_id[shot]),event_id=as.character(e$id[shot]),player_id=events$player_id[shot],team_id=events$team_id[shot],points_attempted=as.integer(e$points_attempted[shot]),made=as.logical(e$scoring_play[shot]),x=as.numeric(e$coordinate_x[shot]),y=as.numeric(e$coordinate_y[shot]),coordinate_system=rep('sportsdataverse ESPN transformed; uncalibrated',sum(shot)),observation_type=rep('provider_attributed',sum(shot)),dataset_id=rep(ds('pbp'),sum(shot)))
   shots$x[abs(shots$x)>100] <- NA_real_; shots$y[abs(shots$y)>100] <- NA_real_
   subs <- events[grepl('substitution', events$event_type, ignore.case=TRUE),c('game_id','event_id','description','dataset_id')]
   list(seasons=data.frame(season=season,end_year=season_end(season)),teams=unique(data.frame(team_id=identities$team_id,provider='espn')),team_identities=identities,players=players,player_identifiers=data.frame(provider='espn',provider_id=sub('espn:','',players$player_id),player_id=players$player_id),games=games,player_box_scores=pb,team_box_scores=tb,pbp_events=events,shot_attempts=shots,substitutions=subs)

@@ -89,6 +89,12 @@ files, databases and secrets stay out of Git. A six-shot matchup alone cannot
 establish defensive ability; opponent context and unobserved contributions
 remain essential.
 
+Local backfill verification loaded 1,314 games from 2024–25 (one upstream
+inconsistent game excluded), plus three games each from 2015–16, 2025–26 and
+2026–27. The latest verified game date is 2026-10-22. These large datasets
+remain local; a clone starts with the three-game fixture. Other historical
+seasons are supported by resumable ingestion but have not been backfilled.
+
 Next milestone: complete audited historical backfill and validate possession/
 lineup reconstruction against independently permitted reference data. Player
 impact metrics, Bayesian matchup models, championship models, cap optimization

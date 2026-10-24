@@ -3,11 +3,15 @@
 The initial offline deliverable contains three 2024–25 games, not all seasons.
 Backfill support starts at 2015–16; archive coverage is not a completeness
 guarantee. Only completed regular-season and playoff games are selected.
-Preseason and ongoing games are excluded. The NBA Cup final may be classified
+Preseason, All-Star showcases and ongoing games are excluded. ESPN IDs 1–30
+are the franchise allowlist for the covered era; expansion needs an explicit
+policy update. The NBA Cup final may be classified
 by the provider alongside other regular-season games; filter the raw schedule
 metadata when constructing official season totals. ESPN and NBA IDs differ.
 
 Box scores and PBP are provider-attributed records of observed outcomes.
+Some older archives lack points_attempted; these retain PBP but do not
+populate derived shots, rather than guess field-goal versus free-throw values.
 Field-goal attempts are selected from provider shooting events with 2/3 points
 attempted; free throws remain PBP events and box-score counts. Shots are not
 nearest-defender observations. Names and participant roles can be incomplete.

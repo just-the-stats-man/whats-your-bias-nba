@@ -11,7 +11,7 @@ demonstration, not an estimate of season-long or defensive ability.
 ```{r}
 # Render from the project root: quarto render articles/luka-efficiency.qmd
 source('scripts/load.R')
-con <- connect_warehouse()
+con <- connect_warehouse('data/processed/article-demo.duckdb')
 ingest_bundle(con, readRDS('data/sample/bundle.rds'), '2024-25')
 games <- get_player_games('Luka Doncic', '2024-25', con)
 knitr::kable(offensive_efficiency(games), digits = 3)

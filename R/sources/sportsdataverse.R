@@ -12,6 +12,13 @@ season_end <- function(season) {
   end
 }
 normalize_name <- function(x) tolower(iconv(x, from = 'UTF-8', to = 'ASCII//TRANSLIT'))
+# ESPN franchise IDs for the 30-team NBA era covered by this warehouse.
+# All-Star showcase teams have separate IDs despite season_type == 2.
+is_nba_team <- function(x) as.character(x) %in% as.character(1:30)
+eligible_schedule <- function(s) {
+  s$status_type_completed %in% TRUE & s$season_type %in% c(2,3) &
+    is_nba_team(s$home_id) & is_nba_team(s$away_id)
+}
 
 fetch_cached <- function(url, path, refresh = FALSE, perform = httr2::req_perform) {
   dir.create(dirname(path), recursive = TRUE, showWarnings = FALSE)

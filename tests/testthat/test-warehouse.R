@@ -51,3 +51,39 @@ testthat::test_that('cache avoids network and API failures propagate without cor
   testthat::expect_error(fetch_cached('https://example.invalid',path,refresh=TRUE,perform=function(...)stop('HTTP 429')),'HTTP 429')
   testthat::expect_equal(readRDS(path),list(ok=TRUE))
 })
+
+testthat::test_that('incremental updates skip completed games', {
+  con<-connect_warehouse(':memory:'); on.exit(DBI::dbDisconnect(con,shutdown=TRUE))
+  ingest <- ingest_season
+  scope <- new.env(parent=environment(ingest))
+  scope$fetch_season <- function(...) fixture()
+  environment(ingest) <- scope
+  ingest(con,'2024-25')
+  attempts <- nrow(DBI::dbReadTable(con,'ingestion_runs'))
+  testthat::expect_equal(ingest(con,'2024-25'),'Already up to date')
+  testthat::expect_equal(nrow(DBI::dbReadTable(con,'ingestion_runs')),attempts)
+})
+
+testthat::test_that('historical PBP without attempt values never fabricates shots', {
+  b<-fixture(); b$pbp$data$points_attempted<-NULL
+  testthat::expect_message(x<-normalize_bundle(b,'2024-25'),'derived shots unavailable')
+  testthat::expect_equal(nrow(x$shot_attempts),0L)
+  testthat::expect_gt(nrow(x$pbp_events),0L)
+  testthat::expect_silent(assert_quality(x))
+})
+
+testthat::test_that('All-Star showcase teams are excluded despite regular season type', {
+  s<-fixture()$schedules$data
+  testthat::expect_true(all(eligible_schedule(s)))
+  s$home_id[1]<-130579L
+  testthat::expect_false(eligible_schedule(s)[1])
+})
+
+testthat::test_that('database write failure rolls back the complete fact transaction', {
+  con<-connect_warehouse(':memory:'); on.exit(DBI::dbDisconnect(con,shutdown=TRUE))
+  DBI::dbExecute(con,'DROP TABLE pbp_events')
+  testthat::expect_error(ingest_bundle(con,fixture(),'2024-25'),'pbp_events')
+  testthat::expect_equal(nrow(DBI::dbReadTable(con,'games')),0L)
+  testthat::expect_equal(nrow(DBI::dbReadTable(con,'datasets')),0L)
+  testthat::expect_equal(DBI::dbReadTable(con,'ingestion_runs')$status,'failed')
+})
