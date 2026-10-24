@@ -35,6 +35,8 @@ completeness_report <- function(con,years=2016:2027,directory='docs') {
   utils::write.csv(ref_only,file.path(directory,'reference_only_games.csv'),row.names=FALSE)
   inventory_only<-DBI::dbGetQuery(con,'SELECT i.season,i.game_id,i.game_date,i.home_team_id,i.away_team_id FROM schedule_inventory i LEFT JOIN independent_team_totals r ON r.home AND r.season=i.season AND r.game_date=i.game_date AND r.team_id=i.home_team_id AND r.opponent_team_id=i.away_team_id WHERE r.source_game_id IS NULL ORDER BY i.season,i.game_date')
   utils::write.csv(inventory_only,file.path(directory,'source_only_games.csv'),row.names=FALSE)
+  dependent_boxes<-DBI::dbGetQuery(con,'SELECT DISTINCT g.season,g.game_id,d.source_id box_source,t.dataset_id box_dataset_id,c.reference_dataset_id FROM reconciliation_checks c JOIN games g USING(game_id) JOIN team_box_scores t ON c.game_id=t.game_id AND c.team_id=t.team_id JOIN datasets d ON t.dataset_id=d.dataset_id WHERE c.independent IS FALSE ORDER BY g.season,g.game_id')
+  utils::write.csv(dependent_boxes,file.path(directory,'reference_dependent_boxes.csv'),row.names=FALSE)
   status<-DBI::dbGetQuery(con,'SELECT i.season,i.game_id,i.competition,i.validation_status,coalesce(s.possessions_status,\'not_reconstructed\') possessions_status,coalesce(s.lineups_status,\'not_reconstructed\') lineups_status FROM schedule_inventory i LEFT JOIN reconstruction_status s ON i.game_id=s.game_id AND s.version=? ORDER BY i.season,i.game_id',params=list(reconstruction_version))
   utils::write.csv(status,file.path(directory,'game_validation_status.csv'),row.names=FALSE)
   # Full event-level diagnostics remain local; publish a compact category
@@ -65,6 +67,7 @@ completeness_report <- function(con,years=2016:2027,directory='docs') {
   writeLines(c(header,knitr::kable(compact,format='pipe',row.names=FALSE),'',
     'See season_completeness.csv for all denominators, game_validation_status.csv for each source game,',
     'reference_only_games.csv and source_only_games.csv for unmatched records, and exception_summary.csv.',
+    'reference_dependent_boxes.csv identifies canonical boxes compared back to the same provider.',
     'A reconciled reconstruction passed event totals, score conservation and control/clock constraints.',
     'Lineups additionally require exactly five unique players, complete period coverage and player-minute bounds.',
     'This does not certify unobserved ground truth or assign any defender. Both providers may share upstream errors.'),file.path(directory,'season_completeness.md'))

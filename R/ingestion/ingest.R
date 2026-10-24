@@ -12,7 +12,7 @@ ingest_bundle <- function(con, bundle, season, game_ids=NULL, normalized=NULL, v
     utils::write.csv(report,file.path('data/processed/quality',paste0(gsub(':','-',run),'.csv')),row.names=FALSE)
     if(any(report$severity=='error')) stop('Data quality failed: ',paste(unique(report$check[report$severity=='error']),collapse='; '))
     datasets <- do.call(rbind,lapply(names(bundle),function(kind) {
-      z <- bundle[[kind]]; hash <- file_sha256(z$path)
+      z <- bundle[[kind]]; hash <- if(is.null(z$sha256))file_sha256(z$path) else z$sha256
       data.frame(dataset_id=paste0('sdv:',kind,':',season,':',hash),source_id='sportsdataverse',url=z$url,revision=z$revision,retrieved_at=Sys.time(),sha256=hash,raw_path=z$path,row_count=nrow(z$data))
     }))
     DBI::dbWithTransaction(con, {
@@ -20,7 +20,7 @@ ingest_bundle <- function(con, bundle, season, game_ids=NULL, normalized=NULL, v
       DBI::dbWriteTable(con,'_selected_games',x$games['game_id'],temporary=TRUE,overwrite=TRUE)
       # Derived facts must never survive replacement of their input snapshot.
       DBI::dbExecute(con,'DELETE FROM lineup_players WHERE lineup_id IN (SELECT lineup_id FROM lineups WHERE game_id IN (SELECT game_id FROM _selected_games))')
-      for(derived in c('lineups','possessions','possession_events','non_possession_points','lineup_minute_checks','reconstruction_status'))DBI::dbExecute(con,paste('DELETE FROM',derived,'WHERE game_id IN (SELECT game_id FROM _selected_games)'))
+      for(derived in c('lineups','possessions','possession_events','non_possession_points','lineup_minute_checks','reconstruction_status','pbp_reconciliation_checks','reconciliation_checks'))DBI::dbExecute(con,paste('DELETE FROM',derived,'WHERE game_id IN (SELECT game_id FROM _selected_games)'))
       for (table in names(x)) {
         rows <- deduplicate(x[[table]],table_keys[[table]])
         # Historical entities are shared across seasons; fact snapshots replace selected games.

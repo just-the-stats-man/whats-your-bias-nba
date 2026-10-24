@@ -3,8 +3,9 @@ recover_reference_boxes <- function(con) {
   recovered<-character()
   for(season in unique(candidates$season)) {
     bundle<-fetch_season(season)
-    x<-normalize_bundle(bundle,season)
+    bundle<-lapply(bundle,function(z){z$sha256<-file_sha256(z$path);z})
     games<-candidates[candidates$season==season,,drop=FALSE]
+    x<-normalize_bundle(bundle,season,game_ids=games$game_id)
     for(i in seq_len(nrow(games))) {
       g<-games[i,,drop=FALSE]
       home<-DBI::dbGetQuery(con,'SELECT * FROM independent_team_totals WHERE season=? AND game_date=? AND team_id=? AND opponent_team_id=? AND home',params=list(season,g$game_date,g$home_team_id,g$away_team_id))

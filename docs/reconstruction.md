@@ -88,6 +88,15 @@ the same check before reconstruction, refresh and completeness reporting;
 conflicting games and their derived rows are withdrawn while raw data,
 manifests and diagnostic history remain intact.
 
+An aggregate difference is not automatically a source error. From 2025–26,
+qualifying missed heaves count against team attempts without affecting
+individual attempts ([NBA explanation](https://www.nba.com/news/nba-heaves-rule-change-early-results)).
+The current gate requires explicit compatible provider evidence before such
+a residual can be accepted. It does not infer team-only attempts from a
+score difference, distance alone or a desired box-score total; otherwise the
+game remains quarantined. Provider-specific player efficiency figures require
+this accounting caveat when comparing eras.
+
 Eoin Moore's CC0-published Kaggle `TeamStatistics.csv` and `PlayerStatistics.csv` v524 are NBA-derived,
 distinct from the ESPN-derived SDV archive. Raw CSV, metadata, source version
 and SHA-256 are retained. `config/team_crosswalk.csv` maps the 30 franchises.

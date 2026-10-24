@@ -7,7 +7,9 @@ refresh_quarantine_diagnostics <- function(con) {
       filenames<-paste0(c('nba_schedule','player_box','team_box','play_by_play'),'_',season_end(season),'.parquet')
       if(!all(file.exists(file.path('data/raw',revision,filenames))))next
       bundle<-fetch_season(season,revision)
-      x<-normalize_bundle(bundle,season)
+      ids<-selected$game_id[selected$revision==revision]
+      bundle<-lapply(bundle,function(z){z$sha256<-file_sha256(z$path);z})
+      x<-normalize_bundle(bundle,season,game_ids=ids)
       for(id in selected$game_id[selected$revision==revision]) {
         one<-slice_games(x,id);q<-quality_report(one)
         if(nrow(q))upsert_rows(con,'quality_exceptions',exception_rows(id,season,'ingestion',q$check,paste('affected records:',q$count),q$severity,dataset_id=one$games$dataset_id[1]),'exception_id')

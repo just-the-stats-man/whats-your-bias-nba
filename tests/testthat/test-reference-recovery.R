@@ -11,6 +11,9 @@ testthat::test_that('alternative team-box recovery preserves provenance and labe
   fn<-recover_reference_boxes;scope<-new.env(parent=environment(fn));scope$fetch_season<-function(...)b;environment(fn)<-scope
   testthat::expect_message(recovered<-fn(con),'Recovered 1')
   testthat::expect_equal(recovered,id)
+  testthat::expect_equal(nrow(DBI::dbReadTable(con,'pbp_events')),sum(as.character(b$pbp$data$game_id)==id))
+  raw_manifest<-DBI::dbReadTable(con,'datasets')
+  testthat::expect_equal(raw_manifest$row_count[raw_manifest$dataset_id==DBI::dbReadTable(con,'games')$dataset_id],as.numeric(nrow(b$schedules$data)))
   testthat::expect_true(all(grepl('^kaggle:',DBI::dbReadTable(con,'team_box_scores')$dataset_id)))
   testthat::expect_equal(nrow(reconcile_game_totals(con)),0L)
   checks<-DBI::dbReadTable(con,'reconciliation_checks')
