@@ -1,0 +1,10 @@
+source('scripts/load.R')
+con<-connect_warehouse()
+tryCatch({
+  DBI::dbExecute(con,'SET threads=4');DBI::dbExecute(con,"SET memory_limit='3GB'")
+  cat('New canonical shots:',publish_shot_recovery(con),'\n')
+  checks<-rbind(warehouse_integrity_report(con),historical_integrity(con),execution_integrity(con),shot_recovery_integrity(con),phase3_preservation(con))
+  utils::write.csv(checks,'data/processed/phase3/milestone1_integrity.csv',row.names=FALSE)
+  stopifnot(all(checks$passed));cat(nrow(checks),'integrity and preservation checks passed\n')
+  phase3_reports(con)
+},finally=DBI::dbDisconnect(con,shutdown=TRUE))
