@@ -39,6 +39,14 @@ running the fixture tests; it does not test installation without a network.
 
 ## Pipeline and refresh
 
+The targets/sample/demo commands use the bundled fixture warehouse. Run those
+in a separate checkout when preserving an expanded production warehouse.
+For historical execution use [the SDV runbook](docs/sdv_execution.md), followed
+by `scripts/report_historical_expansion.R` and `scripts/finalize_execution.R`.
+The original `verify_historical.R` below is the Phase 1 workflow and refreshes
+its Parquet export directory; retain the frozen baseline for the additive
+historical preservation check instead of overwriting it.
+
 ```sh
 Rscript -e "source('scripts/load.R'); targets::tar_make()"
 Rscript scripts/ingest.R 2024-25

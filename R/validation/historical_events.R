@@ -27,7 +27,7 @@ historical_family_matrix <- function(con,report) {
     status[6:7]<-ifelse(counts[6:7]>0,'reconstructed','source_missing')
     status[8]<-if(substr(r$season,1,4)>='2013')'not_licensed' else 'source_missing'
     data.frame(season=r$season,family=families,rows=counts,status=status,
-      limitation=c('metric-specific availability; raw scoring exceptions retained','recorded rows include DNP/unknown appearances; not games played','recorded event availability does not establish complete order or possessions','made/value fields can be unavailable','raw provider coordinates; plausibility screen only','strict canonical reconstruction gates','strict membership and minute gates','no authorized tracking export; earlier availability unverified','only partial covered-game sums are implemented'))
+      limitation=c('metric-specific availability; raw scoring exceptions retained','recorded rows include DNP/unknown appearances; not games played','recorded event availability does not establish complete order or possessions','made/value fields can be unavailable','raw provider coordinates; plausibility screen only','strict canonical reconstruction gates','strict membership and minute gates','no observed optical tracking in this NBA layer; provider estimates reported separately; earlier availability unverified','only partial covered-game sums are implemented'))
   })
   do.call(rbind,rows)
 }
