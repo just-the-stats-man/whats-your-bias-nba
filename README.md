@@ -108,7 +108,7 @@ computed from local shot/FT totals; DNP and missing-data rules are documented.
 - [Limitations](docs/limitations.md): gaps and defensive attribution cautions.
 - [Sample attribution](data/sample/ATTRIBUTION.md): exact revision and license.
 - [Verification report](docs/verification.md): executed checks and data counts.
-- [Season completeness](docs/season_completeness.md): current per-season denominators and exceptions.
+- [Phase 1 season completeness](docs/season_completeness.md): preserved 2015–16 onward denominators and exceptions; [historical expansion](docs/historical_completeness.md) is reported separately.
 - [Reconstruction methods](docs/reconstruction.md): control boundaries, lineup constraints and reconciliation.
 
 DuckDB includes game metadata, player/team boxes, PBP, shot attempts,

@@ -1,0 +1,68 @@
+"season","family","rule","records"
+"1949-50","team","box scoring identity, duplicate or entity assignment failed",3
+"1950-51","team","box scoring identity, duplicate or entity assignment failed",10
+"1951-52","team","box scoring identity, duplicate or entity assignment failed",1
+"1952-53","player","box scoring identity, duplicate or entity assignment failed",2
+"1952-53","team","box scoring identity, duplicate or entity assignment failed",4
+"1953-54","player","box scoring identity, duplicate or entity assignment failed",4
+"1954-55","player","box scoring identity, duplicate or entity assignment failed",2
+"1954-55","team","box scoring identity, duplicate or entity assignment failed",1
+"1955-56","player","box scoring identity, duplicate or entity assignment failed",9
+"1955-56","team","box scoring identity, duplicate or entity assignment failed",5
+"1957-58","player","box scoring identity, duplicate or entity assignment failed",1
+"1957-58","team","box scoring identity, duplicate or entity assignment failed",3
+"1958-59","player","box scoring identity, duplicate or entity assignment failed",2
+"1958-59","team","box scoring identity, duplicate or entity assignment failed",1
+"1959-60","player","box scoring identity, duplicate or entity assignment failed",2
+"1959-60","team","box scoring identity, duplicate or entity assignment failed",5
+"1960-61","player","box scoring identity, duplicate or entity assignment failed",19
+"1960-61","team","box scoring identity, duplicate or entity assignment failed",11
+"1961-62","player","box scoring identity, duplicate or entity assignment failed",2
+"1961-62","team","box scoring identity, duplicate or entity assignment failed",8
+"1962-63","player","box scoring identity, duplicate or entity assignment failed",30
+"1962-63","team","box scoring identity, duplicate or entity assignment failed",7
+"1963-64","player","box scoring identity, duplicate or entity assignment failed",8
+"1963-64","team","box scoring identity, duplicate or entity assignment failed",13
+"1964-65","team","box scoring identity, duplicate or entity assignment failed",4
+"1967-68","team","box scoring identity, duplicate or entity assignment failed",2
+"1968-69","team","box scoring identity, duplicate or entity assignment failed",1
+"1970-71","team","box scoring identity, duplicate or entity assignment failed",1
+"1972-73","team","box scoring identity, duplicate or entity assignment failed",1
+"1973-74","player","box scoring identity, duplicate or entity assignment failed",75
+"1974-75","team","box scoring identity, duplicate or entity assignment failed",2
+"1978-79","team","box scoring identity, duplicate or entity assignment failed",4
+"1979-80","team","box scoring identity, duplicate or entity assignment failed",1
+"1980-81","team","box scoring identity, duplicate or entity assignment failed",6
+"1985-86","team","box scoring identity, duplicate or entity assignment failed",3
+"1988-89","player","box scoring identity, duplicate or entity assignment failed",24
+"1989-90","team","box scoring identity, duplicate or entity assignment failed",13
+"1992-93","player","box scoring identity, duplicate or entity assignment failed",19
+"1993-94","team","box scoring identity, duplicate or entity assignment failed",1
+"1994-95","player","box scoring identity, duplicate or entity assignment failed",20
+"1995-96","team","box scoring identity, duplicate or entity assignment failed",1
+"1996-97","team","box scoring identity, duplicate or entity assignment failed",4
+"1997-98","player","box scoring identity, duplicate or entity assignment failed",1
+"1999-00","player","box scoring identity, duplicate or entity assignment failed",1
+"2000-01","player","box scoring identity, duplicate or entity assignment failed",14276
+"2002-03","player","box scoring identity, duplicate or entity assignment failed",3
+"2002-03","team","box scoring identity, duplicate or entity assignment failed",2
+"2003-04","team","box scoring identity, duplicate or entity assignment failed",3
+"2004-05","games","invalid tied final score; quarantined with raw source preserved",1
+"2004-05","player","box scoring identity, duplicate or entity assignment failed",7
+"2004-05","team","box scoring identity, duplicate or entity assignment failed",12
+"2005-06","player","box scoring identity, duplicate or entity assignment failed",8
+"2006-07","player","box scoring identity, duplicate or entity assignment failed",5
+"2007-08","player","box scoring identity, duplicate or entity assignment failed",10
+"2008-09","player","box scoring identity, duplicate or entity assignment failed",5
+"2009-10","team","box scoring identity, duplicate or entity assignment failed",1
+"2010-11","games","invalid tied final score; quarantined with raw source preserved",1
+"2010-11","team","box scoring identity, duplicate or entity assignment failed",1
+"2011-12","team","box scoring identity, duplicate or entity assignment failed",1
+"2017-18","team","box scoring identity, duplicate or entity assignment failed",1
+"2021-22","player","box scoring identity, duplicate or entity assignment failed",33824
+"2023-24","player","box scoring identity, duplicate or entity assignment failed",28
+"2024-25","player","box scoring identity, duplicate or entity assignment failed",182
+"2025-26","player","box scoring identity, duplicate or entity assignment failed",135
+,"games","ambiguous season, duplicate game, missing identity or invalid score",2
+,"player","raw row outside admitted historical boxes",64863
+,"team","raw row outside admitted historical boxes",3900
