@@ -1,0 +1,32 @@
+withr::local_dir(Sys.getenv('WYB_ROOT'))
+testthat::test_that('provider release estimates retain missingness and never assign a defender', {
+  g<-data.frame(game_id='nba:0021500001',season='2015-16',home_team_id='nba:1',away_team_id='nba:2')
+  r<-data.frame(game_id='0021500001',team_id='1',player_name='Shooter',closest_def_name='Nearest label',quarter='1',game_time='60',made_shot='0',x='80',y='25',dist='8.75',closest_def_dist='3',shot_clock='10',touch_time=NA)
+  x<-normalize_tracking_features(r,g,'test')
+  testthat::expect_equal(x$context$validation_status,'estimated')
+  testthat::expect_false(any(grepl('defender.*id|player_id',names(x$context))))
+  testthat::expect_equal(x$estimates$status[x$estimates$metric=='touch_time'],'source_missing')
+  r$closest_def_dist<-'-1';r$dist<-'50';r$team_id<-'3'
+  y<-normalize_tracking_features(r,g,'test')
+  testthat::expect_equal(y$context$validation_status,'failed_validation')
+  testthat::expect_true(all(is.na(y$estimates$value)))
+  r$team_id<-'1';r$closest_def_dist<-'3'
+  y<-normalize_tracking_features(r,g,'test')
+  testthat::expect_equal(y$estimates$status[y$estimates$metric=='dist'],'failed_validation')
+  testthat::expect_equal(y$estimates$reported_value[y$estimates$metric=='dist'],50)
+})
+
+testthat::test_that('tracking imports resume and reject mutation of registered raw metadata', {
+  folder<-tempfile();dir.create(folder)
+  path<-file.path(folder,'features.csv');metadata<-file.path(folder,'metadata.json');games_path<-file.path(folder,'games.parquet')
+  r<-data.frame(game_id='0021500001',team_id='1',player_name='Shooter',closest_def_name='Nearest',quarter=1,game_time=60,made_shot=0,x=80,y=25,dist=8.75,closest_def_dist=3,shot_clock=10,touch_time=1)
+  utils::write.csv(r,path,row.names=FALSE)
+  jsonlite::write_json(list(licenseName='MIT',currentVersionNumber=1,totalBytes=file.info(path)$size),metadata,auto_unbox=TRUE)
+  arrow::write_parquet(data.frame(game_id='nba:0021500001',season='2015-16',home_team_id='nba:1',away_team_id='nba:2'),games_path)
+  con<-connect_warehouse(':memory:');on.exit(DBI::dbDisconnect(con,shutdown=TRUE))
+  ingest_tracking_features(con,path,metadata,games_path)
+  testthat::expect_equal(ingest_tracking_features(con,path,metadata,games_path),'unchanged')
+  testthat::expect_equal(nrow(DBI::dbReadTable(con,'tracking_provider_context')),1)
+  cat(' ',file=metadata,append=TRUE)
+  testthat::expect_error(ingest_tracking_features(con,path,metadata,games_path),'path changed')
+})

@@ -4,6 +4,11 @@ nba_recovery_player_map <- function(nba,espn,names) {
   a<-paste(nba$team_id,literal(nba$name));b<-paste(espn$team_id,literal(espn$name))
   if(anyNA(nba$name) || anyDuplicated(a) || any(vapply(a,function(key)sum(b==key),integer(1))!=1L))return(NULL)
   j<-match(a,b);if(anyNA(j) || anyNA(espn$player_id[j]))return(NULL)
+  extra<-which(!seq_len(nrow(espn))%in%j)
+  if(length(extra)) {
+    evidence<-c('minutes','points','fgm','fga','fg3m','fg3a','ftm','fta','assists','turnovers','rebounds')
+    if(any(as.matrix(espn[extra,evidence,drop=FALSE])>0,na.rm=TRUE))return(NULL)
+  }
   for(m in c('points','fgm','fga','fg3m','fg3a','ftm','fta','assists','turnovers','rebounds')) {
     known<-!is.na(espn[[m]][j])
     if(anyNA(nba[[m]]) || any(nba[[m]][known]!=espn[[m]][j][known]))return(NULL)

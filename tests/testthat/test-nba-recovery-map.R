@@ -11,4 +11,6 @@ testthat::test_that('whole-box recovery identities require exact unique metadata
   bad<-e;bad$did_not_play[1]<-TRUE;testthat::expect_null(nba_recovery_player_map(p,bad,n))
   bad<-rbind(e,e[1,]);testthat::expect_null(nba_recovery_player_map(p,bad,n))
   e$points[1]<-NA;testthat::expect_equal(nba_recovery_player_map(p,e,n)$player_id,c('espn:10','espn:20'))
+  extra<-e[1,,drop=FALSE];extra$player_id<-'espn:30';extra$name<-'Unmatched Participant';extra$minutes<-1
+  testthat::expect_null(nba_recovery_player_map(p,rbind(e,extra),n))
 })

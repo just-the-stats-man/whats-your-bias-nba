@@ -1,5 +1,10 @@
 # Historical expansion verification — 2026-10-24
 
+This page preserves the previous observation milestone. The subsequent SDV
+execution and reconstruction results are recorded in
+[execution verification](execution_verification.md). Counts below describe the
+earlier snapshot and must not be read as the latest canonical totals.
+
 Verified implementation: `3f5d038b0b994a19c1b0ba0d9517ad4dba49dd57`.
 This is a completed historical **observation** milestone, not a declaration that
 NBA history or historical possession reconstruction is complete.

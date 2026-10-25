@@ -1,5 +1,26 @@
 # Data dictionary
 
+Historical execution adds `sdv_history_status` (game/family admission status),
+`sdv_history_checkpoints` (season/input signature), and `sdv_nba_player_links`
+(reviewable exact identity evidence for whole NBA box recovery). Earlier failed
+quality exceptions remain historical evidence; use current status tables to
+measure present admission. See [SDV execution](sdv_execution.md).
+
+`tracking_provider_context` uses `(dataset_id, source_row)` as its immutable
+provider-record key. It contains NBA game/team IDs and unmapped shooter/nearest
+name labels. `tracking_provider_estimates` adds `metric` to that key and keeps
+both `reported_value` and nullable standardized `value`. Status is `estimated`,
+`source_missing` or `failed_validation`; uncertainty is unavailable. Neither
+table supplies an assigned/responsible defender or a canonical shot event ID.
+
+`boxscorelab_player_season_totals`, `boxscorelab_team_standings`, and
+`boxscorelab_team_game_results` retain provider-native CSV fields plus dataset,
+record ordinal, native key and validation status. Numeric CSV fields are
+retained as provider text to preserve meanings; only documented counting
+columns enter `boxscorelab_reconciliation`. Player team labels can combine all
+season stints. Estimated rates/ratings are not observed counting statistics.
+Provider agreement with other NBA-derived totals is explicitly dependent.
+
 PBP reconciliation records retain the original source `box_value` separately
 from a comparison's `benchmark_value`, type, dataset and provider game ID.
 An independently reported total can validate a missing source field without

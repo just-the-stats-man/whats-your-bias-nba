@@ -1,6 +1,13 @@
 # Missingness and research capability
 
-Historical ingestion is additive. It does not weaken the existing canonical game, possession or lineup gates. Source values remain in immutable raw files; standardized values can be null even when a source encodes zero. IDs retain provider namespaces. Dates and the NBA season suffix jointly resolve centuries; ambiguous identities become exceptions. No player name matching is used.
+Historical ingestion is additive. It does not weaken canonical game, possession
+or lineup gates. Source values remain immutable; standardized values can be
+null even when a source encodes zero. IDs retain provider namespaces. Dates and
+the NBA season suffix jointly resolve centuries. The NBA observation adapter
+uses native IDs. Whole-box recovery separately requires unique exact full
+names within a mapped game/team and agreement of all available ESPN counts;
+it retains every mapping and rejects ambiguity. No fuzzy identity matching is
+used. Provider tracking names remain unmapped labels.
 
 | Status | Meaning |
 |---|---|
@@ -25,10 +32,14 @@ Zero must survive only when supported by the recorded field and context. For exa
 | Player impact / opponent adjustment | Estimable with assumptions about selection, confounding, coverage and opponent strength; causal effects are not directly observed. |
 | Five-player performance / defensive lineup impact | Reconstructable only in games passing substitution, five-player membership and minute checks. Shared court time does not assign defensive responsibility. |
 | Player matchups | Unavailable without an explicit matchup source and its definition. Actor IDs in PBP do not identify assigned defenders. |
-| Nearest defender / defender distance | Unavailable in current permitted sources. Tracking aggregate filters are not full defensive assignments. |
+| Nearest defender / defender distance | A licensed 2015–16 provider feature release supplies estimated release distances and nearest-player labels, with unknown uncertainty. No optical reproduction or assignment is asserted. See tracking_assessment.md. |
 | Help defense / switches / off-ball movement / screen navigation | Currently unavailable as observations; require licensed trajectories or documented hand-charting. Not recoverable from ordinary PBP. |
 
-The four concepts **on court**, **assigned defender**, **nearest defender at release**, and **responsible defender** require different evidence. The warehouse currently supports only validated on-court membership. It never invents the other three from proximity, steals, blocks, player positions or roster membership.
+The concepts **on court**, **assigned defender**, **nearest defender at release**
+and **responsible defender** require different evidence. Canonical data support
+validated on-court membership. A separate feature table retains provider
+nearest-player estimates. It never converts proximity, steals, blocks, positions
+or roster membership into assignment or responsibility.
 
 ## Separate future modeling contract
 

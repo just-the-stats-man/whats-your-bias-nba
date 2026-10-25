@@ -1,0 +1,6 @@
+"season","team_rows","wins","losses","claimed_games","individual_standings_pass","available_game_pairs","invalid_team_game_rows","player_season_rows","league_standings_consistent","limitation"
+"2022-23",30,1230,1230,1230,TRUE,1230,0,539,TRUE,"publisher NBA-derived season totals; no complete independent league denominator certified"
+"2023-24",30,1230,1230,1230,TRUE,1230,0,572,TRUE,"publisher NBA-derived season totals; no complete independent league denominator certified"
+"2024-25",30,1230,1230,1230,TRUE,1230,10,569,TRUE,"publisher NBA-derived season totals; no complete independent league denominator certified"
+"2025-26",30,1230,1230,1230,TRUE,1230,10,582,TRUE,"publisher NBA-derived season totals; no complete independent league denominator certified"
+"2026-27",30,36,36,36,TRUE,36,0,388,TRUE,"publisher NBA-derived season totals; no complete independent league denominator certified"

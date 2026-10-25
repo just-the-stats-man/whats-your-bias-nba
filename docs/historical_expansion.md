@@ -19,13 +19,20 @@ The box and event commands commit by season and skip matching snapshot/transform
 
 The final reporting command expects the frozen Phase 1 exports in `data/processed/parquet/` for preservation checks. Keep these exports until verification finishes. New historical exports belong in `data/processed/historical_parquet/`; do not overwrite the baseline as a shortcut to making preservation checks pass. A fresh clone can reproduce the historical adapters through the bundled synthetic fixtures (`Rscript scripts/test.R`); reproducing the original full baseline additionally requires the documented Phase 1 backfill and reconstruction.
 
-The additional ESPN pilot is resumable with:
+The initial ESPN pilot has been superseded by the scoped historical adapter:
 
 ```sh
-Rscript scripts/expand_sdv_history.R 2004
+Rscript scripts/ingest_sdv_history_parallel.R
+Rscript scripts/recover_sdv_nba_boxes.R 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015
+Rscript scripts/reconstruct_sdv_history.R
 ```
 
-It imports historical NBA reference totals, audits the pinned SDV season, preserves existing player names, and runs the existing strict reconstruction gates. The default is the 2003–04 pilot. Explicit end years 2002–2015 select other archived seasons. **Do not launch a broad physical rerun until historical event classification is addressed:** all 263 admitted pilot games failed possession/lineup validation. The archive lacks modern attempt classifications, and individual games also have scoring, timing or substitution discrepancies. The other 1,008 eligible ESPN pilot games failed box ingestion. Raw NBA observations for those dates remain separately available; failed ESPN evidence is not silently patched to match them.
+See [the execution runbook](sdv_execution.md) for historical turnover and unique
+shot-classification rules, mixed calendar partitions, conservative whole NBA
+box recovery, staging checkpoints and scoped workers. Valid boxes survive
+invalid PBP. The pilot's 263 failed physical attempts describe the earlier
+adapter, not current season results. Existing player names and the verified
+modern physical method remain protected.
 
 Historical reconciliation protects unrelated diagnostic rows in SQL, including microsecond timestamps. It verifies that their reference/PBP benchmark checks remain identical and rolls back if a protected benchmark changes. Resuming the completed pilot skipped physical reconstruction after the reference/path correction.
 

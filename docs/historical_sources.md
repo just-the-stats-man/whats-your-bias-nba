@@ -1,5 +1,9 @@
 # Historical source audit
 
+The 2026-10-25 [tracking and supplementary-source assessment](tracking_assessment.md)
+updates the access review below and documents the limited licensed feature and
+season-total imports. No paid access or DunkAPI credential test was used.
+
 Reviewed 2026-10-24. This is an availability audit; downloadable files are not evidence of complete seasons. The verified 2015–16 onward reconstruction remains the baseline. No subscription, trial, account, or paid API request was initiated.
 
 | Provider | Historical evidence and definitions | Access and selection |
