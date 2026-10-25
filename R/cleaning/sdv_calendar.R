@@ -1,7 +1,7 @@
 sdv_effective_version <- function(season) {
   base<-sdv_history_version()
   if(!season_end(season)%in%c(1999L,2000L))return(base)
-  substr(digest::digest(list(base,body(ingest_sdv_mixed_calendar)),algo='sha256'),1,16)
+  substr(digest::digest(list(base,body(get('ingest_sdv_mixed_calendar',mode='function',inherits=TRUE))),algo='sha256'),1,16)
 }
 
 ingest_sdv_mixed_calendar <- function(con,season) {

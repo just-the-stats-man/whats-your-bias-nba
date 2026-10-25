@@ -1,4 +1,10 @@
-sdv_history_version <- function() substr(digest::digest(list(body(sdv_attempt_features),body(normalize_sdv_history),body(sdv_box_quality),body(ingest_sdv_history),body(quality_report),reconstruction_version),algo='sha256'),1,16)
+sdv_history_version <- function() {
+  # Resolve fingerprint inputs by name: static targets dependency discovery
+  # must not interpret a body hash as a recursive execution dependency.
+  inputs<-c('sdv_attempt_features','normalize_sdv_history','sdv_box_quality','ingest_sdv_history','quality_report')
+  bodies<-lapply(inputs,function(name)body(get(name,mode='function',inherits=TRUE)))
+  substr(digest::digest(c(bodies,list(reconstruction_version)),algo='sha256'),1,16)
+}
 
 sdv_attempt_features <- function(e) {
   fg<-e$shooting_play%in%TRUE & !grepl('free throw',e$event_type,ignore.case=TRUE)
