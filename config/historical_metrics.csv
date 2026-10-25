@@ -1,0 +1,17 @@
+metric,source_column,first_season_start,pre_era_status
+points,points,1946,not_collected
+fgm,fieldGoalsMade,1946,not_collected
+fga,fieldGoalsAttempted,1946,not_collected
+fg3m,threePointersMade,1979,not_applicable
+fg3a,threePointersAttempted,1979,not_applicable
+ftm,freeThrowsMade,1946,not_collected
+fta,freeThrowsAttempted,1946,not_collected
+assists,assists,1946,not_collected
+turnovers,turnovers,1977,not_collected
+rebounds,reboundsTotal,1950,not_collected
+oreb,reboundsOffensive,1973,not_collected
+dreb,reboundsDefensive,1973,not_collected
+steals,steals,1973,not_collected
+blocks,blocks,1973,not_collected
+fouls,foulsPersonal,1946,not_collected
+minutes,numMinutes,1951,not_collected

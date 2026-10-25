@@ -4,6 +4,14 @@ Reproducible data infrastructure for checking basketball claims with evidence.
 The first milestone is a local warehouse, not a player ranking or predictive
 model. Original R code is MIT licensed; sample NBA data has separate CC BY 4.0
 and CC0 attribution in `data/sample/ATTRIBUTION.md`.
+
+Historical expansion now has an additive NBA observation pipeline with explicit
+metric missingness, season checkpoints and provider-specific shot coordinates.
+See the [historical runbook and limits](docs/historical_expansion.md),
+[season matrix](docs/historical_completeness.md), and
+[provider/access audit](docs/historical_sources.md). Historical observations and
+failed reconstruction attempts are reported separately from validated possessions
+and lineups; downloaded history is not a completeness claim.
 The previous [nba-deckbuilding](https://github.com/just-the-stats-man/nba-deckbuilding)
 repository and its history are preserved unchanged.
 
