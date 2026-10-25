@@ -1,6 +1,28 @@
 # Parallel data processing, with one isolated DuckDB per season. Workers never
 # write the main warehouse. The parent keeps its write lock and publishes all
 # selected seasons in one transaction only after every worker passes integrity.
+reconstruction_inputs_signature <- function(con,game_ids) {
+  DBI::dbWriteTable(con,'_fingerprint_games',data.frame(game_id=sort(unique(game_ids))),temporary=TRUE,overwrite=TRUE)
+  sql<-setNames(lapply(c('games','player_box_scores','team_box_scores','pbp_events','reconciliation_checks'),function(t)paste0('SELECT t.* FROM ',t,' t JOIN _fingerprint_games f USING(game_id)')),c('games','player_box_scores','team_box_scores','pbp_events','reconciliation_checks'))
+  sql$reference_totals<-'SELECT DISTINCT r.* FROM independent_team_totals r JOIN reconciliation_checks c ON r.dataset_id=c.reference_dataset_id AND r.source_game_id=c.reference_game_id AND r.team_id=c.team_id JOIN _fingerprint_games f ON c.game_id=f.game_id'
+  sql$providers<-"SELECT DISTINCT d.dataset_id,d.source_id FROM datasets d JOIN (SELECT e.dataset_id FROM pbp_events e JOIN _fingerprint_games USING(game_id) UNION SELECT p.dataset_id FROM player_box_scores p JOIN _fingerprint_games USING(game_id) UNION SELECT t.dataset_id FROM team_box_scores t JOIN _fingerprint_games USING(game_id) UNION SELECT c.reference_dataset_id FROM reconciliation_checks c JOIN _fingerprint_games USING(game_id)) x ON d.dataset_id=x.dataset_id"
+  checksums<-lapply(sql,function(q)DBI::dbGetQuery(con,paste0('SELECT count(*) n,CAST(bit_xor(hash(t)) AS VARCHAR) checksum FROM (',q,') t')))
+  digest::digest(list(schema=2L,version=reconstruction_version,inputs=checksums),algo='sha256')
+}
+
+frozen_reconstruction_signature <- function(saved,game_ids) {
+  if(!all(vapply(saved$tasks,function(task)identical(task$version,reconstruction_version),logical(1))))return(NA_character_)
+  con<-DBI::dbConnect(duckdb::duckdb(),dbdir=':memory:')
+  on.exit(DBI::dbDisconnect(con,shutdown=TRUE))
+  for(table in c('games','player_box_scores','team_box_scores','pbp_events','reconciliation_checks','independent_team_totals','datasets')) {
+    paths<-unique(vapply(saved$tasks,function(task)task$inputs[[table]],character(1)))
+    if(any(!file.exists(paths)))stop('Missing legacy worker input snapshot')
+    files<-paste(DBI::dbQuoteString(con,paths),collapse=',')
+    DBI::dbExecute(con,paste0('CREATE VIEW ',table,' AS SELECT * FROM read_parquet([',files,'],union_by_name=TRUE)'))
+  }
+  reconstruction_inputs_signature(con,game_ids)
+}
+
 reconstruction_partition <- function(task) {
   stopifnot(identical(reconstruction_version,task$version))
   path<-file.path(task$directory,'results.duckdb')
@@ -38,7 +60,7 @@ reconstruct_parallel <- function(con,seasons=NULL,workers=2L,batch_size=100L,dir
   if(!nrow(candidates))return(invisible(list()))
   seasons<-sort(unique(candidates$season))
   DBI::dbWriteTable(con,'_parallel_selection',candidates['game_id'],temporary=TRUE,overwrite=TRUE)
-  signature<-digest::digest(list(version=reconstruction_version,games=candidates,events=DBI::dbGetQuery(con,'SELECT game_id,dataset_id,count(*) n FROM pbp_events WHERE game_id IN (SELECT game_id FROM _parallel_selection) GROUP BY game_id,dataset_id ORDER BY game_id,dataset_id'),checks=DBI::dbGetQuery(con,'SELECT * FROM reconciliation_checks WHERE game_id IN (SELECT game_id FROM _parallel_selection) ORDER BY game_id,team_id,reference_dataset_id,metric')),algo='sha256')
+  signature<-reconstruction_inputs_signature(con,candidates$game_id)
   workers<-as.integer(workers)
   if(is.na(workers) || workers<1L)stop('workers must be a positive integer')
   root<-normalizePath('.',winslash='/')
@@ -57,6 +79,11 @@ reconstruct_parallel <- function(con,seasons=NULL,workers=2L,batch_size=100L,dir
   copy<-function(table,path,where='')DBI::dbExecute(con,sprintf('COPY (SELECT * FROM %s %s) TO %s (FORMAT PARQUET)',DBI::dbQuoteIdentifier(con,table),where,DBI::dbQuoteString(con,path)))
   if(reuse) {
     saved<-readRDS(saved_path)
+    if(is.null(saved$signature_version) && identical(frozen_reconstruction_signature(saved,candidates$game_id),signature)) {
+      # Upgrade only after comparing every selected frozen input to current
+      # facts. Completed legacy workers and their published results are reused.
+      saved$signature<-signature;saved$signature_version<-2L;saveRDS(saved,saved_path)
+    }
     if(saved$signature!=signature)stop('Selected reconstruction inputs changed; choose a new directory')
     if(file.exists(file.path(directory,'published.rds'))) {
       stopifnot(DBI::dbGetQuery(con,'SELECT count(*) n FROM reconstruction_status WHERE game_id IN (SELECT game_id FROM _parallel_selection)')$n==nrow(candidates))
@@ -73,7 +100,7 @@ reconstruct_parallel <- function(con,seasons=NULL,workers=2L,batch_size=100L,dir
     for(table in local)copy(table,paths[[table]],condition)
     list(season=season,directory=folder,inputs=c(shared_paths,paths),version=reconstruction_version,batch_size=as.integer(batch_size))
     })
-    saveRDS(list(signature=signature,tasks=tasks),saved_path)
+    saveRDS(list(signature=signature,signature_version=2L,tasks=tasks),saved_path)
   }
   if(workers==1L)results<-lapply(tasks,reconstruction_partition) else {
     log<-file.path(directory,'workers.log');message('Worker log: ',log)

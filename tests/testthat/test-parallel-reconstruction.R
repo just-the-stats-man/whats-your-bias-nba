@@ -28,7 +28,28 @@ testthat::test_that('scoped worker publication preserves unrelated statuses and 
   reconstruct_parallel(con,workers=1L,directory=folder,game_ids=ids[1],resume=TRUE)
   testthat::expect_equal(DBI::dbGetQuery(con,'SELECT * FROM reconstruction_status WHERE game_id!=?',params=list(ids[1])),protected)
   before<-DBI::dbReadTable(con,'reconstruction_status')
+  checkpoint<-readRDS(file.path(folder,'snapshot.rds'));checkpoint$signature_version<-NULL;checkpoint$signature<-'legacy-signature'
+  saveRDS(checkpoint,file.path(folder,'snapshot.rds'))
   reconstruct_parallel(con,workers=1L,directory=folder,game_ids=ids[1],resume=TRUE)
   testthat::expect_equal(DBI::dbReadTable(con,'reconstruction_status'),before)
+  testthat::expect_equal(readRDS(file.path(folder,'snapshot.rds'))$signature_version,2L)
+  wrong_method<-checkpoint;wrong_method$tasks[[1]]$version<-'different-method'
+  testthat::expect_true(is.na(frozen_reconstruction_signature(wrong_method,ids[1])))
   testthat::expect_error(reconstruct_parallel(con,workers=1L,directory=folder,game_ids=ids[2],resume=TRUE),'inputs changed')
+  DBI::dbExecute(con,'UPDATE player_box_scores SET minutes=minutes+0.1 WHERE game_id=?',params=list(ids[1]))
+  testthat::expect_error(reconstruct_parallel(con,workers=1L,directory=folder,game_ids=ids[1],resume=TRUE),'inputs changed')
+})
+
+testthat::test_that('snapshot signatures cover box minutes, turnover benchmarks and selected scope', {
+  con<-connect_warehouse(':memory:');on.exit(DBI::dbDisconnect(con,shutdown=TRUE))
+  ingest_bundle(con,readRDS('data/sample/bundle.rds'),'2024-25')
+  import_reference(con,load_reference_fixture());reconcile_game_totals(con)
+  ids<-DBI::dbGetQuery(con,'SELECT game_id FROM games ORDER BY game_id')$game_id
+  before<-reconstruction_inputs_signature(con,ids[1])
+  DBI::dbExecute(con,'UPDATE player_box_scores SET minutes=minutes+0.1 WHERE game_id=?',params=list(ids[1]))
+  after_box<-reconstruction_inputs_signature(con,ids[1]);testthat::expect_false(before==after_box)
+  DBI::dbExecute(con,'UPDATE independent_team_totals SET total_turnovers=coalesce(total_turnovers,0)+1 WHERE dataset_id IN (SELECT reference_dataset_id FROM reconciliation_checks WHERE game_id=?) AND source_game_id IN (SELECT reference_game_id FROM reconciliation_checks WHERE game_id=?)',params=list(ids[1],ids[1]))
+  after_reference<-reconstruction_inputs_signature(con,ids[1]);testthat::expect_false(after_box==after_reference)
+  DBI::dbExecute(con,'UPDATE player_box_scores SET minutes=minutes+0.1 WHERE game_id=?',params=list(ids[2]))
+  testthat::expect_equal(reconstruction_inputs_signature(con,ids[1]),after_reference)
 })

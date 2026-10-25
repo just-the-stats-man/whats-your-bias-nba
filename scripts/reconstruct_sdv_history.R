@@ -12,7 +12,7 @@ tryCatch({
   import_historical_reference(con,reference_seasons)
   reconcile_historical_scope(con,reference_seasons)
   ids<-DBI::dbGetQuery(con,paste0("SELECT g.game_id,s.signature FROM games g JOIN sdv_history_status s USING(game_id) WHERE s.event_status='observed' AND g.season IN (",paste(DBI::dbQuoteString(con,seasons),collapse=','),') ORDER BY g.game_id'))
-  token<-substr(digest::digest(list(ids,reconstruction_version,DBI::dbGetQuery(con,"SELECT DISTINCT dataset_id FROM independent_team_totals WHERE season<'2015-16' ORDER BY dataset_id")),algo='sha256'),1,16)
+  token<-substr(reconstruction_inputs_signature(con,ids$game_id),1,16)
   folder<-Sys.getenv('WYB_RECONSTRUCTION_DIRECTORY',file.path('data/processed',paste0('sdv-workers-',token)))
   workers<-as.integer(Sys.getenv('WYB_WORKERS','4'))
   jsonlite::write_json(list(directory=folder,game_count=nrow(ids),version=reconstruction_version,state='running'),'data/processed/sdv_reconstruction_run.json',auto_unbox=TRUE,pretty=TRUE)

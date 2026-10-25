@@ -38,6 +38,12 @@ checkpoints. Completed/partial workers can resume. Native SQL publication avoids
 large R transfers and timestamp precision loss, and publishes only the selected
 game IDs in a transaction after integrity checks. An unchanged published
 snapshot is reused; changed inputs require a different output directory.
+The snapshot signature covers full selected game, box, event and check rows,
+reference turnover totals and provider identities. A minutes-only correction
+therefore cannot reuse stale physical results. Older snapshots with saved
+input tasks can upgrade their signature only when the physical method and all
+selected frozen inputs match current facts; finished workers are then reused.
+Unrelated games do not invalidate a scoped snapshot.
 
 All 22 historical source partitions were integrated on 2026-10-25. Parallel
 ingestion uses isolated staging databases and publishes each season after
