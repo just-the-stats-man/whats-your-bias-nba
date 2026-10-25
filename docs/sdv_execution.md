@@ -5,7 +5,8 @@ and PBP from 2001–02. Files are cached once and raw SHA-256 manifests are reta
 
 ```sh
 Rscript scripts/cache_sdv_history.R
-Rscript scripts/ingest_sdv_history.R 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015
+Rscript scripts/ingest_sdv_history_parallel.R 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015
+Rscript scripts/recover_sdv_nba_boxes.R 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015
 Rscript scripts/reconstruct_sdv_history.R
 ```
 
@@ -37,6 +38,33 @@ checkpoints. Completed/partial workers can resume. Native SQL publication avoids
 large R transfers and timestamp precision loss, and publishes only the selected
 game IDs in a transaction after integrity checks. An unchanged published
 snapshot is reused; changed inputs require a different output directory.
+
+All 22 historical source partitions were integrated on 2026-10-25. Parallel
+ingestion uses isolated staging databases and publishes each season after
+integrity checks. It skips published signatures and reuses finished staging
+databases after interruption. The 1998–99 and 1999–00 archives need a narrowly
+scoped calendar adapter: recorded dates identify mixed season labels, and the
+1999–00 archive contains 500 prior-season schedule copies. All 500 also occur
+in the correct archive. Raw copies remain; only date-qualified season records
+are promoted. This correction does not invalidate the other 20 partitions.
+
+Whole NBA boxes may replace a **failed** historical ESPN box family when exact
+full names, game/date and reviewed team mappings are unique and every available
+ESPN counting statistic agrees. Normalization of names only ignores case and
+repeated whitespace; there is no fuzzy matching. Missing ESPN statistics are
+not filled individually. Complete NBA player/team boxes must pass the existing
+box gate, source-minute precision checks, and scoring identities. An explicit
+NBA DNP/inactive comment is required to interpret missing nonplaying minutes;
+the ESPN `active` field alone is insufficient. A DNP cannot appear as a PBP
+actor. Cross-game identity conflicts are rejected and mappings are retained in
+`sdv_nba_player_links`. Existing player names stay unchanged.
+
+Recovered boxes keep the NBA provider and all raw dependencies. Their agreement
+with NBA reference totals is **dependent**; it cannot certify independent
+reconciliation. PBP remains ESPN evidence and must pass its own gate. Recovery
+skips completed games and batches manifest publication; it does not rerun the
+normalization/classification snapshots. Reports must use current statuses,
+rather than counting preserved earlier failed exceptions as current failures.
 
 Use the season/status tables and resulting completeness reports to assess
 coverage. Cached source files alone are not evidence of analytically complete
