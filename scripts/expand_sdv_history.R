@@ -20,7 +20,7 @@ tryCatch({
     })
     upsert_rows(con,'historical_sdv_checkpoints',data.frame(season=season,revision=archive_revision,transform_id=transform,completed_at=Sys.time()),'season')
   }
-  reconcile_game_totals(con)
+  reconcile_historical_scope(con,seasons)
   for(season in seasons)reconstruct_season(con,season,batch_size=100L)
   assert_warehouse_integrity(con)
 },finally=DBI::dbDisconnect(con,shutdown=TRUE))

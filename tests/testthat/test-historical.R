@@ -158,3 +158,33 @@ testthat::test_that('NBA identity labels remain separate from ESPN player mappin
   testthat::expect_equal(DBI::dbGetQuery(con,'SELECT count(*) n FROM player_identifiers')$n,0)
   testthat::expect_true(grepl('not a validated',DBI::dbReadTable(con,'historical_team_history')$evidence))
 })
+
+testthat::test_that('invalid tied NBA finals quarantine only affected observations and retain raw pointers', {
+  con<-connect_warehouse(':memory:');on.exit(DBI::dbDisconnect(con,shutdown=TRUE))
+  items<-history_fixture();g<-utils::read.csv(items$games$path);g$awayScore[2]<-g$homeScore[2]
+  utils::write.csv(g,items$games$path,row.names=FALSE);items$games$sha256<-file_sha256(items$games$path)
+  ingest_historical_boxes(con,items)
+  testthat::expect_equal(historical_quarantine_invalid_games(con),1L)
+  testthat::expect_equal(DBI::dbGetQuery(con,'SELECT count(*) n FROM historical_games')$n,1)
+  testthat::expect_equal(DBI::dbGetQuery(con,'SELECT count(*) n FROM historical_team_boxes')$n,2)
+  testthat::expect_equal(DBI::dbGetQuery(con,'SELECT count(*) n FROM historical_player_boxes')$n,2)
+  testthat::expect_equal(DBI::dbGetQuery(con,'SELECT count(*) n FROM historical_quarantine_rows')$n,4)
+  testthat::expect_true(all(historical_integrity(con)$passed))
+  testthat::expect_equal(historical_quarantine_invalid_games(con),0L)
+  testthat::expect_identical(file_sha256(items$games$path),items$games$sha256)
+})
+
+testthat::test_that('historical reconciliation preserves unrelated diagnostics and rolls back benchmark changes', {
+  con<-connect_warehouse(':memory:');on.exit(DBI::dbDisconnect(con,shutdown=TRUE))
+  DBI::dbExecute(con,"INSERT INTO reconstruction_status (game_id,season,version,possessions_status,lineups_status,resolved_team_periods,expected_team_periods,updated_at) VALUES ('old','2003-04','test','unresolved','unresolved',0,8,TIMESTAMP '2026-10-24 12:00:00.123456'),('protected','2024-25','test','unresolved','unresolved',0,8,TIMESTAMP '2026-10-24 12:00:00.123457')")
+  fn<-reconcile_historical_scope;scope<-new.env(parent=environment(fn));environment(fn)<-scope
+  scope$reconcile_game_totals_impl<-function(con)DBI::dbExecute(con,"UPDATE reconstruction_status SET lineups_status='unresolved_reference'")
+  fn(con,'2003-04')
+  d<-DBI::dbGetQuery(con,'SELECT game_id,lineups_status,CAST(updated_at AS VARCHAR) stamp FROM reconstruction_status ORDER BY game_id')
+  testthat::expect_equal(d$lineups_status,c('unresolved_reference','unresolved'))
+  testthat::expect_equal(d$stamp[2],'2026-10-24 12:00:00.123457')
+  DBI::dbExecute(con,"INSERT INTO reconciliation_checks (game_id,team_id,reference_dataset_id,reference_game_id,metric,warehouse_value,reference_value,difference,passed,independent) VALUES ('protected','team','fixture','fixture','points',1,1,0,TRUE,TRUE)")
+  scope$reconcile_game_totals_impl<-function(con)DBI::dbExecute(con,"UPDATE reconciliation_checks SET warehouse_value=99")
+  testthat::expect_error(fn(con,'2003-04'),'protected benchmark; rolled back')
+  testthat::expect_equal(DBI::dbGetQuery(con,'SELECT warehouse_value FROM reconciliation_checks')$warehouse_value,1)
+})

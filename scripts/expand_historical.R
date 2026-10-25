@@ -12,4 +12,5 @@ tryCatch({
   }
   else if(mode=='events')ingest_historical_events(con,seasons=seasons)
   else stop('Choose boxes or events; subsequent arguments are season end years')
+  historical_quarantine_invalid_games(con)
 },finally=DBI::dbDisconnect(con,shutdown=TRUE))

@@ -1,5 +1,10 @@
 # Verification record
 
+This page records the preserved Phase 1 milestone. Phase 2 adds separate
+[historical availability reports](historical_completeness.md) and
+[verification evidence](historical_verification.md). Its observation counts
+must not be added to these overlapping provider records as unique games.
+
 Executed on 2026-10-23/24 using R 4.6.0 on Windows. Only executed checks are
 reported as passed. Managed-environment startup locale and package patch-version
 notices occur outside test expectations.

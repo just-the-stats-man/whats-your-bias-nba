@@ -38,3 +38,20 @@ import_historical_reference <- function(con,seasons,directory='data/processed/re
   }
   invisible(NULL)
 }
+
+reconcile_historical_scope <- function(con,seasons) {
+  if(any(vapply(seasons,season_end,integer(1))>=2016L))stop('Historical reconciliation cannot refresh verified modern seasons')
+  selected<-paste(DBI::dbQuoteString(con,seasons),collapse=',')
+  read_checks<-function(table,order)DBI::dbGetQuery(con,paste0('SELECT c.* FROM ',table,' c JOIN _history_protected_status p USING(game_id) ORDER BY ',order))
+  DBI::dbWithTransaction(con,{
+    DBI::dbExecute(con,paste0('CREATE OR REPLACE TEMP TABLE _history_protected_status AS SELECT * FROM reconstruction_status WHERE season NOT IN (',selected,')'))
+    checks<-read_checks('reconciliation_checks','c.game_id,c.team_id,c.reference_dataset_id,c.metric')
+    pbp<-read_checks('pbp_reconciliation_checks','c.game_id,c.team_id,c.metric')
+    reconcile_game_totals_impl(con)
+    if(!identical(checks,read_checks('reconciliation_checks','c.game_id,c.team_id,c.reference_dataset_id,c.metric')) || !identical(pbp,read_checks('pbp_reconciliation_checks','c.game_id,c.team_id,c.metric')))stop('Historical refresh changed a protected benchmark; rolled back')
+    # Preserve microsecond timestamps in SQL, without an R POSIXct round-trip.
+    DBI::dbExecute(con,'DELETE FROM reconstruction_status WHERE game_id IN (SELECT game_id FROM _history_protected_status)')
+    DBI::dbExecute(con,'INSERT INTO reconstruction_status BY NAME SELECT * FROM _history_protected_status')
+  })
+  invisible(NULL)
+}

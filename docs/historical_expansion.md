@@ -27,9 +27,11 @@ Rscript scripts/expand_sdv_history.R 2004
 
 It imports historical NBA reference totals, audits the pinned SDV season, preserves existing player names, and runs the existing strict reconstruction gates. The default is the 2003–04 pilot. Explicit end years 2002–2015 select other archived seasons. **Do not launch a broad physical rerun until historical event classification is addressed:** all 263 admitted pilot games failed possession/lineup validation. The archive lacks modern attempt classifications, and individual games also have scoring, timing or substitution discrepancies. The other 1,008 eligible ESPN pilot games failed box ingestion. Raw NBA observations for those dates remain separately available; failed ESPN evidence is not silently patched to match them.
 
+Historical reconciliation protects unrelated diagnostic rows in SQL, including microsecond timestamps. It verifies that their reference/PBP benchmark checks remain identical and rolls back if a protected benchmark changes. Resuming the completed pilot skipped physical reconstruction after the reference/path correction.
+
 ## Tables and definitions
 
-`historical_games` uses `nba:` game and team namespaces. Season centuries require the recorded date and NBA season suffix to agree. Positive final scores and unique game identities are required. Earlier records include substantial gaps and omit defunct teams; they are not a complete schedule or a source of official historical standings.
+`historical_games` uses `nba:` game and team namespaces. Season centuries require the recorded date and NBA season suffix to agree. Positive, unequal final scores and unique game identities are required. The final validation layer quarantines tied scores and their affected families, retains raw pointers and the invalid game record, and leaves completed season checkpoints intact. Earlier records include substantial gaps and omit defunct teams; they are not a complete schedule or a source of official historical standings.
 
 `historical_team_boxes` and `historical_player_boxes` retain raw row pointers and per-metric status columns. Standardized unavailable values are null. Immutable source files retain original zero placeholders. Historical category start dates are lower bounds, followed by per-row checks; availability is not inferred from a year alone. A scoring-identity pass (`validation_status='observed'`) is narrower than a complete validated box.
 
@@ -47,6 +49,7 @@ The season report's box-check count requires the 28 era-applicable comparable pl
 
 - [Availability by season](historical_completeness.md), [full counts](historical_completeness.csv), and [family/status matrix](historical_availability_matrix.csv).
 - [Metric missingness](historical_metric_availability.csv), [exceptions](historical_exception_summary.csv), [within-upstream event checks](historical_event_consistency.csv), and [cross-provider comparisons](historical_reconciliation.csv).
+- [Quarantined NBA game records](historical_quarantined_games.csv) and [unresolved historical ESPN games](historical_unresolved_games.csv).
 - [Modern gap investigation](historical_modern_gap_audit.csv), [snapshot hashes](historical_snapshots.csv), [new integrity checks](historical_integrity.csv), and [original-table preservation](baseline_preservation.csv).
 
 Detailed row-level exceptions, game links, box comparisons and event checks remain in ignored `data/processed/reports/*.parquet`. They retain source pointers and disagreements rather than replacing observations. Existing Phase 1 unresolved-game reports remain intact. The pilot's detailed unresolved games are exported separately by the historical report.
