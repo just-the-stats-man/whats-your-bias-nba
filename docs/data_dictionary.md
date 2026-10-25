@@ -21,6 +21,13 @@ columns enter `boxscorelab_reconciliation`. Player team labels can combine all
 season stints. Estimated rates/ratings are not observed counting statistics.
 Provider agreement with other NBA-derived totals is explicitly dependent.
 
+`execution_unresolved_games.csv` reports current family admission and physical
+states. Active physical errors must match the current event dataset and failed
+stage; superseded failures remain in the warehouse audit history. The separate
+LeBron coverage report distinguishes box rows (including DNP/unknown entries),
+recorded positive-minute appearances, and actual reconstructed lineup membership.
+Unclassified shot values and unavailable PBP metrics are counted explicitly.
+
 PBP reconciliation records retain the original source `box_value` separately
 from a comparison's `benchmark_value`, type, dataset and provider game ID.
 An independently reported total can validate a missing source field without

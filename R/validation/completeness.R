@@ -52,10 +52,16 @@ completeness_report <- function(con,years=2016:2027,directory='docs') {
     current_reference_identity<-paste(exceptions$game_id,exceptions$dataset_id)%in%paste(current_reference_datasets$game_id,current_reference_datasets$reference_dataset_id)
     exceptions$state<-'historical'
     current<-exceptions$version==reconstruction_version
-    exceptions$state[exceptions$stage%in%c('normalization','reference_recovery') | (exceptions$stage=='ingestion' & ((current & !exceptions$game_id%in%loaded) | exceptions$severity=='warning')) | (exceptions$stage=='independent_reconciliation' & current_reference_issue) | (current & exceptions$stage=='pbp_metric')]<-'active'
+    current_event_input<-paste(exceptions$game_id,exceptions$dataset_id)%in%paste(state$game_id,state$dataset_id)
+    exceptions$state[exceptions$stage%in%c('normalization','reference_recovery') | (exceptions$stage=='ingestion' & ((current & !exceptions$game_id%in%loaded) | exceptions$severity=='warning')) | (exceptions$stage=='independent_reconciliation' & current_reference_issue) | (current & current_event_input & exceptions$stage=='pbp_metric')]<-'active'
+    if(DBI::dbExistsTable(con,'sdv_history_status')) {
+      source_failures<-DBI::dbGetQuery(con,"SELECT game_id,'sdv-history:games:'||season||':'||signature dataset_id FROM sdv_history_status WHERE box_status='failed_validation' OR (box_status='observed' AND event_status='failed_validation')")
+      source_current<-paste(exceptions$game_id,exceptions$dataset_id)%in%paste(source_failures$game_id,source_failures$dataset_id)
+      exceptions$state[current & source_current & exceptions$stage=='sdv_history' & exceptions$severity=='error']<-'active'
+    }
     exceptions$state[exceptions$stage=='reference_identity_resolution' & current_reference_identity]<-'active'
-    exceptions$state[current & exceptions$stage=='possessions' & (exceptions$game_id%in%state$game_id[state$possessions_status!='reconciled'] | exceptions$severity=='warning')]<-'active'
-    exceptions$state[current & exceptions$stage=='lineups' & exceptions$game_id%in%state$game_id[state$lineups_status!='reconciled']]<-'active'
+    exceptions$state[current & current_event_input & exceptions$stage=='possessions' & (exceptions$game_id%in%state$game_id[state$possessions_status!='reconciled'] | exceptions$severity=='warning')]<-'active'
+    exceptions$state[current & current_event_input & exceptions$stage=='lineups' & exceptions$game_id%in%state$game_id[state$lineups_status!='reconciled']]<-'active'
     exceptions$category<-sub(' (espn:|[0-9]{5,}).*','',exceptions$rule)
     summary<-aggregate(rep(1L,nrow(exceptions)),exceptions[c('season','stage','state','severity','category')],sum)
     names(summary)[ncol(summary)]<-'findings'
