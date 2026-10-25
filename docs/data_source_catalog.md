@@ -1,5 +1,10 @@
 # NBA data source catalog
 
+The [2026-10-25 tracking and supplementary-source assessment](tracking_assessment.md)
+updates the audit below, including the limited licensed feature and season-total
+imports. The [execution verification](execution_verification.md) records what was
+actually integrated; assessed providers are not automatically connected feeds.
+
 Reviewed 2026-10-23. Prices are USD and exclude tax. **Unknown** means not
 verified, not free or permitted. No subscriptions were purchased. Public
 accessibility and open-source client code do not grant data redistribution rights.

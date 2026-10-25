@@ -1,0 +1,17 @@
+"check","violations","passed"
+"sdv_status_game_admission",0,TRUE
+"sdv_status_season",0,TRUE
+"sdv_calendar_bounds",0,TRUE
+"historical_source_partition_count",0,TRUE
+"recovery_unique_nba_identity",0,TRUE
+"recovery_unique_espn_identity",0,TRUE
+"recovery_links_have_games",0,TRUE
+"recovered_box_source",0,TRUE
+"no_defender_assignments",0,TRUE
+"tracking_row_pointer",0,TRUE
+"tracking_duplicate_records",0,TRUE
+"tracking_duplicate_metrics",0,TRUE
+"tracking_metric_context",0,TRUE
+"tracking_estimate_semantics",0,TRUE
+"tracking_uncertainty_missing",0,TRUE
+"recovery_unmatched_playing_evidence",0,TRUE

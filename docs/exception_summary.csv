@@ -1,4 +1,5 @@
 "season","stage","state","severity","category","findings"
+"2003-04","ingestion","active","warning","PBP final score differs from schedule",302
 "2015-16","ingestion","active","warning","PBP final score differs from schedule",4
 "2017-18","ingestion","active","warning","PBP final score differs from schedule",6
 "2018-19","ingestion","active","warning","PBP final score differs from schedule",4
@@ -6,6 +7,25 @@
 "2022-23","ingestion","active","warning","PBP final score differs from schedule",6
 "2023-24","ingestion","active","warning","PBP final score differs from schedule",2
 "2025-26","ingestion","active","warning","PBP final score differs from schedule",2
+"2001-02","sdv_history","historical","warning","PBP final score differs from schedule",97
+"2002-03","sdv_history","historical","warning","PBP final score differs from schedule",580
+"2003-04","sdv_history","historical","warning","PBP final score differs from schedule",270
+"2004-05","sdv_history","historical","warning","PBP final score differs from schedule",225
+"2012-13","sdv_history","historical","warning","PBP final score differs from schedule",9
+"2014-15","sdv_history","historical","warning","PBP final score differs from schedule",1
+"2001-02","possessions","active","error","PBP scoring does not equal final score",107
+"2002-03","possessions","active","error","PBP scoring does not equal final score",294
+"2003-04","possessions","active","error","PBP scoring does not equal final score",269
+"2004-05","possessions","active","error","PBP scoring does not equal final score",232
+"2005-06","possessions","active","error","PBP scoring does not equal final score",166
+"2006-07","possessions","active","error","PBP scoring does not equal final score",7
+"2007-08","possessions","active","error","PBP scoring does not equal final score",5
+"2009-10","possessions","active","error","PBP scoring does not equal final score",1
+"2010-11","possessions","active","error","PBP scoring does not equal final score",4
+"2011-12","possessions","active","error","PBP scoring does not equal final score",4
+"2012-13","possessions","active","error","PBP scoring does not equal final score",450
+"2013-14","possessions","active","error","PBP scoring does not equal final score",26
+"2014-15","possessions","active","error","PBP scoring does not equal final score",48
 "2015-16","possessions","active","error","PBP scoring does not equal final score",658
 "2016-17","possessions","active","error","PBP scoring does not equal final score",34
 "2017-18","possessions","active","error","PBP scoring does not equal final score",16
@@ -16,6 +36,7 @@
 "2023-24","possessions","active","error","PBP scoring does not equal final score",7
 "2024-25","possessions","active","error","PBP scoring does not equal final score",2
 "2025-26","possessions","active","error","PBP scoring does not equal final score",2
+"2003-04","possessions","historical","error","PBP scoring does not equal final score",60
 "2015-16","possessions","historical","error","PBP scoring does not equal final score",2616
 "2016-17","possessions","historical","error","PBP scoring does not equal final score",1364
 "2017-18","possessions","historical","error","PBP scoring does not equal final score",1336
@@ -27,6 +48,20 @@
 "2023-24","possessions","historical","error","PBP scoring does not equal final score",7
 "2024-25","possessions","historical","error","PBP scoring does not equal final score",2
 "2025-26","possessions","historical","error","PBP scoring does not equal final score",2
+"2001-02","lineups","active","error","PBP/box",1213
+"2002-03","lineups","active","error","PBP/box",2303
+"2003-04","lineups","active","error","PBP/box",3036
+"2004-05","lineups","active","error","PBP/box",2690
+"2005-06","lineups","active","error","PBP/box",1593
+"2006-07","lineups","active","error","PBP/box",212
+"2007-08","lineups","active","error","PBP/box",154
+"2008-09","lineups","active","error","PBP/box",108
+"2009-10","lineups","active","error","PBP/box",133
+"2010-11","lineups","active","error","PBP/box",49
+"2011-12","lineups","active","error","PBP/box",47
+"2012-13","lineups","active","error","PBP/box",2489
+"2013-14","lineups","active","error","PBP/box",127
+"2014-15","lineups","active","error","PBP/box",211
 "2015-16","lineups","active","error","PBP/box",4492
 "2016-17","lineups","active","error","PBP/box",339
 "2017-18","lineups","active","error","PBP/box",180
@@ -39,6 +74,20 @@
 "2024-25","lineups","active","error","PBP/box",93
 "2025-26","lineups","active","error","PBP/box",2015
 "2026-27","lineups","active","error","PBP/box",21
+"2001-02","possessions","active","error","PBP/box",1213
+"2002-03","possessions","active","error","PBP/box",2303
+"2003-04","possessions","active","error","PBP/box",3036
+"2004-05","possessions","active","error","PBP/box",2690
+"2005-06","possessions","active","error","PBP/box",1593
+"2006-07","possessions","active","error","PBP/box",212
+"2007-08","possessions","active","error","PBP/box",154
+"2008-09","possessions","active","error","PBP/box",108
+"2009-10","possessions","active","error","PBP/box",133
+"2010-11","possessions","active","error","PBP/box",49
+"2011-12","possessions","active","error","PBP/box",47
+"2012-13","possessions","active","error","PBP/box",2489
+"2013-14","possessions","active","error","PBP/box",127
+"2014-15","possessions","active","error","PBP/box",211
 "2015-16","possessions","active","error","PBP/box",4492
 "2016-17","possessions","active","error","PBP/box",339
 "2017-18","possessions","active","error","PBP/box",180
@@ -51,6 +100,7 @@
 "2024-25","possessions","active","error","PBP/box",93
 "2025-26","possessions","active","error","PBP/box",2015
 "2026-27","possessions","active","error","PBP/box",21
+"2003-04","lineups","historical","error","PBP/box",852
 "2015-16","lineups","historical","error","PBP/box",16552
 "2016-17","lineups","historical","error","PBP/box",5652
 "2017-18","lineups","historical","error","PBP/box",5668
@@ -63,6 +113,7 @@
 "2024-25","lineups","historical","error","PBP/box",93
 "2025-26","lineups","historical","error","PBP/box",2003
 "2026-27","lineups","historical","error","PBP/box",21
+"2003-04","possessions","historical","error","PBP/box",852
 "2015-16","possessions","historical","error","PBP/box",16552
 "2016-17","possessions","historical","error","PBP/box",5652
 "2017-18","possessions","historical","error","PBP/box",5668
@@ -79,6 +130,20 @@
 "2017-18","possessions","historical","error","PBP/box critical metric unavailable",5212
 "2017-18","lineups","active","error","PBP/reference",162
 "2017-18","possessions","active","error","PBP/reference",162
+"2001-02","possessions","active","error","ambiguous team defensive rebound",1634
+"2002-03","possessions","active","error","ambiguous team defensive rebound",129
+"2003-04","possessions","active","error","ambiguous team defensive rebound",173
+"2004-05","possessions","active","error","ambiguous team defensive rebound",182
+"2005-06","possessions","active","error","ambiguous team defensive rebound",107
+"2006-07","possessions","active","error","ambiguous team defensive rebound",60
+"2007-08","possessions","active","error","ambiguous team defensive rebound",58
+"2008-09","possessions","active","error","ambiguous team defensive rebound",39
+"2009-10","possessions","active","error","ambiguous team defensive rebound",62
+"2010-11","possessions","active","error","ambiguous team defensive rebound",56
+"2011-12","possessions","active","error","ambiguous team defensive rebound",29
+"2012-13","possessions","active","error","ambiguous team defensive rebound",81
+"2013-14","possessions","active","error","ambiguous team defensive rebound",29
+"2014-15","possessions","active","error","ambiguous team defensive rebound",26
 "2015-16","possessions","active","error","ambiguous team defensive rebound",119
 "2016-17","possessions","active","error","ambiguous team defensive rebound",26
 "2017-18","possessions","active","error","ambiguous team defensive rebound",52
@@ -90,6 +155,7 @@
 "2023-24","possessions","active","error","ambiguous team defensive rebound",22
 "2024-25","possessions","active","error","ambiguous team defensive rebound",26
 "2025-26","possessions","active","error","ambiguous team defensive rebound",21
+"2003-04","possessions","historical","error","ambiguous team defensive rebound",34
 "2015-16","possessions","historical","error","ambiguous team defensive rebound",377
 "2016-17","possessions","historical","error","ambiguous team defensive rebound",125
 "2017-18","possessions","historical","error","ambiguous team defensive rebound",156
@@ -102,11 +168,19 @@
 "2024-25","possessions","historical","error","ambiguous team defensive rebound",26
 "2025-26","possessions","historical","error","ambiguous team defensive rebound",20
 "2025-26","normalization","active","warning","anonymous_nonplaying_roster_placeholder",42
+"2003-04","ingestion","active","error","broken event player joins",3
 "2016-17","ingestion","active","error","broken event player joins",1
 "2017-18","ingestion","active","error","broken event player joins",1
 "2018-19","ingestion","active","error","broken event player joins",2
 "2020-21","ingestion","active","error","broken event player joins",2
 "2025-26","ingestion","active","error","broken event player joins",4
+"2001-02","sdv_history","active","error","broken event player joins",4
+"2002-03","sdv_history","active","error","broken event player joins",21
+"2003-04","sdv_history","active","error","broken event player joins",42
+"2004-05","sdv_history","active","error","broken event player joins",5
+"2012-13","sdv_history","active","error","broken event player joins",2
+"2013-14","sdv_history","active","error","broken event player joins",2
+"2003-04","ingestion","historical","error","broken event player joins",46
 "2016-17","ingestion","historical","error","broken event player joins",3
 "2017-18","ingestion","historical","error","broken event player joins",2
 "2018-19","ingestion","historical","error","broken event player joins",6
@@ -117,6 +191,21 @@
 "2023-24","ingestion","historical","error","broken event player joins",1
 "2024-25","ingestion","historical","error","broken event player joins",1
 "2025-26","ingestion","historical","error","broken event player joins",39
+"2002-03","sdv_history","historical","error","broken event player joins",21
+"2001-02","possessions","active","warning","causal_dependency",67
+"2002-03","possessions","active","warning","causal_dependency",202
+"2003-04","possessions","active","warning","causal_dependency",196
+"2004-05","possessions","active","warning","causal_dependency",210
+"2005-06","possessions","active","warning","causal_dependency",134
+"2006-07","possessions","active","warning","causal_dependency",115
+"2007-08","possessions","active","warning","causal_dependency",97
+"2008-09","possessions","active","warning","causal_dependency",111
+"2009-10","possessions","active","warning","causal_dependency",106
+"2010-11","possessions","active","warning","causal_dependency",125
+"2011-12","possessions","active","warning","causal_dependency",79
+"2012-13","possessions","active","warning","causal_dependency",1925
+"2013-14","possessions","active","warning","causal_dependency",2171
+"2014-15","possessions","active","warning","causal_dependency",1718
 "2015-16","possessions","active","warning","causal_dependency",1440
 "2016-17","possessions","active","warning","causal_dependency",2256
 "2017-18","possessions","active","warning","causal_dependency",219
@@ -128,6 +217,7 @@
 "2023-24","possessions","active","warning","causal_dependency",172
 "2024-25","possessions","active","warning","causal_dependency",189
 "2025-26","possessions","active","warning","causal_dependency",223
+"2003-04","possessions","historical","warning","causal_dependency",43
 "2015-16","possessions","historical","warning","causal_dependency",3058
 "2016-17","possessions","historical","warning","causal_dependency",4699
 "2017-18","possessions","historical","warning","causal_dependency",639
@@ -139,6 +229,7 @@
 "2023-24","possessions","historical","warning","causal_dependency",173
 "2024-25","possessions","historical","warning","causal_dependency",189
 "2025-26","possessions","historical","warning","causal_dependency",220
+"1999-00","sdv_history_normalization","historical","warning","cross_season_archive_copy_not_promoted",500
 "2015-16","normalization","active","warning","explicit_DNP_flag_correction",9
 "2016-17","normalization","active","warning","explicit_DNP_flag_correction",10
 "2017-18","normalization","active","warning","explicit_DNP_flag_correction",10
@@ -146,6 +237,41 @@
 "2020-21","normalization","active","warning","explicit_DNP_flag_correction",5
 "2024-25","normalization","active","warning","explicit_DNP_flag_correction",3
 "2025-26","normalization","active","warning","explicit_DNP_flag_correction",34
+"2012-13","sdv_history_normalization","historical","warning","explicit_DNP_flag_correction",3
+"2013-14","sdv_history_normalization","historical","warning","explicit_DNP_flag_correction",5
+"2014-15","sdv_history_normalization","historical","warning","explicit_DNP_flag_correction",8
+"1994-95","sdv_history_normalization","historical","warning","historical_turnover_components",1
+"1995-96","sdv_history_normalization","historical","warning","historical_turnover_components",2
+"1996-97","sdv_history_normalization","historical","warning","historical_turnover_components",1
+"1997-98","sdv_history_normalization","historical","warning","historical_turnover_components",1
+"1998-99","sdv_history_normalization","historical","warning","historical_turnover_components",1
+"2000-01","sdv_history_normalization","historical","warning","historical_turnover_components",3
+"2001-02","sdv_history_normalization","historical","warning","historical_turnover_components",2403
+"2002-03","sdv_history_normalization","historical","warning","historical_turnover_components",2373
+"2003-04","sdv_history_normalization","historical","warning","historical_turnover_components",2372
+"2004-05","sdv_history_normalization","historical","warning","historical_turnover_components",2445
+"2005-06","sdv_history_normalization","historical","warning","historical_turnover_components",7
+"2006-07","sdv_history_normalization","historical","warning","historical_turnover_components",2
+"2007-08","sdv_history_normalization","historical","warning","historical_turnover_components",6
+"2008-09","sdv_history_normalization","historical","warning","historical_turnover_components",7
+"2009-10","sdv_history_normalization","historical","warning","historical_turnover_components",6
+"2010-11","sdv_history_normalization","historical","warning","historical_turnover_components",1
+"2011-12","sdv_history_normalization","historical","warning","historical_turnover_components",14
+"2013-14","sdv_history_normalization","historical","warning","historical_turnover_components",1
+"2001-02","possessions","active","error","implausible possession count imbalance",112
+"2002-03","possessions","active","error","implausible possession count imbalance",7
+"2003-04","possessions","active","error","implausible possession count imbalance",32
+"2004-05","possessions","active","error","implausible possession count imbalance",22
+"2005-06","possessions","active","error","implausible possession count imbalance",11
+"2006-07","possessions","active","error","implausible possession count imbalance",3
+"2007-08","possessions","active","error","implausible possession count imbalance",5
+"2008-09","possessions","active","error","implausible possession count imbalance",5
+"2009-10","possessions","active","error","implausible possession count imbalance",10
+"2010-11","possessions","active","error","implausible possession count imbalance",4
+"2011-12","possessions","active","error","implausible possession count imbalance",10
+"2012-13","possessions","active","error","implausible possession count imbalance",65
+"2013-14","possessions","active","error","implausible possession count imbalance",14
+"2014-15","possessions","active","error","implausible possession count imbalance",13
 "2015-16","possessions","active","error","implausible possession count imbalance",96
 "2016-17","possessions","active","error","implausible possession count imbalance",12
 "2017-18","possessions","active","error","implausible possession count imbalance",21
@@ -155,6 +281,7 @@
 "2024-25","possessions","active","error","implausible possession count imbalance",2
 "2025-26","possessions","active","error","implausible possession count imbalance",1
 "2026-27","possessions","active","error","implausible possession count imbalance",1
+"2003-04","possessions","historical","error","implausible possession count imbalance",12
 "2015-16","possessions","historical","error","implausible possession count imbalance",379
 "2016-17","possessions","historical","error","implausible possession count imbalance",188
 "2017-18","possessions","historical","error","implausible possession count imbalance",63
@@ -165,6 +292,12 @@
 "2024-25","possessions","historical","error","implausible possession count imbalance",2
 "2025-26","possessions","historical","error","implausible possession count imbalance",1
 "2026-27","possessions","historical","error","implausible possession count imbalance",1
+"2001-02","possessions","active","error","inconsistent jump/turnover causal dependency",1
+"2004-05","possessions","active","error","inconsistent jump/turnover causal dependency",6
+"2005-06","possessions","active","error","inconsistent jump/turnover causal dependency",2
+"2006-07","possessions","active","error","inconsistent jump/turnover causal dependency",1
+"2012-13","possessions","active","error","inconsistent jump/turnover causal dependency",3
+"2014-15","possessions","active","error","inconsistent jump/turnover causal dependency",1
 "2015-16","possessions","active","error","inconsistent jump/turnover causal dependency",1
 "2016-17","possessions","active","error","inconsistent jump/turnover causal dependency",1
 "2017-18","possessions","active","error","inconsistent jump/turnover causal dependency",1
@@ -173,6 +306,11 @@
 "2016-17","possessions","historical","error","inconsistent jump/turnover causal dependency",4
 "2017-18","possessions","historical","error","inconsistent jump/turnover causal dependency",3
 "2025-26","possessions","historical","error","inconsistent jump/turnover causal dependency",1
+"2001-02","lineups","active","error","independent game-level totals disagree",1
+"2002-03","lineups","active","error","independent game-level totals disagree",1
+"2003-04","lineups","active","error","independent game-level totals disagree",1
+"2012-13","lineups","active","error","independent game-level totals disagree",1
+"2013-14","lineups","active","error","independent game-level totals disagree",2
 "2015-16","lineups","active","error","independent game-level totals disagree",4
 "2016-17","lineups","active","error","independent game-level totals disagree",6
 "2017-18","lineups","active","error","independent game-level totals disagree",7
@@ -182,6 +320,11 @@
 "2023-24","lineups","active","error","independent game-level totals disagree",3
 "2024-25","lineups","active","error","independent game-level totals disagree",1
 "2025-26","lineups","active","error","independent game-level totals disagree",7
+"2001-02","possessions","active","error","independent game-level totals disagree",1
+"2002-03","possessions","active","error","independent game-level totals disagree",1
+"2003-04","possessions","active","error","independent game-level totals disagree",1
+"2012-13","possessions","active","error","independent game-level totals disagree",1
+"2013-14","possessions","active","error","independent game-level totals disagree",2
 "2015-16","possessions","active","error","independent game-level totals disagree",4
 "2016-17","possessions","active","error","independent game-level totals disagree",6
 "2017-18","possessions","active","error","independent game-level totals disagree",7
@@ -213,6 +356,21 @@
 "2023-24","possessions","historical","error","independent game-level totals disagree",4
 "2024-25","possessions","historical","error","independent game-level totals disagree",2
 "2025-26","possessions","historical","error","independent game-level totals disagree",4
+"2001-02","possessions","active","error","invalid clock",2
+"2001-02","lineups","active","error","lineup intervals fail complete game-time coverage",126
+"2002-03","lineups","active","error","lineup intervals fail complete game-time coverage",325
+"2003-04","lineups","active","error","lineup intervals fail complete game-time coverage",311
+"2004-05","lineups","active","error","lineup intervals fail complete game-time coverage",471
+"2005-06","lineups","active","error","lineup intervals fail complete game-time coverage",303
+"2006-07","lineups","active","error","lineup intervals fail complete game-time coverage",65
+"2007-08","lineups","active","error","lineup intervals fail complete game-time coverage",35
+"2008-09","lineups","active","error","lineup intervals fail complete game-time coverage",44
+"2009-10","lineups","active","error","lineup intervals fail complete game-time coverage",31
+"2010-11","lineups","active","error","lineup intervals fail complete game-time coverage",35
+"2011-12","lineups","active","error","lineup intervals fail complete game-time coverage",27
+"2012-13","lineups","active","error","lineup intervals fail complete game-time coverage",244
+"2013-14","lineups","active","error","lineup intervals fail complete game-time coverage",47
+"2014-15","lineups","active","error","lineup intervals fail complete game-time coverage",46
 "2015-16","lineups","active","error","lineup intervals fail complete game-time coverage",53
 "2016-17","lineups","active","error","lineup intervals fail complete game-time coverage",63
 "2017-18","lineups","active","error","lineup intervals fail complete game-time coverage",472
@@ -225,6 +383,7 @@
 "2024-25","lineups","active","error","lineup intervals fail complete game-time coverage",105
 "2025-26","lineups","active","error","lineup intervals fail complete game-time coverage",112
 "2026-27","lineups","active","error","lineup intervals fail complete game-time coverage",3
+"2003-04","lineups","historical","error","lineup intervals fail complete game-time coverage",71
 "2015-16","lineups","historical","error","lineup intervals fail complete game-time coverage",159
 "2016-17","lineups","historical","error","lineup intervals fail complete game-time coverage",189
 "2017-18","lineups","historical","error","lineup intervals fail complete game-time coverage",1416
@@ -237,6 +396,15 @@
 "2024-25","lineups","historical","error","lineup intervals fail complete game-time coverage",105
 "2025-26","lineups","historical","error","lineup intervals fail complete game-time coverage",103
 "2026-27","lineups","historical","error","lineup intervals fail complete game-time coverage",3
+"2001-02","lineups","active","error","missing or unrostered shooter identity",3
+"2002-03","lineups","active","error","missing or unrostered shooter identity",20
+"2003-04","lineups","active","error","missing or unrostered shooter identity",3
+"2004-05","lineups","active","error","missing or unrostered shooter identity",21
+"2005-06","lineups","active","error","missing or unrostered shooter identity",24
+"2006-07","lineups","active","error","missing or unrostered shooter identity",31
+"2007-08","lineups","active","error","missing or unrostered shooter identity",6
+"2012-13","lineups","active","error","missing or unrostered shooter identity",7
+"2014-15","lineups","active","error","missing or unrostered shooter identity",3
 "2015-16","lineups","active","error","missing or unrostered shooter identity",12
 "2016-17","lineups","active","error","missing or unrostered shooter identity",1
 "2018-19","lineups","active","error","missing or unrostered shooter identity",2
@@ -247,30 +415,101 @@
 "2018-19","lineups","historical","error","missing or unrostered shooter identity",4
 "2020-21","lineups","historical","error","missing or unrostered shooter identity",4
 "2022-23","lineups","historical","error","missing or unrostered shooter identity",1
+"2001-02","possessions","active","error","missing periods",13
+"2002-03","possessions","active","error","missing periods",26
+"2003-04","possessions","active","error","missing periods",3
+"2004-05","possessions","active","error","missing periods",1
 "2022-23","possessions","active","error","missing periods",1
 "2022-23","possessions","historical","error","missing periods",1
 "2015-16","ingestion","active","error","missing play-by-play",3
 "2017-18","ingestion","active","error","missing play-by-play",4
 "2019-20","ingestion","active","error","missing play-by-play",6
 "2025-26","ingestion","active","error","missing play-by-play",1
+"2003-04","ingestion","historical","error","missing play-by-play",15
 "2015-16","ingestion","historical","error","missing play-by-play",9
 "2017-18","ingestion","historical","error","missing play-by-play",12
 "2019-20","ingestion","historical","error","missing play-by-play",18
 "2025-26","ingestion","historical","error","missing play-by-play",2
+"1993-94","sdv_history","historical","error","missing play-by-play",1179
+"1994-95","sdv_history","historical","error","missing play-by-play",1145
+"1995-96","sdv_history","historical","error","missing play-by-play",1173
+"1996-97","sdv_history","historical","error","missing play-by-play",1248
+"1997-98","sdv_history","historical","error","missing play-by-play",1255
+"1998-99","sdv_history","historical","error","missing play-by-play",791
+"1999-00","sdv_history","historical","error","missing play-by-play",1236
+"2000-01","sdv_history","historical","error","missing play-by-play",1250
+"2001-02","sdv_history","historical","error","missing play-by-play",719
+"2002-03","sdv_history","historical","error","missing play-by-play",402
+"2003-04","sdv_history","historical","error","missing play-by-play",14
+"2004-05","sdv_history","historical","error","missing play-by-play",19
+"2012-13","sdv_history","historical","error","missing play-by-play",3
+"2013-14","sdv_history","historical","error","missing play-by-play",5
+"2014-15","sdv_history","historical","error","missing play-by-play",4
+"2003-04","ingestion","active","error","missing player statistics",114
 "2015-16","ingestion","active","error","missing player statistics",13
 "2016-17","ingestion","active","error","missing player statistics",12
 "2017-18","ingestion","active","error","missing player statistics",3
 "2018-19","ingestion","active","error","missing player statistics",12
+"2001-02","sdv_history","active","error","missing player statistics",58
+"2002-03","sdv_history","active","error","missing player statistics",113
+"2003-04","sdv_history","active","error","missing player statistics",114
+"2004-05","sdv_history","active","error","missing player statistics",124
+"2005-06","sdv_history","active","error","missing player statistics",594
+"2006-07","sdv_history","active","error","missing player statistics",685
+"2007-08","sdv_history","active","error","missing player statistics",736
+"2008-09","sdv_history","active","error","missing player statistics",637
+"2009-10","sdv_history","active","error","missing player statistics",656
+"2010-11","sdv_history","active","error","missing player statistics",574
+"2011-12","sdv_history","active","error","missing player statistics",617
+"2012-13","sdv_history","active","error","missing player statistics",6
+"2013-14","sdv_history","active","error","missing player statistics",5
+"2014-15","sdv_history","active","error","missing player statistics",10
+"2003-04","ingestion","historical","error","missing player statistics",35
 "2015-16","ingestion","historical","error","missing player statistics",48
 "2016-17","ingestion","historical","error","missing player statistics",44
 "2017-18","ingestion","historical","error","missing player statistics",17
 "2018-19","ingestion","historical","error","missing player statistics",41
+"2001-02","sdv_history","historical","error","missing player statistics",42
+"2002-03","sdv_history","historical","error","missing player statistics",225
+"2003-04","sdv_history","historical","error","missing player statistics",35
+"2004-05","sdv_history","historical","error","missing player statistics",42
+"2005-06","sdv_history","historical","error","missing player statistics",712
+"2006-07","sdv_history","historical","error","missing player statistics",622
+"2007-08","sdv_history","historical","error","missing player statistics",580
+"2008-09","sdv_history","historical","error","missing player statistics",678
+"2009-10","sdv_history","historical","error","missing player statistics",656
+"2010-11","sdv_history","historical","error","missing player statistics",736
+"2011-12","sdv_history","historical","error","missing player statistics",457
+"2012-13","sdv_history","historical","error","missing player statistics",5
+"2013-14","sdv_history","historical","error","missing player statistics",3
+"2014-15","sdv_history","historical","error","missing player statistics",5
 "2016-17","ingestion","active","error","missing team box scores",1
 "2017-18","ingestion","active","error","missing team box scores",1
 "2020-21","ingestion","active","error","missing team box scores",6
+"1993-94","sdv_history","active","error","missing team box scores",5
+"1994-95","sdv_history","active","error","missing team box scores",2
+"1995-96","sdv_history","active","error","missing team box scores",58
+"1996-97","sdv_history","active","error","missing team box scores",11
+"1997-98","sdv_history","active","error","missing team box scores",5
+"1998-99","sdv_history","active","error","missing team box scores",47
+"1999-00","sdv_history","active","error","missing team box scores",82
+"2012-13","sdv_history","active","error","missing team box scores",5
+"2013-14","sdv_history","active","error","missing team box scores",1
 "2016-17","ingestion","historical","error","missing team box scores",3
 "2017-18","ingestion","historical","error","missing team box scores",3
 "2020-21","ingestion","historical","error","missing team box scores",12
+"1995-96","sdv_history","historical","error","missing team box scores",26
+"2001-02","possessions","active","error","missing zero-clock end-period event",61
+"2002-03","possessions","active","error","missing zero-clock end-period event",42
+"2003-04","possessions","active","error","missing zero-clock end-period event",4
+"2004-05","possessions","active","error","missing zero-clock end-period event",16
+"2005-06","possessions","active","error","missing zero-clock end-period event",9
+"2006-07","possessions","active","error","missing zero-clock end-period event",1
+"2007-08","possessions","active","error","missing zero-clock end-period event",2
+"2008-09","possessions","active","error","missing zero-clock end-period event",7
+"2010-11","possessions","active","error","missing zero-clock end-period event",6
+"2011-12","possessions","active","error","missing zero-clock end-period event",5
+"2012-13","possessions","active","error","missing zero-clock end-period event",13
 "2016-17","possessions","active","error","missing zero-clock end-period event",2
 "2017-18","possessions","active","error","missing zero-clock end-period event",2
 "2018-19","possessions","active","error","missing zero-clock end-period event",3
@@ -285,6 +524,20 @@
 "2023-24","reference_identity_resolution","active","warning","missing_team_id_resolved_by_provider_metadata",2
 "2024-25","reference_identity_resolution","active","warning","missing_team_id_resolved_by_provider_metadata",35
 "2025-26","reference_identity_resolution","active","warning","missing_team_id_resolved_by_provider_metadata",30
+"2001-02","possessions","active","error","opponent points inside possession",52
+"2002-03","possessions","active","error","opponent points inside possession",135
+"2003-04","possessions","active","error","opponent points inside possession",264
+"2004-05","possessions","active","error","opponent points inside possession",169
+"2005-06","possessions","active","error","opponent points inside possession",92
+"2006-07","possessions","active","error","opponent points inside possession",47
+"2007-08","possessions","active","error","opponent points inside possession",68
+"2008-09","possessions","active","error","opponent points inside possession",88
+"2009-10","possessions","active","error","opponent points inside possession",84
+"2010-11","possessions","active","error","opponent points inside possession",61
+"2011-12","possessions","active","error","opponent points inside possession",78
+"2012-13","possessions","active","error","opponent points inside possession",545
+"2013-14","possessions","active","error","opponent points inside possession",195
+"2014-15","possessions","active","error","opponent points inside possession",180
 "2015-16","possessions","active","error","opponent points inside possession",449
 "2016-17","possessions","active","error","opponent points inside possession",177
 "2017-18","possessions","active","error","opponent points inside possession",195
@@ -297,6 +550,7 @@
 "2024-25","possessions","active","error","opponent points inside possession",42
 "2025-26","possessions","active","error","opponent points inside possession",36
 "2026-27","possessions","active","error","opponent points inside possession",2
+"2003-04","possessions","historical","error","opponent points inside possession",71
 "2015-16","possessions","historical","error","opponent points inside possession",1521
 "2016-17","possessions","historical","error","opponent points inside possession",942
 "2017-18","possessions","historical","error","opponent points inside possession",559
@@ -313,6 +567,20 @@
 "2022-23","possessions","active","error","parser failure: missing value where TRUE/FALSE needed",1
 "2022-23","lineups","historical","error","parser failure: missing value where TRUE/FALSE needed",1
 "2022-23","possessions","historical","error","parser failure: missing value where TRUE/FALSE needed",1
+"2001-02","lineups","active","error","period 1",95
+"2002-03","lineups","active","error","period 1",74
+"2003-04","lineups","active","error","period 1",71
+"2004-05","lineups","active","error","period 1",261
+"2005-06","lineups","active","error","period 1",213
+"2006-07","lineups","active","error","period 1",32
+"2007-08","lineups","active","error","period 1",9
+"2008-09","lineups","active","error","period 1",10
+"2009-10","lineups","active","error","period 1",5
+"2010-11","lineups","active","error","period 1",5
+"2011-12","lineups","active","error","period 1",4
+"2012-13","lineups","active","error","period 1",72
+"2013-14","lineups","active","error","period 1",7
+"2014-15","lineups","active","error","period 1",9
 "2015-16","lineups","active","error","period 1",5
 "2016-17","lineups","active","error","period 1",12
 "2017-18","lineups","active","error","period 1",118
@@ -325,6 +593,7 @@
 "2024-25","lineups","active","error","period 1",14
 "2025-26","lineups","active","error","period 1",20
 "2026-27","lineups","active","error","period 1",1
+"2003-04","lineups","historical","error","period 1",13
 "2015-16","lineups","historical","error","period 1",15
 "2016-17","lineups","historical","error","period 1",36
 "2017-18","lineups","historical","error","period 1",354
@@ -337,6 +606,29 @@
 "2024-25","lineups","historical","error","period 1",14
 "2025-26","lineups","historical","error","period 1",19
 "2026-27","lineups","historical","error","period 1",1
+"2001-02","lineups","active","error","period 1 invalid clock coverage",27
+"2002-03","lineups","active","error","period 1 invalid clock coverage",33
+"2003-04","lineups","active","error","period 1 invalid clock coverage",1
+"2004-05","lineups","active","error","period 1 invalid clock coverage",2
+"2005-06","lineups","active","error","period 1 invalid clock coverage",2
+"2007-08","lineups","active","error","period 1 invalid clock coverage",1
+"2008-09","lineups","active","error","period 1 invalid clock coverage",1
+"2010-11","lineups","active","error","period 1 invalid clock coverage",3
+"2012-13","lineups","active","error","period 1 invalid clock coverage",1
+"2001-02","lineups","active","error","period 2",85
+"2002-03","lineups","active","error","period 2",117
+"2003-04","lineups","active","error","period 2",139
+"2004-05","lineups","active","error","period 2",186
+"2005-06","lineups","active","error","period 2",100
+"2006-07","lineups","active","error","period 2",31
+"2007-08","lineups","active","error","period 2",15
+"2008-09","lineups","active","error","period 2",10
+"2009-10","lineups","active","error","period 2",7
+"2010-11","lineups","active","error","period 2",5
+"2011-12","lineups","active","error","period 2",5
+"2012-13","lineups","active","error","period 2",82
+"2013-14","lineups","active","error","period 2",13
+"2014-15","lineups","active","error","period 2",10
 "2015-16","lineups","active","error","period 2",11
 "2016-17","lineups","active","error","period 2",16
 "2017-18","lineups","active","error","period 2",175
@@ -349,6 +641,7 @@
 "2024-25","lineups","active","error","period 2",29
 "2025-26","lineups","active","error","period 2",31
 "2026-27","lineups","active","error","period 2",1
+"2003-04","lineups","historical","error","period 2",35
 "2015-16","lineups","historical","error","period 2",33
 "2016-17","lineups","historical","error","period 2",48
 "2017-18","lineups","historical","error","period 2",525
@@ -361,8 +654,29 @@
 "2024-25","lineups","historical","error","period 2",29
 "2025-26","lineups","historical","error","period 2",30
 "2026-27","lineups","historical","error","period 2",1
+"2001-02","lineups","active","error","period 2 invalid clock coverage",33
+"2003-04","lineups","active","error","period 2 invalid clock coverage",1
+"2004-05","lineups","active","error","period 2 invalid clock coverage",1
+"2008-09","lineups","active","error","period 2 invalid clock coverage",1
+"2010-11","lineups","active","error","period 2 invalid clock coverage",1
+"2011-12","lineups","active","error","period 2 invalid clock coverage",1
+"2012-13","lineups","active","error","period 2 invalid clock coverage",6
 "2025-26","lineups","active","error","period 2 invalid clock coverage",1
 "2025-26","lineups","historical","error","period 2 invalid clock coverage",1
+"2001-02","lineups","active","error","period 3",94
+"2002-03","lineups","active","error","period 3",76
+"2003-04","lineups","active","error","period 3",73
+"2004-05","lineups","active","error","period 3",131
+"2005-06","lineups","active","error","period 3",80
+"2006-07","lineups","active","error","period 3",33
+"2007-08","lineups","active","error","period 3",9
+"2008-09","lineups","active","error","period 3",2
+"2009-10","lineups","active","error","period 3",5
+"2010-11","lineups","active","error","period 3",6
+"2011-12","lineups","active","error","period 3",3
+"2012-13","lineups","active","error","period 3",61
+"2013-14","lineups","active","error","period 3",5
+"2014-15","lineups","active","error","period 3",5
 "2015-16","lineups","active","error","period 3",7
 "2016-17","lineups","active","error","period 3",15
 "2017-18","lineups","active","error","period 3",130
@@ -375,6 +689,7 @@
 "2024-25","lineups","active","error","period 3",29
 "2025-26","lineups","active","error","period 3",23
 "2026-27","lineups","active","error","period 3",1
+"2003-04","lineups","historical","error","period 3",16
 "2015-16","lineups","historical","error","period 3",21
 "2016-17","lineups","historical","error","period 3",45
 "2017-18","lineups","historical","error","period 3",390
@@ -387,8 +702,30 @@
 "2024-25","lineups","historical","error","period 3",29
 "2025-26","lineups","historical","error","period 3",23
 "2026-27","lineups","historical","error","period 3",1
+"2001-02","lineups","active","error","period 3 invalid clock coverage",24
+"2002-03","lineups","active","error","period 3 invalid clock coverage",3
+"2004-05","lineups","active","error","period 3 invalid clock coverage",3
+"2005-06","lineups","active","error","period 3 invalid clock coverage",3
+"2007-08","lineups","active","error","period 3 invalid clock coverage",1
+"2008-09","lineups","active","error","period 3 invalid clock coverage",3
+"2010-11","lineups","active","error","period 3 invalid clock coverage",1
+"2012-13","lineups","active","error","period 3 invalid clock coverage",2
 "2022-23","lineups","active","error","period 3 invalid clock coverage",1
 "2022-23","lineups","historical","error","period 3 invalid clock coverage",1
+"2001-02","lineups","active","error","period 4",90
+"2002-03","lineups","active","error","period 4",164
+"2003-04","lineups","active","error","period 4",118
+"2004-05","lineups","active","error","period 4",186
+"2005-06","lineups","active","error","period 4",115
+"2006-07","lineups","active","error","period 4",40
+"2007-08","lineups","active","error","period 4",11
+"2008-09","lineups","active","error","period 4",7
+"2009-10","lineups","active","error","period 4",9
+"2010-11","lineups","active","error","period 4",4
+"2011-12","lineups","active","error","period 4",4
+"2012-13","lineups","active","error","period 4",68
+"2013-14","lineups","active","error","period 4",9
+"2014-15","lineups","active","error","period 4",15
 "2015-16","lineups","active","error","period 4",22
 "2016-17","lineups","active","error","period 4",17
 "2017-18","lineups","active","error","period 4",166
@@ -401,6 +738,7 @@
 "2024-25","lineups","active","error","period 4",27
 "2025-26","lineups","active","error","period 4",38
 "2026-27","lineups","active","error","period 4",1
+"2003-04","lineups","historical","error","period 4",24
 "2015-16","lineups","historical","error","period 4",66
 "2016-17","lineups","historical","error","period 4",51
 "2017-18","lineups","historical","error","period 4",498
@@ -413,6 +751,16 @@
 "2024-25","lineups","historical","error","period 4",27
 "2025-26","lineups","historical","error","period 4",29
 "2026-27","lineups","historical","error","period 4",1
+"2001-02","lineups","active","error","period 4 invalid clock coverage",27
+"2002-03","lineups","active","error","period 4 invalid clock coverage",4
+"2003-04","lineups","active","error","period 4 invalid clock coverage",1
+"2004-05","lineups","active","error","period 4 invalid clock coverage",5
+"2005-06","lineups","active","error","period 4 invalid clock coverage",2
+"2006-07","lineups","active","error","period 4 invalid clock coverage",1
+"2008-09","lineups","active","error","period 4 invalid clock coverage",2
+"2010-11","lineups","active","error","period 4 invalid clock coverage",1
+"2011-12","lineups","active","error","period 4 invalid clock coverage",4
+"2012-13","lineups","active","error","period 4 invalid clock coverage",4
 "2016-17","lineups","active","error","period 4 invalid clock coverage",1
 "2017-18","lineups","active","error","period 4 invalid clock coverage",1
 "2018-19","lineups","active","error","period 4 invalid clock coverage",3
@@ -421,6 +769,19 @@
 "2017-18","lineups","historical","error","period 4 invalid clock coverage",3
 "2018-19","lineups","historical","error","period 4 invalid clock coverage",6
 "2022-23","lineups","historical","error","period 4 invalid clock coverage",1
+"2001-02","lineups","active","error","period 5",12
+"2002-03","lineups","active","error","period 5",16
+"2003-04","lineups","active","error","period 5",12
+"2004-05","lineups","active","error","period 5",22
+"2005-06","lineups","active","error","period 5",10
+"2006-07","lineups","active","error","period 5",2
+"2008-09","lineups","active","error","period 5",7
+"2009-10","lineups","active","error","period 5",6
+"2010-11","lineups","active","error","period 5",9
+"2011-12","lineups","active","error","period 5",6
+"2012-13","lineups","active","error","period 5",12
+"2013-14","lineups","active","error","period 5",14
+"2014-15","lineups","active","error","period 5",11
 "2015-16","lineups","active","error","period 5",11
 "2016-17","lineups","active","error","period 5",6
 "2017-18","lineups","active","error","period 5",17
@@ -432,6 +793,7 @@
 "2023-24","lineups","active","error","period 5",8
 "2024-25","lineups","active","error","period 5",11
 "2025-26","lineups","active","error","period 5",9
+"2003-04","lineups","historical","error","period 5",1
 "2015-16","lineups","historical","error","period 5",33
 "2016-17","lineups","historical","error","period 5",18
 "2017-18","lineups","historical","error","period 5",51
@@ -443,10 +805,21 @@
 "2023-24","lineups","historical","error","period 5",8
 "2024-25","lineups","historical","error","period 5",11
 "2025-26","lineups","historical","error","period 5",9
+"2001-02","lineups","active","error","period 5 invalid clock coverage",3
+"2005-06","lineups","active","error","period 5 invalid clock coverage",1
 "2016-17","lineups","active","error","period 5 invalid clock coverage",1
 "2017-18","lineups","active","error","period 5 invalid clock coverage",1
 "2016-17","lineups","historical","error","period 5 invalid clock coverage",3
 "2017-18","lineups","historical","error","period 5 invalid clock coverage",3
+"2002-03","lineups","active","error","period 6",5
+"2003-04","lineups","active","error","period 6",1
+"2004-05","lineups","active","error","period 6",1
+"2005-06","lineups","active","error","period 6",4
+"2007-08","lineups","active","error","period 6",1
+"2008-09","lineups","active","error","period 6",1
+"2012-13","lineups","active","error","period 6",2
+"2013-14","lineups","active","error","period 6",3
+"2014-15","lineups","active","error","period 6",2
 "2015-16","lineups","active","error","period 6",1
 "2016-17","lineups","active","error","period 6",2
 "2017-18","lineups","active","error","period 6",1
@@ -465,143 +838,473 @@
 "2021-22","lineups","historical","error","period 6",2
 "2023-24","lineups","historical","error","period 6",1
 "2024-25","lineups","historical","error","period 6",1
+"2002-03","lineups","active","error","period 6 invalid clock coverage",1
+"2008-09","lineups","active","error","period 7",1
+"2010-11","lineups","active","error","period 7",1
+"2011-12","lineups","active","error","period 7",1
+"2012-13","lineups","active","error","period 7",1
+"2013-14","lineups","active","error","period 7",2
 "2015-16","lineups","active","error","period 8",1
 "2015-16","lineups","historical","error","period 8",3
 "2018-19","ingestion","active","error","player assists differs from team total",27
 "2025-26","ingestion","active","error","player assists differs from team total",4
+"1994-95","sdv_history","active","error","player assists differs from team total",31
+"1996-97","sdv_history","active","error","player assists differs from team total",1
+"2004-05","sdv_history","active","error","player assists differs from team total",2
+"2005-06","sdv_history","active","error","player assists differs from team total",13
+"2006-07","sdv_history","active","error","player assists differs from team total",2
+"2010-11","sdv_history","active","error","player assists differs from team total",1
 "2018-19","ingestion","historical","error","player assists differs from team total",30
 "2025-26","ingestion","historical","error","player assists differs from team total",4
+"2003-04","ingestion","active","error","player assists unavailable for team reconciliation",114
 "2015-16","ingestion","active","error","player assists unavailable for team reconciliation",13
 "2016-17","ingestion","active","error","player assists unavailable for team reconciliation",12
 "2017-18","ingestion","active","error","player assists unavailable for team reconciliation",3
 "2018-19","ingestion","active","error","player assists unavailable for team reconciliation",12
+"2001-02","sdv_history","active","error","player assists unavailable for team reconciliation",58
+"2002-03","sdv_history","active","error","player assists unavailable for team reconciliation",113
+"2003-04","sdv_history","active","error","player assists unavailable for team reconciliation",114
+"2004-05","sdv_history","active","error","player assists unavailable for team reconciliation",124
+"2005-06","sdv_history","active","error","player assists unavailable for team reconciliation",594
+"2006-07","sdv_history","active","error","player assists unavailable for team reconciliation",685
+"2007-08","sdv_history","active","error","player assists unavailable for team reconciliation",736
+"2008-09","sdv_history","active","error","player assists unavailable for team reconciliation",637
+"2009-10","sdv_history","active","error","player assists unavailable for team reconciliation",656
+"2010-11","sdv_history","active","error","player assists unavailable for team reconciliation",574
+"2011-12","sdv_history","active","error","player assists unavailable for team reconciliation",617
+"2012-13","sdv_history","active","error","player assists unavailable for team reconciliation",6
+"2013-14","sdv_history","active","error","player assists unavailable for team reconciliation",5
+"2014-15","sdv_history","active","error","player assists unavailable for team reconciliation",10
+"2003-04","ingestion","historical","error","player assists unavailable for team reconciliation",35
 "2015-16","ingestion","historical","error","player assists unavailable for team reconciliation",13
 "2016-17","ingestion","historical","error","player assists unavailable for team reconciliation",12
 "2017-18","ingestion","historical","error","player assists unavailable for team reconciliation",3
 "2018-19","ingestion","historical","error","player assists unavailable for team reconciliation",12
+"2001-02","sdv_history","historical","error","player assists unavailable for team reconciliation",42
+"2002-03","sdv_history","historical","error","player assists unavailable for team reconciliation",225
+"2003-04","sdv_history","historical","error","player assists unavailable for team reconciliation",35
+"2004-05","sdv_history","historical","error","player assists unavailable for team reconciliation",42
+"2005-06","sdv_history","historical","error","player assists unavailable for team reconciliation",712
+"2006-07","sdv_history","historical","error","player assists unavailable for team reconciliation",622
+"2007-08","sdv_history","historical","error","player assists unavailable for team reconciliation",580
+"2008-09","sdv_history","historical","error","player assists unavailable for team reconciliation",678
+"2009-10","sdv_history","historical","error","player assists unavailable for team reconciliation",656
+"2010-11","sdv_history","historical","error","player assists unavailable for team reconciliation",736
+"2011-12","sdv_history","historical","error","player assists unavailable for team reconciliation",457
+"2012-13","sdv_history","historical","error","player assists unavailable for team reconciliation",5
+"2013-14","sdv_history","historical","error","player assists unavailable for team reconciliation",3
+"2014-15","sdv_history","historical","error","player assists unavailable for team reconciliation",5
 "2018-19","ingestion","active","error","player fg3a differs from team total",27
 "2019-20","ingestion","active","error","player fg3a differs from team total",1
 "2020-21","ingestion","active","error","player fg3a differs from team total",1
 "2023-24","ingestion","active","error","player fg3a differs from team total",1
 "2025-26","ingestion","active","error","player fg3a differs from team total",7
+"1994-95","sdv_history","active","error","player fg3a differs from team total",23
+"1996-97","sdv_history","active","error","player fg3a differs from team total",2
+"2004-05","sdv_history","active","error","player fg3a differs from team total",2
+"2005-06","sdv_history","active","error","player fg3a differs from team total",13
+"2006-07","sdv_history","active","error","player fg3a differs from team total",2
+"2010-11","sdv_history","active","error","player fg3a differs from team total",1
 "2018-19","ingestion","historical","error","player fg3a differs from team total",28
 "2019-20","ingestion","historical","error","player fg3a differs from team total",1
 "2020-21","ingestion","historical","error","player fg3a differs from team total",11
 "2023-24","ingestion","historical","error","player fg3a differs from team total",2
 "2025-26","ingestion","historical","error","player fg3a differs from team total",7
+"2003-04","ingestion","active","error","player fg3a unavailable for team reconciliation",114
 "2015-16","ingestion","active","error","player fg3a unavailable for team reconciliation",13
 "2016-17","ingestion","active","error","player fg3a unavailable for team reconciliation",12
 "2017-18","ingestion","active","error","player fg3a unavailable for team reconciliation",3
 "2018-19","ingestion","active","error","player fg3a unavailable for team reconciliation",12
+"2001-02","sdv_history","active","error","player fg3a unavailable for team reconciliation",58
+"2002-03","sdv_history","active","error","player fg3a unavailable for team reconciliation",113
+"2003-04","sdv_history","active","error","player fg3a unavailable for team reconciliation",114
+"2004-05","sdv_history","active","error","player fg3a unavailable for team reconciliation",124
+"2005-06","sdv_history","active","error","player fg3a unavailable for team reconciliation",594
+"2006-07","sdv_history","active","error","player fg3a unavailable for team reconciliation",685
+"2007-08","sdv_history","active","error","player fg3a unavailable for team reconciliation",736
+"2008-09","sdv_history","active","error","player fg3a unavailable for team reconciliation",637
+"2009-10","sdv_history","active","error","player fg3a unavailable for team reconciliation",656
+"2010-11","sdv_history","active","error","player fg3a unavailable for team reconciliation",574
+"2011-12","sdv_history","active","error","player fg3a unavailable for team reconciliation",617
+"2012-13","sdv_history","active","error","player fg3a unavailable for team reconciliation",6
+"2013-14","sdv_history","active","error","player fg3a unavailable for team reconciliation",5
+"2014-15","sdv_history","active","error","player fg3a unavailable for team reconciliation",10
+"2003-04","ingestion","historical","error","player fg3a unavailable for team reconciliation",35
 "2015-16","ingestion","historical","error","player fg3a unavailable for team reconciliation",13
 "2016-17","ingestion","historical","error","player fg3a unavailable for team reconciliation",12
 "2017-18","ingestion","historical","error","player fg3a unavailable for team reconciliation",3
 "2018-19","ingestion","historical","error","player fg3a unavailable for team reconciliation",12
+"2001-02","sdv_history","historical","error","player fg3a unavailable for team reconciliation",42
+"2002-03","sdv_history","historical","error","player fg3a unavailable for team reconciliation",225
+"2003-04","sdv_history","historical","error","player fg3a unavailable for team reconciliation",35
+"2004-05","sdv_history","historical","error","player fg3a unavailable for team reconciliation",42
+"2005-06","sdv_history","historical","error","player fg3a unavailable for team reconciliation",712
+"2006-07","sdv_history","historical","error","player fg3a unavailable for team reconciliation",622
+"2007-08","sdv_history","historical","error","player fg3a unavailable for team reconciliation",580
+"2008-09","sdv_history","historical","error","player fg3a unavailable for team reconciliation",678
+"2009-10","sdv_history","historical","error","player fg3a unavailable for team reconciliation",656
+"2010-11","sdv_history","historical","error","player fg3a unavailable for team reconciliation",736
+"2011-12","sdv_history","historical","error","player fg3a unavailable for team reconciliation",457
+"2012-13","sdv_history","historical","error","player fg3a unavailable for team reconciliation",5
+"2013-14","sdv_history","historical","error","player fg3a unavailable for team reconciliation",3
+"2014-15","sdv_history","historical","error","player fg3a unavailable for team reconciliation",5
 "2018-19","ingestion","active","error","player fg3m differs from team total",18
 "2019-20","ingestion","active","error","player fg3m differs from team total",1
 "2025-26","ingestion","active","error","player fg3m differs from team total",2
+"1994-95","sdv_history","active","error","player fg3m differs from team total",6
+"2004-05","sdv_history","active","error","player fg3m differs from team total",2
+"2005-06","sdv_history","active","error","player fg3m differs from team total",13
+"2006-07","sdv_history","active","error","player fg3m differs from team total",2
+"2010-11","sdv_history","active","error","player fg3m differs from team total",1
 "2018-19","ingestion","historical","error","player fg3m differs from team total",18
 "2019-20","ingestion","historical","error","player fg3m differs from team total",1
 "2025-26","ingestion","historical","error","player fg3m differs from team total",2
+"2003-04","ingestion","active","error","player fg3m unavailable for team reconciliation",114
 "2015-16","ingestion","active","error","player fg3m unavailable for team reconciliation",13
 "2016-17","ingestion","active","error","player fg3m unavailable for team reconciliation",12
 "2017-18","ingestion","active","error","player fg3m unavailable for team reconciliation",3
 "2018-19","ingestion","active","error","player fg3m unavailable for team reconciliation",12
+"2001-02","sdv_history","active","error","player fg3m unavailable for team reconciliation",58
+"2002-03","sdv_history","active","error","player fg3m unavailable for team reconciliation",113
+"2003-04","sdv_history","active","error","player fg3m unavailable for team reconciliation",114
+"2004-05","sdv_history","active","error","player fg3m unavailable for team reconciliation",124
+"2005-06","sdv_history","active","error","player fg3m unavailable for team reconciliation",594
+"2006-07","sdv_history","active","error","player fg3m unavailable for team reconciliation",685
+"2007-08","sdv_history","active","error","player fg3m unavailable for team reconciliation",736
+"2008-09","sdv_history","active","error","player fg3m unavailable for team reconciliation",637
+"2009-10","sdv_history","active","error","player fg3m unavailable for team reconciliation",656
+"2010-11","sdv_history","active","error","player fg3m unavailable for team reconciliation",574
+"2011-12","sdv_history","active","error","player fg3m unavailable for team reconciliation",617
+"2012-13","sdv_history","active","error","player fg3m unavailable for team reconciliation",6
+"2013-14","sdv_history","active","error","player fg3m unavailable for team reconciliation",5
+"2014-15","sdv_history","active","error","player fg3m unavailable for team reconciliation",10
+"2003-04","ingestion","historical","error","player fg3m unavailable for team reconciliation",35
 "2015-16","ingestion","historical","error","player fg3m unavailable for team reconciliation",13
 "2016-17","ingestion","historical","error","player fg3m unavailable for team reconciliation",12
 "2017-18","ingestion","historical","error","player fg3m unavailable for team reconciliation",3
 "2018-19","ingestion","historical","error","player fg3m unavailable for team reconciliation",12
+"2001-02","sdv_history","historical","error","player fg3m unavailable for team reconciliation",42
+"2002-03","sdv_history","historical","error","player fg3m unavailable for team reconciliation",225
+"2003-04","sdv_history","historical","error","player fg3m unavailable for team reconciliation",35
+"2004-05","sdv_history","historical","error","player fg3m unavailable for team reconciliation",42
+"2005-06","sdv_history","historical","error","player fg3m unavailable for team reconciliation",712
+"2006-07","sdv_history","historical","error","player fg3m unavailable for team reconciliation",622
+"2007-08","sdv_history","historical","error","player fg3m unavailable for team reconciliation",580
+"2008-09","sdv_history","historical","error","player fg3m unavailable for team reconciliation",678
+"2009-10","sdv_history","historical","error","player fg3m unavailable for team reconciliation",656
+"2010-11","sdv_history","historical","error","player fg3m unavailable for team reconciliation",736
+"2011-12","sdv_history","historical","error","player fg3m unavailable for team reconciliation",457
+"2012-13","sdv_history","historical","error","player fg3m unavailable for team reconciliation",5
+"2013-14","sdv_history","historical","error","player fg3m unavailable for team reconciliation",3
+"2014-15","sdv_history","historical","error","player fg3m unavailable for team reconciliation",5
 "2018-19","ingestion","active","error","player fga differs from team total",29
 "2019-20","ingestion","active","error","player fga differs from team total",2
 "2020-21","ingestion","active","error","player fga differs from team total",2
 "2025-26","ingestion","active","error","player fga differs from team total",12
+"1994-95","sdv_history","active","error","player fga differs from team total",34
+"1996-97","sdv_history","active","error","player fga differs from team total",2
+"2004-05","sdv_history","active","error","player fga differs from team total",2
+"2005-06","sdv_history","active","error","player fga differs from team total",13
+"2006-07","sdv_history","active","error","player fga differs from team total",2
+"2010-11","sdv_history","active","error","player fga differs from team total",1
+"2013-14","sdv_history","active","error","player fga differs from team total",1
 "2018-19","ingestion","historical","error","player fga differs from team total",32
 "2019-20","ingestion","historical","error","player fga differs from team total",2
 "2020-21","ingestion","historical","error","player fga differs from team total",51
 "2025-26","ingestion","historical","error","player fga differs from team total",12
+"2003-04","ingestion","active","error","player fga unavailable for team reconciliation",114
 "2015-16","ingestion","active","error","player fga unavailable for team reconciliation",13
 "2016-17","ingestion","active","error","player fga unavailable for team reconciliation",12
 "2017-18","ingestion","active","error","player fga unavailable for team reconciliation",3
 "2018-19","ingestion","active","error","player fga unavailable for team reconciliation",12
+"2001-02","sdv_history","active","error","player fga unavailable for team reconciliation",58
+"2002-03","sdv_history","active","error","player fga unavailable for team reconciliation",113
+"2003-04","sdv_history","active","error","player fga unavailable for team reconciliation",114
+"2004-05","sdv_history","active","error","player fga unavailable for team reconciliation",124
+"2005-06","sdv_history","active","error","player fga unavailable for team reconciliation",594
+"2006-07","sdv_history","active","error","player fga unavailable for team reconciliation",685
+"2007-08","sdv_history","active","error","player fga unavailable for team reconciliation",736
+"2008-09","sdv_history","active","error","player fga unavailable for team reconciliation",637
+"2009-10","sdv_history","active","error","player fga unavailable for team reconciliation",656
+"2010-11","sdv_history","active","error","player fga unavailable for team reconciliation",574
+"2011-12","sdv_history","active","error","player fga unavailable for team reconciliation",617
+"2012-13","sdv_history","active","error","player fga unavailable for team reconciliation",6
+"2013-14","sdv_history","active","error","player fga unavailable for team reconciliation",5
+"2014-15","sdv_history","active","error","player fga unavailable for team reconciliation",10
+"2003-04","ingestion","historical","error","player fga unavailable for team reconciliation",35
 "2015-16","ingestion","historical","error","player fga unavailable for team reconciliation",13
 "2016-17","ingestion","historical","error","player fga unavailable for team reconciliation",12
 "2017-18","ingestion","historical","error","player fga unavailable for team reconciliation",3
 "2018-19","ingestion","historical","error","player fga unavailable for team reconciliation",12
+"2001-02","sdv_history","historical","error","player fga unavailable for team reconciliation",42
+"2002-03","sdv_history","historical","error","player fga unavailable for team reconciliation",225
+"2003-04","sdv_history","historical","error","player fga unavailable for team reconciliation",35
+"2004-05","sdv_history","historical","error","player fga unavailable for team reconciliation",42
+"2005-06","sdv_history","historical","error","player fga unavailable for team reconciliation",712
+"2006-07","sdv_history","historical","error","player fga unavailable for team reconciliation",622
+"2007-08","sdv_history","historical","error","player fga unavailable for team reconciliation",580
+"2008-09","sdv_history","historical","error","player fga unavailable for team reconciliation",678
+"2009-10","sdv_history","historical","error","player fga unavailable for team reconciliation",656
+"2010-11","sdv_history","historical","error","player fga unavailable for team reconciliation",736
+"2011-12","sdv_history","historical","error","player fga unavailable for team reconciliation",457
+"2012-13","sdv_history","historical","error","player fga unavailable for team reconciliation",5
+"2013-14","sdv_history","historical","error","player fga unavailable for team reconciliation",3
+"2014-15","sdv_history","historical","error","player fga unavailable for team reconciliation",5
 "2018-19","ingestion","active","error","player fgm differs from team total",23
 "2019-20","ingestion","active","error","player fgm differs from team total",2
 "2020-21","ingestion","active","error","player fgm differs from team total",1
 "2025-26","ingestion","active","error","player fgm differs from team total",7
+"1994-95","sdv_history","active","error","player fgm differs from team total",31
+"1996-97","sdv_history","active","error","player fgm differs from team total",1
+"2004-05","sdv_history","active","error","player fgm differs from team total",2
+"2005-06","sdv_history","active","error","player fgm differs from team total",13
+"2006-07","sdv_history","active","error","player fgm differs from team total",2
+"2010-11","sdv_history","active","error","player fgm differs from team total",1
 "2018-19","ingestion","historical","error","player fgm differs from team total",23
 "2019-20","ingestion","historical","error","player fgm differs from team total",2
 "2020-21","ingestion","historical","error","player fgm differs from team total",1
 "2025-26","ingestion","historical","error","player fgm differs from team total",7
+"2003-04","ingestion","active","error","player fgm unavailable for team reconciliation",114
 "2015-16","ingestion","active","error","player fgm unavailable for team reconciliation",13
 "2016-17","ingestion","active","error","player fgm unavailable for team reconciliation",12
 "2017-18","ingestion","active","error","player fgm unavailable for team reconciliation",3
 "2018-19","ingestion","active","error","player fgm unavailable for team reconciliation",12
+"2001-02","sdv_history","active","error","player fgm unavailable for team reconciliation",58
+"2002-03","sdv_history","active","error","player fgm unavailable for team reconciliation",113
+"2003-04","sdv_history","active","error","player fgm unavailable for team reconciliation",114
+"2004-05","sdv_history","active","error","player fgm unavailable for team reconciliation",124
+"2005-06","sdv_history","active","error","player fgm unavailable for team reconciliation",594
+"2006-07","sdv_history","active","error","player fgm unavailable for team reconciliation",685
+"2007-08","sdv_history","active","error","player fgm unavailable for team reconciliation",736
+"2008-09","sdv_history","active","error","player fgm unavailable for team reconciliation",637
+"2009-10","sdv_history","active","error","player fgm unavailable for team reconciliation",656
+"2010-11","sdv_history","active","error","player fgm unavailable for team reconciliation",574
+"2011-12","sdv_history","active","error","player fgm unavailable for team reconciliation",617
+"2012-13","sdv_history","active","error","player fgm unavailable for team reconciliation",6
+"2013-14","sdv_history","active","error","player fgm unavailable for team reconciliation",5
+"2014-15","sdv_history","active","error","player fgm unavailable for team reconciliation",10
+"2003-04","ingestion","historical","error","player fgm unavailable for team reconciliation",35
 "2015-16","ingestion","historical","error","player fgm unavailable for team reconciliation",13
 "2016-17","ingestion","historical","error","player fgm unavailable for team reconciliation",12
 "2017-18","ingestion","historical","error","player fgm unavailable for team reconciliation",3
 "2018-19","ingestion","historical","error","player fgm unavailable for team reconciliation",12
+"2001-02","sdv_history","historical","error","player fgm unavailable for team reconciliation",42
+"2002-03","sdv_history","historical","error","player fgm unavailable for team reconciliation",225
+"2003-04","sdv_history","historical","error","player fgm unavailable for team reconciliation",35
+"2004-05","sdv_history","historical","error","player fgm unavailable for team reconciliation",42
+"2005-06","sdv_history","historical","error","player fgm unavailable for team reconciliation",712
+"2006-07","sdv_history","historical","error","player fgm unavailable for team reconciliation",622
+"2007-08","sdv_history","historical","error","player fgm unavailable for team reconciliation",580
+"2008-09","sdv_history","historical","error","player fgm unavailable for team reconciliation",678
+"2009-10","sdv_history","historical","error","player fgm unavailable for team reconciliation",656
+"2010-11","sdv_history","historical","error","player fgm unavailable for team reconciliation",736
+"2011-12","sdv_history","historical","error","player fgm unavailable for team reconciliation",457
+"2012-13","sdv_history","historical","error","player fgm unavailable for team reconciliation",5
+"2013-14","sdv_history","historical","error","player fgm unavailable for team reconciliation",3
+"2014-15","sdv_history","historical","error","player fgm unavailable for team reconciliation",5
 "2018-19","ingestion","active","error","player fta differs from team total",12
 "2019-20","ingestion","active","error","player fta differs from team total",1
 "2020-21","ingestion","active","error","player fta differs from team total",1
 "2025-26","ingestion","active","error","player fta differs from team total",3
+"1994-95","sdv_history","active","error","player fta differs from team total",20
+"1996-97","sdv_history","active","error","player fta differs from team total",1
+"2004-05","sdv_history","active","error","player fta differs from team total",2
+"2005-06","sdv_history","active","error","player fta differs from team total",13
+"2006-07","sdv_history","active","error","player fta differs from team total",2
+"2010-11","sdv_history","active","error","player fta differs from team total",1
 "2018-19","ingestion","historical","error","player fta differs from team total",12
 "2019-20","ingestion","historical","error","player fta differs from team total",2
 "2020-21","ingestion","historical","error","player fta differs from team total",1
 "2025-26","ingestion","historical","error","player fta differs from team total",3
+"2003-04","ingestion","active","error","player fta unavailable for team reconciliation",114
 "2015-16","ingestion","active","error","player fta unavailable for team reconciliation",13
 "2016-17","ingestion","active","error","player fta unavailable for team reconciliation",12
 "2017-18","ingestion","active","error","player fta unavailable for team reconciliation",3
 "2018-19","ingestion","active","error","player fta unavailable for team reconciliation",12
+"2001-02","sdv_history","active","error","player fta unavailable for team reconciliation",58
+"2002-03","sdv_history","active","error","player fta unavailable for team reconciliation",113
+"2003-04","sdv_history","active","error","player fta unavailable for team reconciliation",114
+"2004-05","sdv_history","active","error","player fta unavailable for team reconciliation",124
+"2005-06","sdv_history","active","error","player fta unavailable for team reconciliation",594
+"2006-07","sdv_history","active","error","player fta unavailable for team reconciliation",685
+"2007-08","sdv_history","active","error","player fta unavailable for team reconciliation",736
+"2008-09","sdv_history","active","error","player fta unavailable for team reconciliation",637
+"2009-10","sdv_history","active","error","player fta unavailable for team reconciliation",656
+"2010-11","sdv_history","active","error","player fta unavailable for team reconciliation",574
+"2011-12","sdv_history","active","error","player fta unavailable for team reconciliation",617
+"2012-13","sdv_history","active","error","player fta unavailable for team reconciliation",6
+"2013-14","sdv_history","active","error","player fta unavailable for team reconciliation",5
+"2014-15","sdv_history","active","error","player fta unavailable for team reconciliation",10
+"2003-04","ingestion","historical","error","player fta unavailable for team reconciliation",35
 "2015-16","ingestion","historical","error","player fta unavailable for team reconciliation",13
 "2016-17","ingestion","historical","error","player fta unavailable for team reconciliation",12
 "2017-18","ingestion","historical","error","player fta unavailable for team reconciliation",3
 "2018-19","ingestion","historical","error","player fta unavailable for team reconciliation",12
+"2001-02","sdv_history","historical","error","player fta unavailable for team reconciliation",42
+"2002-03","sdv_history","historical","error","player fta unavailable for team reconciliation",225
+"2003-04","sdv_history","historical","error","player fta unavailable for team reconciliation",35
+"2004-05","sdv_history","historical","error","player fta unavailable for team reconciliation",42
+"2005-06","sdv_history","historical","error","player fta unavailable for team reconciliation",712
+"2006-07","sdv_history","historical","error","player fta unavailable for team reconciliation",622
+"2007-08","sdv_history","historical","error","player fta unavailable for team reconciliation",580
+"2008-09","sdv_history","historical","error","player fta unavailable for team reconciliation",678
+"2009-10","sdv_history","historical","error","player fta unavailable for team reconciliation",656
+"2010-11","sdv_history","historical","error","player fta unavailable for team reconciliation",736
+"2011-12","sdv_history","historical","error","player fta unavailable for team reconciliation",457
+"2012-13","sdv_history","historical","error","player fta unavailable for team reconciliation",5
+"2013-14","sdv_history","historical","error","player fta unavailable for team reconciliation",3
+"2014-15","sdv_history","historical","error","player fta unavailable for team reconciliation",5
 "2018-19","ingestion","active","error","player ftm differs from team total",12
 "2020-21","ingestion","active","error","player ftm differs from team total",1
 "2025-26","ingestion","active","error","player ftm differs from team total",1
+"1994-95","sdv_history","active","error","player ftm differs from team total",19
+"1996-97","sdv_history","active","error","player ftm differs from team total",1
+"2004-05","sdv_history","active","error","player ftm differs from team total",2
+"2005-06","sdv_history","active","error","player ftm differs from team total",13
+"2006-07","sdv_history","active","error","player ftm differs from team total",2
+"2010-11","sdv_history","active","error","player ftm differs from team total",1
 "2018-19","ingestion","historical","error","player ftm differs from team total",12
 "2020-21","ingestion","historical","error","player ftm differs from team total",1
 "2025-26","ingestion","historical","error","player ftm differs from team total",1
+"2003-04","ingestion","active","error","player ftm unavailable for team reconciliation",114
 "2015-16","ingestion","active","error","player ftm unavailable for team reconciliation",13
 "2016-17","ingestion","active","error","player ftm unavailable for team reconciliation",12
 "2017-18","ingestion","active","error","player ftm unavailable for team reconciliation",3
 "2018-19","ingestion","active","error","player ftm unavailable for team reconciliation",12
+"2001-02","sdv_history","active","error","player ftm unavailable for team reconciliation",58
+"2002-03","sdv_history","active","error","player ftm unavailable for team reconciliation",113
+"2003-04","sdv_history","active","error","player ftm unavailable for team reconciliation",114
+"2004-05","sdv_history","active","error","player ftm unavailable for team reconciliation",124
+"2005-06","sdv_history","active","error","player ftm unavailable for team reconciliation",594
+"2006-07","sdv_history","active","error","player ftm unavailable for team reconciliation",685
+"2007-08","sdv_history","active","error","player ftm unavailable for team reconciliation",736
+"2008-09","sdv_history","active","error","player ftm unavailable for team reconciliation",637
+"2009-10","sdv_history","active","error","player ftm unavailable for team reconciliation",656
+"2010-11","sdv_history","active","error","player ftm unavailable for team reconciliation",574
+"2011-12","sdv_history","active","error","player ftm unavailable for team reconciliation",617
+"2012-13","sdv_history","active","error","player ftm unavailable for team reconciliation",6
+"2013-14","sdv_history","active","error","player ftm unavailable for team reconciliation",5
+"2014-15","sdv_history","active","error","player ftm unavailable for team reconciliation",10
+"2003-04","ingestion","historical","error","player ftm unavailable for team reconciliation",35
 "2015-16","ingestion","historical","error","player ftm unavailable for team reconciliation",13
 "2016-17","ingestion","historical","error","player ftm unavailable for team reconciliation",12
 "2017-18","ingestion","historical","error","player ftm unavailable for team reconciliation",3
 "2018-19","ingestion","historical","error","player ftm unavailable for team reconciliation",12
+"2001-02","sdv_history","historical","error","player ftm unavailable for team reconciliation",42
+"2002-03","sdv_history","historical","error","player ftm unavailable for team reconciliation",225
+"2003-04","sdv_history","historical","error","player ftm unavailable for team reconciliation",35
+"2004-05","sdv_history","historical","error","player ftm unavailable for team reconciliation",42
+"2005-06","sdv_history","historical","error","player ftm unavailable for team reconciliation",712
+"2006-07","sdv_history","historical","error","player ftm unavailable for team reconciliation",622
+"2007-08","sdv_history","historical","error","player ftm unavailable for team reconciliation",580
+"2008-09","sdv_history","historical","error","player ftm unavailable for team reconciliation",678
+"2009-10","sdv_history","historical","error","player ftm unavailable for team reconciliation",656
+"2010-11","sdv_history","historical","error","player ftm unavailable for team reconciliation",736
+"2011-12","sdv_history","historical","error","player ftm unavailable for team reconciliation",457
+"2012-13","sdv_history","historical","error","player ftm unavailable for team reconciliation",5
+"2013-14","sdv_history","historical","error","player ftm unavailable for team reconciliation",3
+"2014-15","sdv_history","historical","error","player ftm unavailable for team reconciliation",5
 "2015-16","ingestion","active","error","player points differ from team total",1
 "2018-19","ingestion","active","error","player points differ from team total",26
 "2019-20","ingestion","active","error","player points differ from team total",2
 "2020-21","ingestion","active","error","player points differ from team total",1
 "2025-26","ingestion","active","error","player points differ from team total",7
+"1994-95","sdv_history","active","error","player points differ from team total",34
+"1996-97","sdv_history","active","error","player points differ from team total",2
+"2001-02","sdv_history","active","error","player points differ from team total",6
+"2002-03","sdv_history","active","error","player points differ from team total",7
+"2004-05","sdv_history","active","error","player points differ from team total",2
+"2005-06","sdv_history","active","error","player points differ from team total",17
+"2006-07","sdv_history","active","error","player points differ from team total",6
+"2007-08","sdv_history","active","error","player points differ from team total",5
+"2008-09","sdv_history","active","error","player points differ from team total",3
+"2009-10","sdv_history","active","error","player points differ from team total",3
+"2010-11","sdv_history","active","error","player points differ from team total",6
+"2011-12","sdv_history","active","error","player points differ from team total",3
+"2012-13","sdv_history","active","error","player points differ from team total",1
+"2014-15","sdv_history","active","error","player points differ from team total",2
 "2015-16","ingestion","historical","error","player points differ from team total",3
 "2018-19","ingestion","historical","error","player points differ from team total",78
 "2019-20","ingestion","historical","error","player points differ from team total",6
 "2020-21","ingestion","historical","error","player points differ from team total",3
 "2025-26","ingestion","historical","error","player points differ from team total",14
+"2002-03","sdv_history","historical","error","player points differ from team total",7
+"2003-04","ingestion","active","error","player turnovers differs from team total",50
 "2018-19","ingestion","active","error","player turnovers differs from team total",21
 "2019-20","ingestion","active","error","player turnovers differs from team total",1
 "2025-26","ingestion","active","error","player turnovers differs from team total",3
+"1994-95","sdv_history","active","error","player turnovers differs from team total",34
+"1996-97","sdv_history","active","error","player turnovers differs from team total",2
+"2004-05","sdv_history","active","error","player turnovers differs from team total",2
+"2005-06","sdv_history","active","error","player turnovers differs from team total",13
+"2006-07","sdv_history","active","error","player turnovers differs from team total",2
+"2010-11","sdv_history","active","error","player turnovers differs from team total",1
+"2003-04","ingestion","historical","error","player turnovers differs from team total",850
 "2015-16","ingestion","historical","error","player turnovers differs from team total",3
 "2016-17","ingestion","historical","error","player turnovers differs from team total",6
 "2018-19","ingestion","historical","error","player turnovers differs from team total",26
 "2019-20","ingestion","historical","error","player turnovers differs from team total",4
 "2025-26","ingestion","historical","error","player turnovers differs from team total",3
+"2012-13","sdv_history","historical","error","player turnovers differs from team total",2
+"2013-14","sdv_history","historical","error","player turnovers differs from team total",2
+"2003-04","ingestion","active","error","player turnovers unavailable for team reconciliation",114
 "2015-16","ingestion","active","error","player turnovers unavailable for team reconciliation",13
 "2016-17","ingestion","active","error","player turnovers unavailable for team reconciliation",12
 "2017-18","ingestion","active","error","player turnovers unavailable for team reconciliation",3
 "2018-19","ingestion","active","error","player turnovers unavailable for team reconciliation",12
+"2001-02","sdv_history","active","error","player turnovers unavailable for team reconciliation",58
+"2002-03","sdv_history","active","error","player turnovers unavailable for team reconciliation",113
+"2003-04","sdv_history","active","error","player turnovers unavailable for team reconciliation",114
+"2004-05","sdv_history","active","error","player turnovers unavailable for team reconciliation",124
+"2005-06","sdv_history","active","error","player turnovers unavailable for team reconciliation",594
+"2006-07","sdv_history","active","error","player turnovers unavailable for team reconciliation",685
+"2007-08","sdv_history","active","error","player turnovers unavailable for team reconciliation",736
+"2008-09","sdv_history","active","error","player turnovers unavailable for team reconciliation",637
+"2009-10","sdv_history","active","error","player turnovers unavailable for team reconciliation",656
+"2010-11","sdv_history","active","error","player turnovers unavailable for team reconciliation",574
+"2011-12","sdv_history","active","error","player turnovers unavailable for team reconciliation",617
+"2012-13","sdv_history","active","error","player turnovers unavailable for team reconciliation",6
+"2013-14","sdv_history","active","error","player turnovers unavailable for team reconciliation",5
+"2014-15","sdv_history","active","error","player turnovers unavailable for team reconciliation",10
+"2003-04","ingestion","historical","error","player turnovers unavailable for team reconciliation",35
 "2015-16","ingestion","historical","error","player turnovers unavailable for team reconciliation",13
 "2016-17","ingestion","historical","error","player turnovers unavailable for team reconciliation",12
 "2017-18","ingestion","historical","error","player turnovers unavailable for team reconciliation",3
 "2018-19","ingestion","historical","error","player turnovers unavailable for team reconciliation",12
+"2001-02","sdv_history","historical","error","player turnovers unavailable for team reconciliation",42
+"2002-03","sdv_history","historical","error","player turnovers unavailable for team reconciliation",225
+"2003-04","sdv_history","historical","error","player turnovers unavailable for team reconciliation",35
+"2004-05","sdv_history","historical","error","player turnovers unavailable for team reconciliation",42
+"2005-06","sdv_history","historical","error","player turnovers unavailable for team reconciliation",712
+"2006-07","sdv_history","historical","error","player turnovers unavailable for team reconciliation",622
+"2007-08","sdv_history","historical","error","player turnovers unavailable for team reconciliation",580
+"2008-09","sdv_history","historical","error","player turnovers unavailable for team reconciliation",678
+"2009-10","sdv_history","historical","error","player turnovers unavailable for team reconciliation",656
+"2010-11","sdv_history","historical","error","player turnovers unavailable for team reconciliation",736
+"2011-12","sdv_history","historical","error","player turnovers unavailable for team reconciliation",457
+"2012-13","sdv_history","historical","error","player turnovers unavailable for team reconciliation",5
+"2013-14","sdv_history","historical","error","player turnovers unavailable for team reconciliation",3
+"2014-15","sdv_history","historical","error","player turnovers unavailable for team reconciliation",5
 "2025-26","ingestion","historical","error","player_box_scores missing identifiers",66
+"2012-13","sdv_history","historical","error","player_box_scores missing identifiers",1
 "2025-26","ingestion","historical","error","player_identifiers missing identifiers",1349
+"2012-13","sdv_history","historical","error","player_identifiers missing identifiers",1
 "2025-26","ingestion","historical","error","players missing identifiers",1349
+"2012-13","sdv_history","historical","error","players missing identifiers",1
+"2001-02","possessions","active","error","possession plus non-possession points fail final score reconciliation",136
+"2002-03","possessions","active","error","possession plus non-possession points fail final score reconciliation",351
+"2003-04","possessions","active","error","possession plus non-possession points fail final score reconciliation",423
+"2004-05","possessions","active","error","possession plus non-possession points fail final score reconciliation",338
+"2005-06","possessions","active","error","possession plus non-possession points fail final score reconciliation",213
+"2006-07","possessions","active","error","possession plus non-possession points fail final score reconciliation",49
+"2007-08","possessions","active","error","possession plus non-possession points fail final score reconciliation",72
+"2008-09","possessions","active","error","possession plus non-possession points fail final score reconciliation",87
+"2009-10","possessions","active","error","possession plus non-possession points fail final score reconciliation",85
+"2010-11","possessions","active","error","possession plus non-possession points fail final score reconciliation",63
+"2011-12","possessions","active","error","possession plus non-possession points fail final score reconciliation",82
+"2012-13","possessions","active","error","possession plus non-possession points fail final score reconciliation",737
+"2013-14","possessions","active","error","possession plus non-possession points fail final score reconciliation",206
+"2014-15","possessions","active","error","possession plus non-possession points fail final score reconciliation",200
 "2015-16","possessions","active","error","possession plus non-possession points fail final score reconciliation",737
 "2016-17","possessions","active","error","possession plus non-possession points fail final score reconciliation",194
 "2017-18","possessions","active","error","possession plus non-possession points fail final score reconciliation",199
@@ -614,6 +1317,7 @@
 "2024-25","possessions","active","error","possession plus non-possession points fail final score reconciliation",43
 "2025-26","possessions","active","error","possession plus non-possession points fail final score reconciliation",38
 "2026-27","possessions","active","error","possession plus non-possession points fail final score reconciliation",2
+"2003-04","possessions","historical","error","possession plus non-possession points fail final score reconciliation",104
 "2015-16","possessions","historical","error","possession plus non-possession points fail final score reconciliation",2774
 "2016-17","possessions","historical","error","possession plus non-possession points fail final score reconciliation",1684
 "2017-18","possessions","historical","error","possession plus non-possession points fail final score reconciliation",1702
@@ -632,6 +1336,20 @@
 "2023-24","normalization","active","warning","quarantine_revalidated_current_gate",1
 "2024-25","normalization","active","warning","quarantine_revalidated_current_gate",1
 "2025-26","normalization","active","warning","quarantine_revalidated_current_gate",12
+"2001-02","lineups","active","error","reconstructed player minutes exceed source precision bounds",176
+"2002-03","lineups","active","error","reconstructed player minutes exceed source precision bounds",347
+"2003-04","lineups","active","error","reconstructed player minutes exceed source precision bounds",785
+"2004-05","lineups","active","error","reconstructed player minutes exceed source precision bounds",880
+"2005-06","lineups","active","error","reconstructed player minutes exceed source precision bounds",332
+"2006-07","lineups","active","error","reconstructed player minutes exceed source precision bounds",90
+"2007-08","lineups","active","error","reconstructed player minutes exceed source precision bounds",68
+"2008-09","lineups","active","error","reconstructed player minutes exceed source precision bounds",86
+"2009-10","lineups","active","error","reconstructed player minutes exceed source precision bounds",65
+"2010-11","lineups","active","error","reconstructed player minutes exceed source precision bounds",80
+"2011-12","lineups","active","error","reconstructed player minutes exceed source precision bounds",51
+"2012-13","lineups","active","error","reconstructed player minutes exceed source precision bounds",253
+"2013-14","lineups","active","error","reconstructed player minutes exceed source precision bounds",49
+"2014-15","lineups","active","error","reconstructed player minutes exceed source precision bounds",46
 "2015-16","lineups","active","error","reconstructed player minutes exceed source precision bounds",53
 "2016-17","lineups","active","error","reconstructed player minutes exceed source precision bounds",66
 "2017-18","lineups","active","error","reconstructed player minutes exceed source precision bounds",474
@@ -644,6 +1362,7 @@
 "2024-25","lineups","active","error","reconstructed player minutes exceed source precision bounds",169
 "2025-26","lineups","active","error","reconstructed player minutes exceed source precision bounds",126
 "2026-27","lineups","active","error","reconstructed player minutes exceed source precision bounds",3
+"2003-04","lineups","historical","error","reconstructed player minutes exceed source precision bounds",195
 "2015-16","lineups","historical","error","reconstructed player minutes exceed source precision bounds",159
 "2016-17","lineups","historical","error","reconstructed player minutes exceed source precision bounds",198
 "2017-18","lineups","historical","error","reconstructed player minutes exceed source precision bounds",1422
@@ -656,9 +1375,13 @@
 "2024-25","lineups","historical","error","reconstructed player minutes exceed source precision bounds",169
 "2025-26","lineups","historical","error","reconstructed player minutes exceed source precision bounds",117
 "2026-27","lineups","historical","error","reconstructed player minutes exceed source precision bounds",3
+"1996-97","independent_reconciliation","active","error","reference_assists",2
+"2013-14","independent_reconciliation","active","error","reference_assists",1
 "2023-24","independent_reconciliation","active","error","reference_assists",2
 "2025-26","independent_reconciliation","active","error","reference_assists",3
 "2023-24","independent_reconciliation","historical","error","reference_assists",6
+"1996-97","independent_reconciliation","active","error","reference_fg3a",2
+"2012-13","independent_reconciliation","active","error","reference_fg3a",1
 "2015-16","independent_reconciliation","active","error","reference_fg3a",4
 "2016-17","independent_reconciliation","active","error","reference_fg3a",5
 "2017-18","independent_reconciliation","active","error","reference_fg3a",1
@@ -672,6 +1395,10 @@
 "2020-21","independent_reconciliation","historical","error","reference_fg3a",15
 "2022-23","independent_reconciliation","historical","error","reference_fg3a",3
 "2025-26","independent_reconciliation","historical","error","reference_fg3a",6
+"1996-97","independent_reconciliation","active","error","reference_fg3m",2
+"1993-94","independent_reconciliation","active","error","reference_fga",2
+"1996-97","independent_reconciliation","active","error","reference_fga",2
+"2013-14","independent_reconciliation","active","error","reference_fga",1
 "2016-17","independent_reconciliation","active","error","reference_fga",6
 "2017-18","independent_reconciliation","active","error","reference_fga",1
 "2019-20","independent_reconciliation","active","error","reference_fga",2
@@ -686,12 +1413,24 @@
 "2022-23","independent_reconciliation","historical","error","reference_fga",3
 "2023-24","independent_reconciliation","historical","error","reference_fga",6
 "2025-26","independent_reconciliation","historical","error","reference_fga",3
+"1996-97","independent_reconciliation","active","error","reference_fgm",2
 "2022-23","independent_reconciliation","active","error","reference_fta",1
 "2022-23","independent_reconciliation","historical","error","reference_fta",3
+"1996-97","independent_reconciliation","active","error","reference_points",2
 "2017-18","independent_reconciliation","active","error","reference_points",1
 "2017-18","independent_reconciliation","historical","error","reference_points",3
+"1996-97","independent_reconciliation","active","error","reference_schedule_points",2
 "2017-18","independent_reconciliation","active","error","reference_schedule_points",1
 "2017-18","independent_reconciliation","historical","error","reference_schedule_points",3
+"1993-94","independent_reconciliation","active","error","reference_turnovers",8
+"1996-97","independent_reconciliation","active","error","reference_turnovers",6
+"1997-98","independent_reconciliation","active","error","reference_turnovers",1
+"1998-99","independent_reconciliation","active","error","reference_turnovers",1
+"1999-00","independent_reconciliation","active","error","reference_turnovers",2
+"2000-01","independent_reconciliation","active","error","reference_turnovers",1
+"2001-02","independent_reconciliation","active","error","reference_turnovers",2
+"2002-03","independent_reconciliation","active","error","reference_turnovers",2
+"2003-04","independent_reconciliation","active","error","reference_turnovers",1
 "2016-17","independent_reconciliation","active","error","reference_turnovers",2
 "2017-18","independent_reconciliation","active","error","reference_turnovers",5
 "2019-20","independent_reconciliation","active","error","reference_turnovers",1
@@ -709,7 +1448,32 @@
 "2023-24","independent_reconciliation","historical","error","reference_turnovers",2732
 "2024-25","independent_reconciliation","historical","error","reference_turnovers",17
 "2025-26","independent_reconciliation","historical","error","reference_turnovers",3
+"1994-95","independent_reconciliation","active","warning","reference_turnovers",2
+"1997-98","independent_reconciliation","active","warning","reference_turnovers",2
+"1999-00","independent_reconciliation","active","warning","reference_turnovers",2
+"2000-01","independent_reconciliation","active","warning","reference_turnovers",1106
+"2002-03","independent_reconciliation","active","warning","reference_turnovers",4
+"2004-05","independent_reconciliation","active","warning","reference_turnovers",4
+"1998-99","sdv_history_normalization","historical","warning","season_label_reconstructed_from_unique_pre2015_calendar",50
+"2001-02","sdv_history","active","error","team_box_scores inconsistent scoring totals",6
+"2002-03","sdv_history","active","error","team_box_scores inconsistent scoring totals",7
+"2014-15","sdv_history","active","error","team_box_scores inconsistent scoring totals",1
 "2024-25","ingestion","historical","error","team_box_scores inconsistent scoring totals",2
+"2002-03","sdv_history","historical","error","team_box_scores inconsistent scoring totals",7
+"2001-02","possessions","active","error","unassigned offensive event",14
+"2002-03","possessions","active","error","unassigned offensive event",10
+"2003-04","possessions","active","error","unassigned offensive event",4
+"2004-05","possessions","active","error","unassigned offensive event",11
+"2005-06","possessions","active","error","unassigned offensive event",5
+"2006-07","possessions","active","error","unassigned offensive event",6
+"2007-08","possessions","active","error","unassigned offensive event",6
+"2008-09","possessions","active","error","unassigned offensive event",3
+"2009-10","possessions","active","error","unassigned offensive event",5
+"2010-11","possessions","active","error","unassigned offensive event",6
+"2011-12","possessions","active","error","unassigned offensive event",3
+"2012-13","possessions","active","error","unassigned offensive event",10
+"2013-14","possessions","active","error","unassigned offensive event",10
+"2014-15","possessions","active","error","unassigned offensive event",4
 "2015-16","possessions","active","error","unassigned offensive event",10
 "2016-17","possessions","active","error","unassigned offensive event",6
 "2017-18","possessions","active","error","unassigned offensive event",4
@@ -732,6 +1496,20 @@
 "2023-24","possessions","historical","error","unassigned offensive event",4
 "2024-25","possessions","historical","error","unassigned offensive event",1
 "2025-26","possessions","historical","error","unassigned offensive event",3
+"2001-02","pbp_metric","active","warning","unavailable_attempt_classification",163
+"2002-03","pbp_metric","active","warning","unavailable_attempt_classification",543
+"2003-04","pbp_metric","active","warning","unavailable_attempt_classification",526
+"2004-05","pbp_metric","active","warning","unavailable_attempt_classification",633
+"2005-06","pbp_metric","active","warning","unavailable_attempt_classification",359
+"2006-07","pbp_metric","active","warning","unavailable_attempt_classification",14
+"2007-08","pbp_metric","active","warning","unavailable_attempt_classification",33
+"2008-09","pbp_metric","active","warning","unavailable_attempt_classification",15
+"2009-10","pbp_metric","active","warning","unavailable_attempt_classification",18
+"2010-11","pbp_metric","active","warning","unavailable_attempt_classification",16
+"2011-12","pbp_metric","active","warning","unavailable_attempt_classification",14
+"2012-13","pbp_metric","active","warning","unavailable_attempt_classification",912
+"2013-14","pbp_metric","active","warning","unavailable_attempt_classification",428
+"2014-15","pbp_metric","active","warning","unavailable_attempt_classification",498
 "2015-16","pbp_metric","active","warning","unavailable_attempt_classification",2600
 "2016-17","pbp_metric","active","warning","unavailable_attempt_classification",2592
 "2017-18","pbp_metric","active","warning","unavailable_attempt_classification",2608
@@ -741,6 +1519,7 @@
 "2021-22","pbp_metric","active","warning","unavailable_attempt_classification",2646
 "2022-23","pbp_metric","active","warning","unavailable_attempt_classification",2619
 "2023-24","pbp_metric","active","warning","unavailable_attempt_classification",2620
+"2003-04","pbp_metric","historical","warning","unavailable_attempt_classification",526
 "2015-16","pbp_metric","historical","warning","unavailable_attempt_classification",5200
 "2016-17","pbp_metric","historical","warning","unavailable_attempt_classification",5184
 "2017-18","pbp_metric","historical","warning","unavailable_attempt_classification",10428
@@ -750,12 +1529,36 @@
 "2021-22","pbp_metric","historical","warning","unavailable_attempt_classification",2638
 "2022-23","pbp_metric","historical","warning","unavailable_attempt_classification",2613
 "2023-24","pbp_metric","historical","warning","unavailable_attempt_classification",2620
+"2001-02","possessions","active","error","unclosed period possession",14
+"2002-03","possessions","active","error","unclosed period possession",5
+"2003-04","possessions","active","error","unclosed period possession",1
+"2004-05","possessions","active","error","unclosed period possession",4
+"2005-06","possessions","active","error","unclosed period possession",2
+"2006-07","possessions","active","error","unclosed period possession",1
+"2007-08","possessions","active","error","unclosed period possession",2
+"2008-09","possessions","active","error","unclosed period possession",1
+"2010-11","possessions","active","error","unclosed period possession",3
+"2012-13","possessions","active","error","unclosed period possession",5
 "2016-17","possessions","active","error","unclosed period possession",1
 "2017-18","possessions","active","error","unclosed period possession",1
 "2025-26","possessions","active","error","unclosed period possession",1
 "2016-17","possessions","historical","error","unclosed period possession",3
 "2017-18","possessions","historical","error","unclosed period possession",3
 "2025-26","possessions","historical","error","unclosed period possession",1
+"2001-02","possessions","active","error","unexplained change of offensive control",7161
+"2002-03","possessions","active","error","unexplained change of offensive control",5121
+"2003-04","possessions","active","error","unexplained change of offensive control",6621
+"2004-05","possessions","active","error","unexplained change of offensive control",6568
+"2005-06","possessions","active","error","unexplained change of offensive control",3853
+"2006-07","possessions","active","error","unexplained change of offensive control",2967
+"2007-08","possessions","active","error","unexplained change of offensive control",2705
+"2008-09","possessions","active","error","unexplained change of offensive control",3203
+"2009-10","possessions","active","error","unexplained change of offensive control",2815
+"2010-11","possessions","active","error","unexplained change of offensive control",3421
+"2011-12","possessions","active","error","unexplained change of offensive control",2405
+"2012-13","possessions","active","error","unexplained change of offensive control",3715
+"2013-14","possessions","active","error","unexplained change of offensive control",800
+"2014-15","possessions","active","error","unexplained change of offensive control",711
 "2015-16","possessions","active","error","unexplained change of offensive control",2597
 "2016-17","possessions","active","error","unexplained change of offensive control",884
 "2017-18","possessions","active","error","unexplained change of offensive control",853
@@ -768,6 +1571,7 @@
 "2024-25","possessions","active","error","unexplained change of offensive control",245
 "2025-26","possessions","active","error","unexplained change of offensive control",241
 "2026-27","possessions","active","error","unexplained change of offensive control",6
+"2003-04","possessions","historical","error","unexplained change of offensive control",1487
 "2015-16","possessions","historical","error","unexplained change of offensive control",9965
 "2016-17","possessions","historical","error","unexplained change of offensive control",6134
 "2017-18","possessions","historical","error","unexplained change of offensive control",2587
@@ -780,12 +1584,43 @@
 "2024-25","possessions","historical","error","unexplained change of offensive control",245
 "2025-26","possessions","historical","error","unexplained change of offensive control",238
 "2026-27","possessions","historical","error","unexplained change of offensive control",6
+"2001-02","sdv_history_normalization","historical","warning","unique_attempt_count_constraint",18919
+"2002-03","sdv_history_normalization","historical","warning","unique_attempt_count_constraint",33665
+"2003-04","sdv_history_normalization","historical","warning","unique_attempt_count_constraint",41667
+"2004-05","sdv_history_normalization","historical","warning","unique_attempt_count_constraint",39952
+"2005-06","sdv_history_normalization","historical","warning","unique_attempt_count_constraint",39698
+"2006-07","sdv_history_normalization","historical","warning","unique_attempt_count_constraint",50370
+"2007-08","sdv_history_normalization","historical","warning","unique_attempt_count_constraint",49057
+"2008-09","sdv_history_normalization","historical","warning","unique_attempt_count_constraint",47546
+"2009-10","sdv_history_normalization","historical","warning","unique_attempt_count_constraint",45954
+"2010-11","sdv_history_normalization","historical","warning","unique_attempt_count_constraint",49288
+"2011-12","sdv_history_normalization","historical","warning","unique_attempt_count_constraint",40028
+"2012-13","sdv_history_normalization","historical","warning","unique_attempt_count_constraint",33745
+"2013-14","sdv_history_normalization","historical","warning","unique_attempt_count_constraint",42507
+"2014-15","sdv_history_normalization","historical","warning","unique_attempt_count_constraint",40284
+"2002-03","possessions","active","error","unknown scoring team",1
+"2003-04","possessions","active","error","unknown scoring team",1
+"2004-05","possessions","active","error","unknown scoring team",3
 "2015-16","possessions","active","error","unknown scoring team",1
 "2016-17","possessions","active","error","unknown scoring team",1
 "2017-18","possessions","active","error","unknown scoring team",1
 "2015-16","possessions","historical","error","unknown scoring team",2
 "2016-17","possessions","historical","error","unknown scoring team",2
 "2017-18","possessions","historical","error","unknown scoring team",2
+"2001-02","possessions","active","error","unresolved held jump ball",44
+"2002-03","possessions","active","error","unresolved held jump ball",68
+"2003-04","possessions","active","error","unresolved held jump ball",77
+"2004-05","possessions","active","error","unresolved held jump ball",423
+"2005-06","possessions","active","error","unresolved held jump ball",295
+"2006-07","possessions","active","error","unresolved held jump ball",299
+"2007-08","possessions","active","error","unresolved held jump ball",247
+"2008-09","possessions","active","error","unresolved held jump ball",308
+"2009-10","possessions","active","error","unresolved held jump ball",309
+"2010-11","possessions","active","error","unresolved held jump ball",38
+"2011-12","possessions","active","error","unresolved held jump ball",25
+"2012-13","possessions","active","error","unresolved held jump ball",62
+"2013-14","possessions","active","error","unresolved held jump ball",94
+"2014-15","possessions","active","error","unresolved held jump ball",72
 "2015-16","possessions","active","error","unresolved held jump ball",70
 "2016-17","possessions","active","error","unresolved held jump ball",77
 "2017-18","possessions","active","error","unresolved held jump ball",74
@@ -797,6 +1632,7 @@
 "2023-24","possessions","active","error","unresolved held jump ball",69
 "2024-25","possessions","active","error","unresolved held jump ball",84
 "2025-26","possessions","active","error","unresolved held jump ball",88
+"2003-04","possessions","historical","error","unresolved held jump ball",15
 "2015-16","possessions","historical","error","unresolved held jump ball",210
 "2016-17","possessions","historical","error","unresolved held jump ball",231
 "2017-18","possessions","historical","error","unresolved held jump ball",222
@@ -808,11 +1644,21 @@
 "2023-24","possessions","historical","error","unresolved held jump ball",69
 "2024-25","possessions","historical","error","unresolved held jump ball",84
 "2025-26","possessions","historical","error","unresolved held jump ball",87
+"2002-03","lineups","active","error","unrostered live-event participant",14
+"2003-04","lineups","active","error","unrostered live-event participant",2
+"2004-05","lineups","active","error","unrostered live-event participant",21
+"2005-06","lineups","active","error","unrostered live-event participant",26
+"2006-07","lineups","active","error","unrostered live-event participant",29
+"2007-08","lineups","active","error","unrostered live-event participant",2
+"2012-13","lineups","active","error","unrostered live-event participant",38
+"2013-14","lineups","active","error","unrostered live-event participant",41
+"2014-15","lineups","active","error","unrostered live-event participant",54
 "2015-16","lineups","active","error","unrostered live-event participant",54
 "2016-17","lineups","active","error","unrostered live-event participant",49
 "2018-19","lineups","active","error","unrostered live-event participant",2
 "2020-21","lineups","active","error","unrostered live-event participant",2
 "2025-26","lineups","active","error","unrostered live-event participant",4
+"2003-04","lineups","historical","error","unrostered live-event participant",1
 "2015-16","lineups","historical","error","unrostered live-event participant",162
 "2016-17","lineups","historical","error","unrostered live-event participant",147
 "2018-19","lineups","historical","error","unrostered live-event participant",4

@@ -13,6 +13,8 @@ See the [historical runbook and limits](docs/historical_expansion.md),
 [tracking/access assessment](docs/tracking_assessment.md). Historical observations and
 failed reconstruction attempts are reported separately from validated possessions
 and lineups; downloaded history is not a completeness claim.
+The [executed verification and remaining limits](docs/execution_verification.md)
+record final counts, integrity checks, preserved baseline rows and unresolved games.
 The previous [nba-deckbuilding](https://github.com/just-the-stats-man/nba-deckbuilding)
 repository and its history are preserved unchanged.
 

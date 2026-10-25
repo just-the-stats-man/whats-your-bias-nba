@@ -1,5 +1,8 @@
 # Verification record
 
+The [2026-10-25 execution verification](execution_verification.md) records the
+latest historical expansion, production checks and current limitations.
+
 This page records the preserved Phase 1 milestone. Phase 2 adds separate
 [historical availability reports](historical_completeness.md) and
 [verification evidence](historical_verification.md). Its observation counts

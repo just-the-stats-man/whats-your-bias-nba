@@ -12,6 +12,9 @@ execution_reports <- function(con,directory='docs') {
   report$pbp_metric_unavailable_games<-ifelse(is.na(match(report$season,unavailable$season)),0,unavailable$games[match(report$season,unavailable$season)])
   unclassified<-DBI::dbGetQuery(con,'SELECT g.season,count(*) n FROM shot_attempts s JOIN games g USING(game_id) WHERE s.points_attempted IS NULL GROUP BY g.season')
   report$unclassified_shot_value_rows<-ifelse(is.na(match(report$season,unclassified$season)),0,unclassified$n[match(report$season,unclassified$season)])
+  attempts<-DBI::dbGetQuery(con,'SELECT g.season,sum(t.fga) fga FROM team_box_scores t JOIN games g USING(game_id) GROUP BY g.season')
+  report$canonical_box_fga<-ifelse(is.na(match(report$season,attempts$season)),0,attempts$fga[match(report$season,attempts$season)])
+  report$shot_row_gap_against_box_fga<-report$canonical_box_fga-report$shot_rows
   if(DBI::dbExistsTable(con,'tracking_provider_context')) {
     t<-DBI::dbGetQuery(con,"SELECT season,count(*) n FROM tracking_provider_context WHERE validation_status='estimated' GROUP BY season")
     report$provider_estimated_tracking_rows<-ifelse(is.na(match(report$season,t$season)),0,t$n[match(report$season,t$season)])

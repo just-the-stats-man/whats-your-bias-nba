@@ -54,6 +54,7 @@ tryCatch({
     '',paste0('| ',paste(headings,collapse=' | '),' |'),paste0('|',paste(rep('---',length(headings)),collapse='|'),'|'),
     apply(selected,1,function(z)paste0('| ',paste(z,collapse=' | '),' |')),
     '', 'See historical_completeness.csv for canonical counts, raw rows, tracking status and reference agreement; historical_reconciliation.csv for overlap checks. Detailed game-level exceptions and comparisons are in data/processed/reports/*.parquet locally. Coordinate rows count plausible recorded positions, not validated optical tracking. No defender assignments or tracking observations were added.')
+  lines<-c(lines,'','Box-total agreement includes NBA-recovered boxes compared to their own NBA source. Use execution_reconciliation.csv and its independent flag for distinct-provider certification.')
   writeLines(lines,'docs/historical_completeness.md')
   print(data.frame(seasons=nrow(report),nba_games=sum(report$source_games),player_rows=sum(report$player_rows),pbp_games=sum(report$pbp_games),event_rows=sum(report$event_rows),shots=sum(report$shot_rows)))
   cat('Core integrity:',sum(core$passed),'/',nrow(core),'; historical integrity:',nrow(historical_integrity(con)),'checks; baseline tables:',sum(preservation$passed),'/',nrow(preservation),'; raw snapshots:',nrow(manifest),'\n')

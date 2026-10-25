@@ -1,6 +1,14 @@
 # Research limitations and interpretation
 
-The offline deliverable contains three 2024–25 games, not all seasons.
+The [2026-10-25 execution verification](execution_verification.md) records the
+current historical scope and unresolved games. Passing integrity does not
+certify complete NBA history. Canonical shot capture is sparse in some formats
+(2023–24: 1,430 rows versus 233,601 canonical box FGAs). Use coverage denominators
+and the separate NBA observation layer; missing shot rows are not zero attempts.
+No defender assignment is inferred.
+
+The bundled offline fixtures contain three 2024–25 games. The expanded local
+warehouse is separate and its scope is recorded in the execution reports.
 Backfill support starts at 2015–16; archive coverage is not a completeness
 guarantee. Completed regular-season, playoff, play-in and Cup-final games are selected.
 Preseason, All-Star showcases and ongoing games are excluded. ESPN IDs 1–30
