@@ -5,7 +5,9 @@ import_historical_reference <- function(con,seasons,directory='data/processed/re
   historical_schema(con)
   snapshots<-DBI::dbReadTable(con,'historical_snapshots')
   needed<-snapshots[snapshots$kind%in%c('team','player'),]
+  parents<-snapshots[snapshots$kind%in%c('games','team','player'),]
   if(nrow(needed)!=2L)stop('One pinned historical team/player snapshot required')
+  if(nrow(parents)!=3L)stop('Historical game metadata parent required')
   stopifnot(all(vapply(needed$path,file_sha256,character(1))==needed$sha256))
   map<-utils::read.csv('config/team_crosswalk.csv',colClasses='character')
   DBI::dbWriteTable(con,'_historical_reference_map',data.frame(team_id=paste0('espn:',map$espn_id),nba_team=paste0('nba:',map$nba_id)),temporary=TRUE,overwrite=TRUE)
@@ -13,8 +15,8 @@ import_historical_reference <- function(con,seasons,directory='data/processed/re
   DBI::dbExecute(con,paste0("CREATE OR REPLACE TEMP TABLE _historical_components AS SELECT 'nba:'||",historical_sql_id('gameId')," game_id,'nba:'||teamId team_id,CASE WHEN TRY_CAST(turnoversTeam AS DOUBLE)>=0 AND TRY_CAST(turnoversTeam AS DOUBLE)=trunc(TRY_CAST(turnoversTeam AS DOUBLE)) THEN TRY_CAST(turnoversTeam AS INTEGER) END team_turnovers FROM read_csv(",DBI::dbQuoteString(con,normalizePath(team_file,winslash='/')),",all_varchar=TRUE)"))
   # Register raw parents in the existing graph, in addition to the historical registry.
   DBI::dbExecute(con,"INSERT OR IGNORE INTO sources VALUES ('eoin_moore_nba','https://www.kaggle.com/datasets/eoinamoore/historical-nba-data-and-player-box-scores','CC0-1.0 publisher declaration','Eoin Moore; NBA.com upstream')")
-  for(i in seq_len(nrow(needed))) {
-    s<-needed[i,]
+  for(i in seq_len(nrow(parents))) {
+    s<-parents[i,]
     upsert_rows(con,'datasets',data.frame(dataset_id=s$snapshot_id,source_id=s$source_id,url=s$url,revision=s$revision,retrieved_at=file.info(s$path)$mtime,sha256=s$sha256,raw_path=s$path,row_count=s$raw_rows),'dataset_id')
   }
   transform<-substr(digest::digest(body(import_historical_reference),algo='sha256'),1,16)
@@ -25,14 +27,14 @@ import_historical_reference <- function(con,seasons,directory='data/processed/re
     d<-DBI::dbGetQuery(con,sql);d$team_turnovers<-NULL
     if(!nrow(d))next
     d$source_id<-'eoin_moore_nba'
-    d$dataset_id<-paste0('nba-history-reference:',season,':',paste(sort(needed$sha256),collapse=':'),':',transform)
+    d$dataset_id<-paste0('nba-history-reference:',season,':',paste(sort(parents$sha256),collapse=':'),':',transform)
     dir.create(directory,recursive=TRUE,showWarnings=FALSE)
-    input_id<-substr(digest::digest(sort(needed$sha256),algo='sha256'),1,16)
+    input_id<-substr(digest::digest(sort(parents$sha256),algo='sha256'),1,16)
     path<-file.path(directory,paste0('historical_',season,'_',input_id,'_',transform,'.parquet'))
     arrow::write_parquet(d,path)
     DBI::dbWithTransaction(con,{
       upsert_rows(con,'datasets',data.frame(dataset_id=unique(d$dataset_id),source_id='eoin_moore_nba',url='https://www.kaggle.com/datasets/eoinamoore/historical-nba-data-and-player-box-scores',revision='historical-v524',retrieved_at=Sys.time(),sha256=file_sha256(path),raw_path=path,row_count=nrow(d)),'dataset_id')
-      upsert_rows(con,'dataset_dependencies',data.frame(dataset_id=unique(d$dataset_id),parent_dataset_id=needed$snapshot_id,transformation='Historical NBA reference; known player turnover sums plus explicitly recorded team-only component; namespace mapping guards Charlotte history'),c('dataset_id','parent_dataset_id'))
+      upsert_rows(con,'dataset_dependencies',data.frame(dataset_id=unique(d$dataset_id),parent_dataset_id=parents$snapshot_id,transformation='Historical NBA reference; game date/identity metadata and known player turnover sums plus explicitly recorded team-only component; namespace mapping guards Charlotte history'),c('dataset_id','parent_dataset_id'))
       upsert_rows(con,'independent_team_totals',d,c('source_id','source_game_id','team_id'))
     })
   }

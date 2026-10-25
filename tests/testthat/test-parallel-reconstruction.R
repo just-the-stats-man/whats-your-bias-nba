@@ -17,3 +17,18 @@ testthat::test_that('isolated season workers reproduce serial real-game reconstr
   for(table in names(keys))testthat::expect_equal(read(table),serial[[table]])
   testthat::expect_silent(assert_warehouse_integrity(con))
 })
+
+testthat::test_that('scoped worker publication preserves unrelated statuses and reuses unchanged snapshots', {
+  con<-connect_warehouse(':memory:');on.exit(DBI::dbDisconnect(con,shutdown=TRUE))
+  ingest_bundle(con,readRDS('data/sample/bundle.rds'),'2024-25')
+  import_reference(con,load_reference_fixture());reconcile_game_totals(con);reconstruct_season(con,'2024-25')
+  ids<-DBI::dbGetQuery(con,'SELECT game_id FROM games ORDER BY game_id')$game_id
+  protected<-DBI::dbGetQuery(con,'SELECT * FROM reconstruction_status WHERE game_id!=?',params=list(ids[1]))
+  folder<-tempfile('scoped-workers-')
+  reconstruct_parallel(con,workers=1L,directory=folder,game_ids=ids[1],resume=TRUE)
+  testthat::expect_equal(DBI::dbGetQuery(con,'SELECT * FROM reconstruction_status WHERE game_id!=?',params=list(ids[1])),protected)
+  before<-DBI::dbReadTable(con,'reconstruction_status')
+  reconstruct_parallel(con,workers=1L,directory=folder,game_ids=ids[1],resume=TRUE)
+  testthat::expect_equal(DBI::dbReadTable(con,'reconstruction_status'),before)
+  testthat::expect_error(reconstruct_parallel(con,workers=1L,directory=folder,game_ids=ids[2],resume=TRUE),'inputs changed')
+})

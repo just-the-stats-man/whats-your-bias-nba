@@ -138,7 +138,7 @@ testthat::test_that('old reference benchmarks use player sums and explicit team-
   testthat::expect_equal(d$total_turnovers,c(3L,0L))
   testthat::expect_equal(d$reference_player_rows,c(5L,5L))
   testthat::expect_true(all(grepl('nba-history-reference:',d$dataset_id)))
-  testthat::expect_equal(DBI::dbGetQuery(con,'SELECT count(*) n FROM dataset_dependencies')$n,2)
+  testthat::expect_equal(DBI::dbGetQuery(con,'SELECT count(*) n FROM dataset_dependencies')$n,3)
   testthat::expect_length(list.files(reference_dir,pattern='[.]parquet$'),1L)
 })
 

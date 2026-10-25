@@ -1,0 +1,18 @@
+source('scripts/load.R')
+args<-commandArgs(trailingOnly=TRUE);years<-if(length(args))as.integer(args) else 2002:2015
+seasons<-season_label(years)
+if(any(years>=2016L))stop('This entrypoint protects the verified modern cohort')
+con<-connect_warehouse()
+tryCatch({
+  DBI::dbExecute(con,'SET threads=4');DBI::dbExecute(con,"SET memory_limit='3GB'")
+  import_historical_reference(con,seasons)
+  reconcile_historical_scope(con,seasons)
+  ids<-DBI::dbGetQuery(con,paste0("SELECT g.game_id,s.signature FROM games g JOIN sdv_history_status s USING(game_id) WHERE s.event_status='observed' AND g.season IN (",paste(DBI::dbQuoteString(con,seasons),collapse=','),') ORDER BY g.game_id'))
+  token<-substr(digest::digest(list(ids,reconstruction_version,DBI::dbGetQuery(con,"SELECT DISTINCT dataset_id FROM independent_team_totals WHERE season<'2015-16' ORDER BY dataset_id")),algo='sha256'),1,16)
+  folder<-Sys.getenv('WYB_RECONSTRUCTION_DIRECTORY',file.path('data/processed',paste0('sdv-workers-',token)))
+  workers<-as.integer(Sys.getenv('WYB_WORKERS','4'))
+  jsonlite::write_json(list(directory=folder,game_count=nrow(ids),version=reconstruction_version,state='running'),'data/processed/sdv_reconstruction_run.json',auto_unbox=TRUE,pretty=TRUE)
+  reconstruct_parallel(con,seasons=seasons,workers=workers,batch_size=100L,directory=folder,game_ids=ids$game_id,resume=TRUE)
+  assert_warehouse_integrity(con)
+  jsonlite::write_json(list(directory=folder,game_count=nrow(ids),version=reconstruction_version,state='published'),'data/processed/sdv_reconstruction_run.json',auto_unbox=TRUE,pretty=TRUE)
+},finally=DBI::dbDisconnect(con,shutdown=TRUE))
