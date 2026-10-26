@@ -1,0 +1,10 @@
+"check","violations","passed"
+"research_player_key",0,TRUE
+"research_team_key",0,TRUE
+"research_shot_key",0,TRUE
+"research_shot_subset",0,TRUE
+"research_possession_subset",0,TRUE
+"research_lineup_five",0,TRUE
+"research_possession_link_unique",0,TRUE
+"research_matchup_time",0,TRUE
+"research_tracking_missing",0,TRUE

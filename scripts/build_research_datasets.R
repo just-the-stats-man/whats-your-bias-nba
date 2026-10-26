@@ -1,0 +1,26 @@
+source('scripts/load.R');con<-connect_warehouse()
+tryCatch({
+  DBI::dbExecute(con,'SET threads=4');DBI::dbExecute(con,"SET memory_limit='3GB'")
+  install_research_views(con);checks<-research_integrity(con)
+  utils::write.csv(checks,'docs/phase4/research_integrity.csv',row.names=FALSE);stopifnot(all(checks$passed))
+  dictionary<-research_dictionary();available<-dictionary[vapply(dictionary$table,function(t)DBI::dbExistsTable(con,t),logical(1)),]
+  counts<-do.call(rbind,lapply(seq_len(nrow(available)),function(i){t<-available$table[i];z<-DBI::dbGetQuery(con,paste0('SELECT count(*) rows_count,count(DISTINCT game_id) games,min(season) first_season,max(season) last_season FROM ',t));cbind(available[i,],z)}))
+  utils::write.csv(counts,'docs/phase4/research_datasets.csv',row.names=FALSE,na='')
+  DBI::dbExecute(con,"CREATE OR REPLACE TEMP TABLE _research_selection AS WITH b AS (SELECT game_id,CASE WHEN count(*)=2 AND count(fga)=2 THEN sum(fga) END game_fga,CASE WHEN count(*)=2 AND count(fta)=2 THEN sum(fta) END game_fta FROM team_box_scores GROUP BY game_id), s AS (SELECT game_id,count(*) n FROM certified_shot_attempts GROUP BY game_id), p AS (SELECT game_id,count(*) FILTER(WHERE did_not_play IS DISTINCT FROM TRUE AND minutes>0) positive_minute_players FROM player_box_scores GROUP BY game_id) SELECT g.*,coalesce(r.possessions_status='reconciled',FALSE) possessions,coalesce(r.lineups_status='reconciled',FALSE) lineups,s.n IS NOT NULL shots,FALSE tracking,g.home_score+g.away_score game_points,b.game_fga,b.game_fta,p.positive_minute_players FROM games g LEFT JOIN reconstruction_status r USING(game_id) LEFT JOIN b USING(game_id) LEFT JOIN s USING(game_id) LEFT JOIN p USING(game_id)")
+  DBI::dbExecute(con,paste0('CREATE OR REPLACE TEMP TABLE _research_selection_long AS ',paste(vapply(c('shots','possessions','lineups','tracking'),function(k)paste0("SELECT * EXCLUDE(shots,possessions,lineups,tracking),'",k,"' cohort,",k,' selected FROM _research_selection'),character(1)),collapse=' UNION ALL ')))
+  queries<-list(
+    selection_season="SELECT season,cohort,selected,count(*) games,count(game_fga) known_fga_games,avg(game_fga) mean_game_fga,var_samp(game_fga) variance_game_fga,count(game_points) known_score_games,avg(game_points) mean_game_points,var_samp(game_points) variance_game_points,avg(game_fta) mean_game_fta,avg(positive_minute_players) mean_recorded_positive_minute_players FROM _research_selection_long GROUP BY ALL ORDER BY ALL",
+    selection_team="SELECT g.season,t.team_id,g.cohort,count(*) canonical_team_games,count(*) FILTER(WHERE g.selected) included_games,avg(CASE WHEN g.selected THEN 1.0 ELSE 0.0 END) inclusion_share FROM _research_selection_long g JOIN team_box_scores t USING(game_id) GROUP BY ALL ORDER BY ALL",
+    selection_type_home="SELECT g.season,g.season_type,t.team_id=g.home_team_id is_home,g.cohort,g.selected,count(*) team_games,avg(t.points) mean_team_points,avg(t.fga) mean_team_fga,avg(t.fta) mean_team_fta FROM _research_selection_long g JOIN team_box_scores t USING(game_id) GROUP BY ALL ORDER BY ALL",
+    selection_player_participation="SELECT g.season,g.cohort,g.selected,count(*) observed_positive_minute_player_games,count(p.minutes) known_minutes,avg(p.minutes) mean_recorded_minutes,avg(p.fga) mean_player_fga,avg(p.points) mean_player_points FROM _research_selection_long g JOIN player_box_scores p USING(game_id) WHERE p.did_not_play IS DISTINCT FROM TRUE AND p.minutes>0 GROUP BY ALL ORDER BY ALL",
+    shot_exclusion_reasons="SELECT season,reason,count(*) candidate_attempts,count(DISTINCT game_id) games FROM research_shot_exclusions GROUP BY ALL ORDER BY ALL",
+    lebron_research_coverage="WITH s AS (SELECT game_id,count(*) attempts FROM research_shots WHERE player_id='espn:1966' GROUP BY game_id) SELECT p.season,count(*) positive_minute_box_games,sum(p.fga) canonical_box_fga,count(*) FILTER(WHERE s.attempts IS NOT NULL) certified_shot_games,coalesce(sum(s.attempts),0) certified_attempts,count(*) FILTER(WHERE p.possession_status='reconciled') possession_games,count(*) FILTER(WHERE p.lineup_status='reconciled') lineup_games FROM research_player_games p LEFT JOIN s USING(game_id) WHERE p.player_id='espn:1966' AND p.participation_status='observed_participation' AND p.minutes>0 GROUP BY p.season ORDER BY p.season")
+  for(name in names(queries))utils::write.csv(DBI::dbGetQuery(con,queries[[name]]),file.path('docs/phase4',paste0(name,'.csv')),row.names=FALSE,na='')
+  missing<-list()
+  for(t in c('research_player_games','research_team_games','research_nba_player_boxes','research_nba_team_boxes','research_shots','research_possessions','research_lineup_stints'))if(DBI::dbExistsTable(con,t)) {
+    fields<-intersect(c('minutes','points','fga','fg3a','x','y','raw_x','raw_y','nearest_defender_distance'),DBI::dbListFields(con,t))
+    for(field in fields)missing[[length(missing)+1L]]<-cbind(data.frame(table=t,field=field),DBI::dbGetQuery(con,paste0('SELECT count(*) observations,count(',field,') available,count(*)-count(',field,') missing FROM ',t)))
+  }
+  utils::write.csv(do.call(rbind,missing),'docs/phase4/research_missingness.csv',row.names=FALSE)
+  cat(nrow(checks),'research checks passed\n')
+},finally=DBI::dbDisconnect(con,shutdown=TRUE))

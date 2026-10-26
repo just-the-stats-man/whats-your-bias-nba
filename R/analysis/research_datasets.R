@@ -1,0 +1,49 @@
+research_dictionary <- function() data.frame(
+  family=c('player_boxes','team_boxes','nba_player_boxes','nba_team_boxes','shots','shot_exclusions','possessions','lineups','possession_lineups','lineup_matchups','lineup_possession_counts'),
+  table=c('research_player_games','research_team_games','research_nba_player_boxes','research_nba_team_boxes','research_shots','research_shot_exclusions','research_possessions','research_lineup_stints','research_possession_stint_links','research_lineup_matchup_intervals','research_lineup_possession_counts'),
+  unit=c('canonical player-game box observation, including explicit DNP','canonical team-game box observation','NBA-native player-game observation; metric statuses required','NBA-native team-game observation; metric statuses required','certified canonical FG attempt','noncertified source FG candidate in a canonical game','reconciled individual possession','certified five-player stint','possession and team stint covering its complete positive time and event interval','intersection of one home and one away certified stint','stint with counts of fully contained possessions only'),
+  key=c('game_id/player_id','game_id/team_id','snapshot_id/source_row','snapshot_id/source_row','game_id/event_id','dataset_id/source_row','possession_id','lineup_id','possession_id/team_id','home_lineup_id/away_lineup_id','lineup_id'),stringsAsFactors=FALSE)
+
+research_tbl <- function(con,family) {
+  dictionary<-research_dictionary();table<-dictionary$table[match(family,dictionary$family)]
+  if(is.na(table)||!DBI::dbExistsTable(con,table))stop('Research family unavailable; install views and inspect source coverage: ',family)
+  dplyr::tbl(con,table)
+}
+
+install_research_views <- function(con) {
+  sql<-c(
+    research_player_games="SELECT p.*,g.season,g.season_type,g.game_date,g.home_team_id,g.away_team_id,p.team_id=g.home_team_id is_home,CASE WHEN p.team_id=g.home_team_id THEN g.away_team_id ELSE g.home_team_id END opponent_team_id,CASE WHEN p.did_not_play IS TRUE THEN 'recorded_DNP' WHEN p.minutes>0 OR p.fga>0 OR p.fta>0 OR p.assists>0 OR p.turnovers>0 OR p.rebounds>0 THEN 'observed_participation' WHEN p.minutes=0 THEN 'recorded_zero_minutes_participation_unestablished' ELSE 'source_missing' END participation_status,coalesce(r.possessions_status,'not_reconstructed') possession_status,coalesce(r.lineups_status,'not_reconstructed') lineup_status FROM player_box_scores p JOIN games g USING(game_id) LEFT JOIN reconstruction_status r USING(game_id)",
+    research_team_games="SELECT t.*,g.season,g.season_type,g.game_date,g.home_team_id,g.away_team_id,t.team_id=g.home_team_id is_home,CASE WHEN t.team_id=g.home_team_id THEN g.away_team_id ELSE g.home_team_id END opponent_team_id,coalesce(r.possessions_status,'not_reconstructed') possession_status,coalesce(r.lineups_status,'not_reconstructed') lineup_status FROM team_box_scores t JOIN games g USING(game_id) LEFT JOIN reconstruction_status r USING(game_id)",
+    research_possessions="SELECT p.*,g.season,g.season_type,g.game_date,g.home_team_id,g.away_team_id,p.offense_team_id=g.home_team_id offense_is_home,CASE WHEN p.offense_team_id=g.home_team_id THEN g.away_team_id ELSE g.home_team_id END defense_team_id,r.lineups_status FROM possessions p JOIN games g USING(game_id) JOIN reconstruction_status r USING(game_id) WHERE r.possessions_status='reconciled'",
+    research_lineup_stints="SELECT l.*,g.season,g.season_type,g.game_date,l.team_id=g.home_team_id is_home,CASE WHEN l.team_id=g.home_team_id THEN g.away_team_id ELSE g.home_team_id END opponent_team_id,list(lp.player_id ORDER BY lp.player_id) player_ids FROM lineups l JOIN lineup_players lp USING(lineup_id) JOIN games g USING(game_id) JOIN reconstruction_status r USING(game_id) WHERE r.lineups_status='reconciled' GROUP BY ALL HAVING count(*)=5 AND count(DISTINCT lp.player_id)=5",
+    research_lineup_matchup_intervals="SELECT h.lineup_id home_lineup_id,a.lineup_id away_lineup_id,h.game_id,g.season,h.period,h.team_id home_team_id,a.team_id away_team_id,greatest(h.start_seconds,a.start_seconds) start_seconds,least(h.end_seconds,a.end_seconds) end_seconds,least(h.end_seconds,a.end_seconds)-greatest(h.start_seconds,a.start_seconds) duration_seconds FROM lineups h JOIN games g ON h.game_id=g.game_id AND h.team_id=g.home_team_id JOIN lineups a ON h.game_id=a.game_id AND a.team_id=g.away_team_id AND h.period=a.period JOIN reconstruction_status r ON h.game_id=r.game_id WHERE r.lineups_status='reconciled' AND least(h.end_seconds,a.end_seconds)>greatest(h.start_seconds,a.start_seconds)")
+  if(DBI::dbExistsTable(con,'certified_shot_attempts')) {
+    sql['research_shots']<-"SELECT c.*,g.season_type,g.game_date,g.home_team_id,g.away_team_id,c.team_id=g.home_team_id is_home,c.dataset_id||':candidates' evidence_dataset_id,CAST(NULL AS DOUBLE) nearest_defender_distance,CAST(NULL AS VARCHAR) assigned_defender_id,'not_collected' tracking_status FROM certified_shot_attempts c JOIN games g USING(game_id)"
+  } else {
+    # Absence of a certification layer never falls back to unvalidated shots.
+    sql['research_shots']<-"SELECT s.*,g.season,g.season_type,g.game_date,g.home_team_id,g.away_team_id,s.team_id=g.home_team_id is_home,s.dataset_id evidence_dataset_id,'source_missing' coordinate_status,CAST(NULL AS DOUBLE) nearest_defender_distance,CAST(NULL AS VARCHAR) assigned_defender_id,'not_collected' tracking_status FROM shot_attempts s JOIN games g USING(game_id) WHERE FALSE"
+  }
+  if(DBI::dbExistsTable(con,'shot_recovery_candidates'))sql['research_shot_exclusions']<-"SELECT c.*,g.season_type,g.game_date FROM shot_recovery_candidates c JOIN games g USING(game_id) WHERE c.certification_status!='certified'"
+  if(DBI::dbExistsTable(con,'historical_player_boxes'))sql['research_nba_player_boxes']<-"SELECT p.*,g.game_date,g.home_team_id,g.away_team_id,p.team_id=g.home_team_id is_home,'nba_observations_do_not_stack_with_canonical' source_namespace FROM historical_player_boxes p JOIN historical_games g USING(game_id) WHERE p.validation_status='observed'"
+  if(DBI::dbExistsTable(con,'historical_team_boxes'))sql['research_nba_team_boxes']<-"SELECT t.*,g.game_date,g.home_team_id,g.away_team_id,t.team_id=g.home_team_id is_home,'nba_observations_do_not_stack_with_canonical' source_namespace FROM historical_team_boxes t JOIN historical_games g USING(game_id) WHERE t.validation_status='observed'"
+  for(name in names(sql))DBI::dbExecute(con,paste0('CREATE OR REPLACE VIEW ',name,' AS ',sql[[name]]))
+  events<-if(DBI::dbExistsTable(con,'reconstruction_event_projection'))'reconstruction_event_projection' else '(SELECT *,event_order derived_event_order FROM pbp_events)'
+  DBI::dbExecute(con,paste0("CREATE OR REPLACE VIEW research_possession_stint_links AS SELECT p.possession_id,p.game_id,p.season,l.team_id,l.lineup_id,l.team_id=p.offense_team_id is_offense,p.duration_seconds,'complete_positive_time_and_event_interval' link_rule FROM research_possessions p JOIN lineups l ON p.game_id=l.game_id AND p.period=l.period AND l.start_seconds<=p.start_seconds AND l.end_seconds>=p.end_seconds JOIN reconstruction_status r ON p.game_id=r.game_id JOIN ",events," a ON l.game_id=a.game_id AND l.start_event_id=a.event_id JOIN ",events," b ON l.game_id=b.game_id AND l.end_event_id=b.event_id WHERE r.lineups_status='reconciled' AND p.duration_seconds>0 AND p.start_order>=a.derived_event_order AND p.end_order<=b.derived_event_order QUALIFY count(*) OVER(PARTITION BY p.possession_id,l.team_id)=1"))
+  DBI::dbExecute(con,"CREATE OR REPLACE VIEW research_lineup_possession_counts AS SELECT l.*,coalesce(p.contained_offense_possessions,0) contained_offense_possessions,coalesce(p.contained_defense_possessions,0) contained_defense_possessions,'fully_contained_only_not_all_stint_possessions' possession_count_scope FROM research_lineup_stints l LEFT JOIN (SELECT lineup_id,count(*) FILTER(WHERE is_offense) contained_offense_possessions,count(*) FILTER(WHERE NOT is_offense) contained_defense_possessions FROM research_possession_stint_links GROUP BY lineup_id) p USING(lineup_id)")
+  invisible(research_dictionary())
+}
+
+research_integrity <- function(con) {
+  queries<-c(
+    research_player_key='SELECT count(*) FROM (SELECT game_id,player_id FROM research_player_games GROUP BY ALL HAVING count(*)!=1)',
+    research_team_key='SELECT count(*) FROM (SELECT game_id,team_id FROM research_team_games GROUP BY ALL HAVING count(*)!=1)',
+    research_shot_key='SELECT count(*) FROM (SELECT game_id,event_id FROM research_shots GROUP BY ALL HAVING count(*)!=1)',
+    research_shot_subset='SELECT abs((SELECT count(*) FROM research_shots)-(SELECT count(*) FROM certified_shot_attempts))',
+    research_possession_subset="SELECT count(*) FROM research_possessions p JOIN reconstruction_status r USING(game_id) WHERE r.possessions_status!='reconciled'",
+    research_lineup_five='SELECT count(*) FROM research_lineup_stints WHERE len(player_ids)!=5 OR len(list_distinct(player_ids))!=5',
+    research_possession_link_unique='SELECT count(*) FROM (SELECT possession_id,team_id FROM research_possession_stint_links GROUP BY ALL HAVING count(*)!=1)',
+    research_matchup_time='SELECT count(*) FROM research_lineup_matchup_intervals WHERE duration_seconds<=0 OR duration_seconds!=end_seconds-start_seconds',
+    research_tracking_missing="SELECT count(*) FROM research_shots WHERE nearest_defender_distance IS NOT NULL OR assigned_defender_id IS NOT NULL OR tracking_status!='not_collected'")
+  if(!DBI::dbExistsTable(con,'certified_shot_attempts'))queries['research_shot_subset']<-'SELECT count(*) FROM research_shots'
+  out<-data.frame(check=names(queries),violations=vapply(queries,function(q)as.numeric(DBI::dbGetQuery(con,q)[[1]][1]),numeric(1)));out$passed<-out$violations==0;out
+}

@@ -66,6 +66,14 @@ records. Provider claims do not establish useful marginal rows. Publication
 remains behind all warehouse gates. Chart exports are capped and expected
 points are estimated; see [shot-chart docs](https://dunkapi.com/docs/get-shot-chart).
 
+Only **140 canonical games without admitted PBP** fall within DunkAPI's
+advertised 2003–04-onward range. Even complete source coverage would not prove
+those games certifiable. Most of the warehouse's missing-PBP games predate that
+range. Other potential value is correction of inconsistent events/types, which
+requires a measured pilot. Older atlas shot counts also need definition checks;
+the documented `shots_only` filter includes FTs, so raw shot-like counts cannot
+be treated as additional FGAs.
+
 For a targeted cohort of N games and P PBP pages per game, budget
 N × (10P + 5) credits including one box. At Starter's included-credit unit
 price, this is a scenario cost of $0.0285/game at P=1 or $0.0475 at P=2,
@@ -74,6 +82,10 @@ If only K games genuinely recover, subscription cost per recovered game is
 $19/K; it is undefined when K=0. The purchase decision must use measured K,
 not this upper bound. Wallet/overage charging must remain disabled or outside
 the explicitly approved credit cap. No live integration is yet validated.
+
+For a small targeted job, an explicitly approved **$5 wallet top-up** may be
+more economical than recurring Starter: it advertises 2,000 nonexpiring credits.
+Do not buy either before the free pilot demonstrates new useful observations.
 
 Current [DunkAPI terms](https://dunkapi.com/terms) permit storage, derivation,
 research/model training and use inside one's product; standalone data/feed
