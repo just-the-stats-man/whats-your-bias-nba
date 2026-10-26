@@ -40,9 +40,9 @@ offsetting team/game discrepancies remain disqualifying. The strict view is
 `certified_shot_attempts`; the preserved canonical table has a larger count.
 
 The physical recovery projection corrects complete numbered FT order and
-explicit substitution-name role encoding. Five possession games and eight
-lineup games pass after supported transformations; another lineup game passes
-fresh current-input gates without an event transformation. No flag/minute
+explicit substitution-name role encoding. Five possession games and nine
+lineup games pass after supported transformations and fresh current-input
+gates. No flag/minute
 tolerance was loosened. All 707 affected previously certified possession
 components and all 367 affected certified lineup components still pass.
 No newly certified game was added by the tested missing-starter or explicit
