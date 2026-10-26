@@ -113,6 +113,13 @@ computed from local shot/FT totals; DNP and missing-data rules are documented.
 
 ## Design, sources and limits
 
+Phase 4 adds **110,420 certified shots across 620 games** from existing licensed
+evidence, plus separate R research cohorts and selection diagnostics. Current
+totals are **3,641,807 canonical / 3,040,069 certified shots**. No provider was
+purchased or called with credentials. See the [Phase 4 results and runbook](docs/phase4/runbook.md),
+[provider-value assessment](docs/phase4/provider_assessment.md), and
+[research extraction guide](docs/phase4/research_datasets.md).
+
 Phase 3 recovers existing source evidence: **1,203,614 added shot attempts,
 five additional possession games, nine additional lineup games and three
 additional fully reconciled games**. The warehouse remains incomplete.

@@ -1,5 +1,25 @@
 # Data dictionary
 
+Phase 4 adds `phase4_terminal_score_evidence` (canonical/NBA game, observed
+terminal event and physical source row), `phase4_shot_publications` (game/method/
+signature/artifact), `phase4_verified_player_boxes` (validated NBA-native records
+with reconstructed team keys), and `phase4_roster_team_evidence` (recorded home
+flag, existing player/roster crosswalk, all ten counts and original minute bounds).
+Original failed NBA records remain untouched. `phase4_prior_shot_recovery_*`
+tables preserve every superseded failed candidate/check row.
+
+`phase4_noncertified_shot_enrichments` holds versioned partial value derivations
+and hashed staging pointers, not additional independent attempts or certified
+rows. `supplementary_snapshots`, `supplementary_permission_receipts`,
+`supplementary_export_records`, and the optional `dunkapi_play_observations`
+are source-specific staging schemas for future approved access. No live paid
+data was imported. Observation unit, permissions, model estimates and source
+missingness remain separate from canonical promotion.
+
+See [research dataset grains/keys](phase4/research_datasets.md),
+[generated coverage](phase4/research_datasets.csv), and
+[activation boundaries](phase4/paid_source_activation.md).
+
 Phase 3 adds an evidence layer without rewriting Phase 2 facts:
 
 | Relation | Grain / meaning |
