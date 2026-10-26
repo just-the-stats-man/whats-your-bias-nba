@@ -1,4 +1,7 @@
-phase4_shot_method <- function() paste0('terminal-shots-v1-',substr(digest::digest(list(shot_recovery_version(),body(terminal_score_evidence),body(terminal_shot_references),body(stage_terminal_shot_game)),algo='sha256'),1,16))
+phase4_shot_method <- function() {
+  inputs<-c(list(shot_recovery_version()),lapply(c('terminal_score_evidence','terminal_shot_references','stage_terminal_shot_game'),function(name)body(get(name,mode='function',inherits=TRUE))))
+  paste0('terminal-shots-v1-',substr(digest::digest(inputs,algo='sha256'),1,16))
+}
 
 terminal_shot_references <- function(con,season) {
   # Reuse precisely the Phase 3 identity/count/minute gates. Its player links
