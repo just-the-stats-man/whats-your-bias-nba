@@ -1,0 +1,9 @@
+{
+  "provider": "dunkapi",
+  "approved": false,
+  "terms_accepted": false,
+  "approval_id": "REPLACE_ONLY_AFTER_EXPLICIT_USER_APPROVAL",
+  "endpoints": ["get_plays"],
+  "max_credits": 500,
+  "expires_at": "2000-01-01 00:00:00"
+}
