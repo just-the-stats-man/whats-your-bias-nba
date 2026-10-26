@@ -39,3 +39,17 @@ independence of statistical providers does not imply independent observation
 of every underlying sporting event. Filtering and CSV serialization are the
 only fixture modifications. Publisher grants are not an independent audit
 of upstream rights; no direct NBA/ESPN scraping is performed.
+
+# Phase 3 regression excerpts
+
+`phase3_recovery_cases.rds` contains normalized, unmodified source-input excerpts
+for ESPN games `220215013` and `400974774`, taken from the already authorized
+SportsDataverse archive. Each case carries its exact dataset manifests, source
+URLs, revisions, SHA-256 values and source attribution/license records. These
+small regression fixtures retain the original event order, descriptions, IDs,
+box records and flags. They reproduce a reversed numbered FT trip and a
+substitution whose native actor fields encode the wrong role. The test applies
+an audited derived projection; the fixture does not contain a balancing event
+or an invented participant. Archive reuse follows its existing CC BY 4.0
+attribution; see the original SportsDataverse attribution above. Fixture SHA-256:
+`1672e8118c01d4809e96a066d490232955990ab373d78cf7a965641902801cfe`.

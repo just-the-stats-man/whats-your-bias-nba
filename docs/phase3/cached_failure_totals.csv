@@ -1,0 +1,45 @@
+"stage","category","findings","games"
+"possessions","unexplained change of offensive control",75993,12094
+"possessions","PBP/box",50151,8876
+"lineups","PBP/box",49871,8768
+"possessions","possession plus non-possession points fail final score reconciliation",9862,5868
+"lineups","reconstructed player minutes exceed source precision bounds",9670,5416
+"possessions","PBP scoring does not equal final score",6321,4166
+"lineups","lineup intervals fail complete game-time coverage",8213,4095
+"possessions","opponent points inside possession",6448,3540
+"possessions","unresolved held jump ball",4665,3184
+"possessions","independent game-level totals disagree",4092,2492
+"lineups","independent game-level totals disagree",3562,2234
+"possessions","ambiguous team defensive rebound",3871,1537
+"lineups","period 4",2871,1364
+"lineups","period 2",2807,1314
+"lineups","period 1",2360,1083
+"lineups","period 3",2084,976
+"possessions","unexplained change of offensive control
+Turnover",1421,734
+"possessions","implausible possession count imbalance",1007,616
+"lineups","PBP/box critical metric unavailable",2444,611
+"possessions","PBP/box critical metric unavailable",2364,591
+"lineups","unrostered live-event participant",655,338
+"lineups","period 5",506,243
+"possessions","missing zero-clock end-period event",197,176
+"possessions","PBP/reference",162,147
+"lineups","PBP/reference",162,147
+"possessions","unassigned offensive event",226,138
+"lineups","missing or unrostered shooter identity",184,136
+"lineups","period 1 invalid clock coverage",71,71
+"lineups","period 4 invalid clock coverage",70,57
+"lineups","period 2 invalid clock coverage",46,45
+"possessions","missing periods",45,44
+"possessions","unclosed period possession",48,41
+"lineups","period 3 invalid clock coverage",42,41
+"lineups","period 6",59,31
+"possessions","inconsistent jump/turnover causal dependency",31,21
+"possessions","unknown scoring team",14,8
+"lineups","period 5 invalid clock coverage",12,6
+"lineups","period 7",6,6
+"possessions","invalid clock",2,2
+"lineups","period 8",4,1
+"lineups","period 6 invalid clock coverage",1,1
+"lineups","parser failure: missing value where TRUE/FALSE needed",2,1
+"possessions","parser failure: missing value where TRUE/FALSE needed",2,1

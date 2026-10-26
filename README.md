@@ -113,6 +113,14 @@ computed from local shot/FT totals; DNP and missing-data rules are documented.
 
 ## Design, sources and limits
 
+Phase 3 recovers existing source evidence: **1,203,614 added shot attempts,
+five additional possession games, nine additional lineup games and three
+additional fully reconciled games**. The warehouse remains incomplete.
+See the [Phase 3 report and runbook](docs/phase3/runbook.md),
+[season shooting completeness](docs/phase3/shot_completeness.csv),
+[component coverage](docs/phase3/reconstruction_completeness.csv), and
+[current unresolved games](docs/phase3/unresolved_games.csv).
+
 - [Architecture](docs/architecture.md): transactions, caching and provenance.
 - [Data dictionary](docs/data_dictionary.md): table grains and missing values.
 - [Source catalog](docs/data_source_catalog.md): coverage, prices and reuse rights.

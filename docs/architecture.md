@@ -73,3 +73,24 @@ into R. Git contains compact aggregate/per-game status reports; raw files,
 databases and full event diagnostics remain local or in expiring artifacts.
 Run writers sequentially: DuckDB permits one writer process. Offline tests
 and fixtures never require source HTTP requests.
+## Phase 3 incremental publication
+
+The Phase 2 `execution_parquet/` and separate NBA `historical_parquet/` exports
+are frozen inputs. Phase 3 shot staging writes season/input/method checkpoints
+and immutable Parquet evidence, then publishes additions in a separate DuckDB
+transaction. Unchanged season signatures avoid extraction; unchanged published
+signatures also avoid replacing millions of candidate rows. Publication still
+checks conflicts against preserved facts and DNP records.
+
+Physical recovery screens explicit source patterns, saves a content-hashed
+result per game and relevant input signature, and compares every affected
+previously certified component. It publishes only newly passing components,
+with component-level method/lineage metadata and exact prior failed-row history.
+Partial resumes merge into the full checkpoint index in deterministic order.
+Raw events are never reordered in storage; audited derived columns are exposed
+separately. The original method fingerprint remains stable.
+
+Do not run legacy finalization exports over the frozen Phase 2 directories.
+The Phase 3 runbook describes local evidence, publication, preserved snapshots,
+standalone reports and clean-clone fixture reproduction. No current processing
+requires a paid service or a new basketball data download.

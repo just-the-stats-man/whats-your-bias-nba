@@ -1,0 +1,669 @@
+"season","stage","category","findings","games"
+"2001-02","lineups","PBP/box",1213,194
+"2001-02","lineups","reconstructed player minutes exceed source precision bounds",176,176
+"2001-02","lineups","lineup intervals fail complete game-time coverage",126,126
+"2001-02","lineups","period 4",90,63
+"2001-02","lineups","period 2",85,59
+"2001-02","lineups","period 3",94,57
+"2001-02","lineups","period 1",95,55
+"2001-02","lineups","period 2 invalid clock coverage",33,33
+"2001-02","lineups","period 4 invalid clock coverage",27,27
+"2001-02","lineups","period 1 invalid clock coverage",27,27
+"2001-02","lineups","period 3 invalid clock coverage",24,24
+"2001-02","lineups","period 5",12,9
+"2001-02","lineups","missing or unrostered shooter identity",3,3
+"2001-02","lineups","period 5 invalid clock coverage",3,3
+"2001-02","lineups","independent game-level totals disagree",1,1
+"2001-02","possessions","unexplained change of offensive control",7154,418
+"2001-02","possessions","ambiguous team defensive rebound",1634,213
+"2001-02","possessions","PBP/box",1213,194
+"2001-02","possessions","possession plus non-possession points fail final score reconciliation",136,136
+"2001-02","possessions","implausible possession count imbalance",112,112
+"2001-02","possessions","PBP scoring does not equal final score",107,107
+"2001-02","possessions","missing zero-clock end-period event",61,61
+"2001-02","possessions","opponent points inside possession",52,52
+"2001-02","possessions","unresolved held jump ball",44,44
+"2001-02","possessions","unassigned offensive event",14,14
+"2001-02","possessions","unclosed period possession",14,14
+"2001-02","possessions","missing periods",13,13
+"2001-02","possessions","unexplained change of offensive control
+Turnover",7,7
+"2001-02","possessions","invalid clock",2,2
+"2001-02","possessions","inconsistent jump/turnover causal dependency",1,1
+"2001-02","possessions","independent game-level totals disagree",1,1
+"2002-03","lineups","PBP/box",2303,605
+"2002-03","lineups","reconstructed player minutes exceed source precision bounds",347,347
+"2002-03","lineups","lineup intervals fail complete game-time coverage",325,325
+"2002-03","lineups","period 4",164,141
+"2002-03","lineups","period 2",117,106
+"2002-03","lineups","period 3",76,69
+"2002-03","lineups","period 1",74,64
+"2002-03","lineups","period 1 invalid clock coverage",33,33
+"2002-03","lineups","missing or unrostered shooter identity",20,20
+"2002-03","lineups","unrostered live-event participant",14,14
+"2002-03","lineups","period 5",16,13
+"2002-03","lineups","period 6",5,4
+"2002-03","lineups","period 4 invalid clock coverage",4,4
+"2002-03","lineups","period 3 invalid clock coverage",3,3
+"2002-03","lineups","independent game-level totals disagree",1,1
+"2002-03","lineups","period 6 invalid clock coverage",1,1
+"2002-03","possessions","unexplained change of offensive control",5094,908
+"2002-03","possessions","PBP/box",2303,605
+"2002-03","possessions","possession plus non-possession points fail final score reconciliation",351,351
+"2002-03","possessions","PBP scoring does not equal final score",294,294
+"2002-03","possessions","opponent points inside possession",135,135
+"2002-03","possessions","ambiguous team defensive rebound",129,117
+"2002-03","possessions","unresolved held jump ball",68,68
+"2002-03","possessions","missing zero-clock end-period event",42,42
+"2002-03","possessions","missing periods",26,26
+"2002-03","possessions","unexplained change of offensive control
+Turnover",27,26
+"2002-03","possessions","unassigned offensive event",10,10
+"2002-03","possessions","implausible possession count imbalance",7,7
+"2002-03","possessions","unclosed period possession",5,5
+"2002-03","possessions","independent game-level totals disagree",1,1
+"2002-03","possessions","unknown scoring team",1,1
+"2003-04","lineups","PBP/box",3036,1047
+"2003-04","lineups","reconstructed player minutes exceed source precision bounds",785,785
+"2003-04","lineups","lineup intervals fail complete game-time coverage",311,311
+"2003-04","lineups","period 2",139,121
+"2003-04","lineups","period 4",118,111
+"2003-04","lineups","period 3",73,71
+"2003-04","lineups","period 1",71,63
+"2003-04","lineups","period 5",12,10
+"2003-04","lineups","missing or unrostered shooter identity",3,3
+"2003-04","lineups","unrostered live-event participant",2,2
+"2003-04","lineups","period 2 invalid clock coverage",1,1
+"2003-04","lineups","period 4 invalid clock coverage",1,1
+"2003-04","lineups","independent game-level totals disagree",1,1
+"2003-04","lineups","period 1 invalid clock coverage",1,1
+"2003-04","lineups","period 6",1,1
+"2003-04","possessions","unexplained change of offensive control",6571,1095
+"2003-04","possessions","PBP/box",3036,1047
+"2003-04","possessions","possession plus non-possession points fail final score reconciliation",423,423
+"2003-04","possessions","PBP scoring does not equal final score",269,269
+"2003-04","possessions","opponent points inside possession",264,264
+"2003-04","possessions","ambiguous team defensive rebound",173,158
+"2003-04","possessions","unresolved held jump ball",77,77
+"2003-04","possessions","unexplained change of offensive control
+Turnover",50,50
+"2003-04","possessions","implausible possession count imbalance",32,32
+"2003-04","possessions","unassigned offensive event",4,4
+"2003-04","possessions","missing zero-clock end-period event",4,4
+"2003-04","possessions","missing periods",3,3
+"2003-04","possessions","independent game-level totals disagree",1,1
+"2003-04","possessions","unknown scoring team",1,1
+"2003-04","possessions","unclosed period possession",1,1
+"2004-05","lineups","PBP/box",2690,981
+"2004-05","lineups","reconstructed player minutes exceed source precision bounds",880,880
+"2004-05","lineups","lineup intervals fail complete game-time coverage",471,471
+"2004-05","lineups","period 1",261,179
+"2004-05","lineups","period 4",186,172
+"2004-05","lineups","period 2",186,170
+"2004-05","lineups","period 3",131,118
+"2004-05","lineups","missing or unrostered shooter identity",21,21
+"2004-05","lineups","unrostered live-event participant",21,21
+"2004-05","lineups","period 5",22,16
+"2004-05","lineups","period 4 invalid clock coverage",5,5
+"2004-05","lineups","period 3 invalid clock coverage",3,3
+"2004-05","lineups","period 1 invalid clock coverage",2,2
+"2004-05","lineups","period 2 invalid clock coverage",1,1
+"2004-05","lineups","period 6",1,1
+"2004-05","possessions","unexplained change of offensive control",6541,1157
+"2004-05","possessions","PBP/box",2690,981
+"2004-05","possessions","unresolved held jump ball",423,423
+"2004-05","possessions","possession plus non-possession points fail final score reconciliation",338,338
+"2004-05","possessions","PBP scoring does not equal final score",232,232
+"2004-05","possessions","opponent points inside possession",169,169
+"2004-05","possessions","ambiguous team defensive rebound",182,161
+"2004-05","possessions","unexplained change of offensive control
+Turnover",27,26
+"2004-05","possessions","implausible possession count imbalance",22,22
+"2004-05","possessions","missing zero-clock end-period event",16,16
+"2004-05","possessions","unassigned offensive event",11,11
+"2004-05","possessions","inconsistent jump/turnover causal dependency",6,6
+"2004-05","possessions","unclosed period possession",4,4
+"2004-05","possessions","unknown scoring team",3,3
+"2004-05","possessions","missing periods",1,1
+"2005-06","lineups","PBP/box",1593,548
+"2005-06","lineups","reconstructed player minutes exceed source precision bounds",332,332
+"2005-06","lineups","lineup intervals fail complete game-time coverage",303,303
+"2005-06","lineups","period 1",213,130
+"2005-06","lineups","period 4",115,106
+"2005-06","lineups","period 2",100,93
+"2005-06","lineups","period 3",80,76
+"2005-06","lineups","unrostered live-event participant",26,26
+"2005-06","lineups","missing or unrostered shooter identity",24,24
+"2005-06","lineups","period 5",10,9
+"2005-06","lineups","period 6",4,4
+"2005-06","lineups","period 3 invalid clock coverage",3,3
+"2005-06","lineups","period 1 invalid clock coverage",2,2
+"2005-06","lineups","period 4 invalid clock coverage",2,2
+"2005-06","lineups","period 5 invalid clock coverage",1,1
+"2005-06","possessions","unexplained change of offensive control",3836,694
+"2005-06","possessions","PBP/box",1593,548
+"2005-06","possessions","unresolved held jump ball",295,295
+"2005-06","possessions","possession plus non-possession points fail final score reconciliation",213,213
+"2005-06","possessions","PBP scoring does not equal final score",166,166
+"2005-06","possessions","ambiguous team defensive rebound",107,95
+"2005-06","possessions","opponent points inside possession",92,92
+"2005-06","possessions","unexplained change of offensive control
+Turnover",17,17
+"2005-06","possessions","implausible possession count imbalance",11,11
+"2005-06","possessions","missing zero-clock end-period event",9,9
+"2005-06","possessions","unassigned offensive event",5,5
+"2005-06","possessions","inconsistent jump/turnover causal dependency",2,2
+"2005-06","possessions","unclosed period possession",2,2
+"2006-07","lineups","PBP/box",212,145
+"2006-07","lineups","reconstructed player minutes exceed source precision bounds",90,90
+"2006-07","lineups","lineup intervals fail complete game-time coverage",65,65
+"2006-07","lineups","period 4",40,39
+"2006-07","lineups","period 3",33,32
+"2006-07","lineups","missing or unrostered shooter identity",31,31
+"2006-07","lineups","period 1",32,30
+"2006-07","lineups","unrostered live-event participant",29,29
+"2006-07","lineups","period 2",31,29
+"2006-07","lineups","period 5",2,2
+"2006-07","lineups","period 4 invalid clock coverage",1,1
+"2006-07","possessions","unexplained change of offensive control",2955,608
+"2006-07","possessions","unresolved held jump ball",299,299
+"2006-07","possessions","PBP/box",212,145
+"2006-07","possessions","ambiguous team defensive rebound",60,52
+"2006-07","possessions","possession plus non-possession points fail final score reconciliation",49,49
+"2006-07","possessions","opponent points inside possession",47,47
+"2006-07","possessions","unexplained change of offensive control
+Turnover",12,12
+"2006-07","possessions","PBP scoring does not equal final score",7,7
+"2006-07","possessions","unassigned offensive event",6,6
+"2006-07","possessions","implausible possession count imbalance",3,3
+"2006-07","possessions","unclosed period possession",1,1
+"2006-07","possessions","missing zero-clock end-period event",1,1
+"2006-07","possessions","inconsistent jump/turnover causal dependency",1,1
+"2007-08","lineups","PBP/box",154,117
+"2007-08","lineups","reconstructed player minutes exceed source precision bounds",68,68
+"2007-08","lineups","lineup intervals fail complete game-time coverage",35,35
+"2007-08","lineups","period 2",15,15
+"2007-08","lineups","period 4",11,11
+"2007-08","lineups","period 3",9,9
+"2007-08","lineups","period 1",9,9
+"2007-08","lineups","missing or unrostered shooter identity",6,6
+"2007-08","lineups","unrostered live-event participant",2,2
+"2007-08","lineups","period 3 invalid clock coverage",1,1
+"2007-08","lineups","period 6",1,1
+"2007-08","lineups","period 1 invalid clock coverage",1,1
+"2007-08","possessions","unexplained change of offensive control",2695,564
+"2007-08","possessions","unresolved held jump ball",247,247
+"2007-08","possessions","PBP/box",154,117
+"2007-08","possessions","possession plus non-possession points fail final score reconciliation",72,72
+"2007-08","possessions","opponent points inside possession",68,68
+"2007-08","possessions","ambiguous team defensive rebound",58,50
+"2007-08","possessions","unexplained change of offensive control
+Turnover",10,9
+"2007-08","possessions","unassigned offensive event",6,6
+"2007-08","possessions","implausible possession count imbalance",5,5
+"2007-08","possessions","PBP scoring does not equal final score",5,5
+"2007-08","possessions","unclosed period possession",2,2
+"2007-08","possessions","missing zero-clock end-period event",2,2
+"2008-09","lineups","PBP/box",108,97
+"2008-09","lineups","reconstructed player minutes exceed source precision bounds",86,86
+"2008-09","lineups","lineup intervals fail complete game-time coverage",44,44
+"2008-09","lineups","period 2",10,10
+"2008-09","lineups","period 1",10,10
+"2008-09","lineups","period 4",7,7
+"2008-09","lineups","period 5",7,7
+"2008-09","lineups","period 3 invalid clock coverage",3,3
+"2008-09","lineups","period 4 invalid clock coverage",2,2
+"2008-09","lineups","period 3",2,2
+"2008-09","lineups","period 6",1,1
+"2008-09","lineups","period 1 invalid clock coverage",1,1
+"2008-09","lineups","period 2 invalid clock coverage",1,1
+"2008-09","lineups","period 7",1,1
+"2008-09","possessions","unexplained change of offensive control",3191,668
+"2008-09","possessions","unresolved held jump ball",308,308
+"2008-09","possessions","PBP/box",108,97
+"2008-09","possessions","opponent points inside possession",88,88
+"2008-09","possessions","possession plus non-possession points fail final score reconciliation",87,87
+"2008-09","possessions","ambiguous team defensive rebound",39,37
+"2008-09","possessions","unexplained change of offensive control
+Turnover",12,12
+"2008-09","possessions","missing zero-clock end-period event",7,7
+"2008-09","possessions","implausible possession count imbalance",5,5
+"2008-09","possessions","unassigned offensive event",3,3
+"2008-09","possessions","unclosed period possession",1,1
+"2009-10","lineups","PBP/box",133,107
+"2009-10","lineups","reconstructed player minutes exceed source precision bounds",65,65
+"2009-10","lineups","lineup intervals fail complete game-time coverage",31,31
+"2009-10","lineups","period 4",9,9
+"2009-10","lineups","period 5",6,6
+"2009-10","lineups","period 2",7,6
+"2009-10","lineups","period 3",5,5
+"2009-10","lineups","period 1",5,5
+"2009-10","possessions","unexplained change of offensive control",2801,640
+"2009-10","possessions","unresolved held jump ball",309,309
+"2009-10","possessions","PBP/box",133,107
+"2009-10","possessions","possession plus non-possession points fail final score reconciliation",85,85
+"2009-10","possessions","opponent points inside possession",84,84
+"2009-10","possessions","ambiguous team defensive rebound",62,60
+"2009-10","possessions","unexplained change of offensive control
+Turnover",14,14
+"2009-10","possessions","implausible possession count imbalance",10,10
+"2009-10","possessions","unassigned offensive event",5,5
+"2009-10","possessions","PBP scoring does not equal final score",1,1
+"2010-11","lineups","reconstructed player minutes exceed source precision bounds",80,80
+"2010-11","lineups","lineup intervals fail complete game-time coverage",35,35
+"2010-11","lineups","PBP/box",49,17
+"2010-11","lineups","period 5",9,8
+"2010-11","lineups","period 3",6,6
+"2010-11","lineups","period 1",5,5
+"2010-11","lineups","period 2",5,5
+"2010-11","lineups","period 4",4,4
+"2010-11","lineups","period 1 invalid clock coverage",3,3
+"2010-11","lineups","period 7",1,1
+"2010-11","lineups","period 2 invalid clock coverage",1,1
+"2010-11","lineups","period 4 invalid clock coverage",1,1
+"2010-11","lineups","period 3 invalid clock coverage",1,1
+"2010-11","possessions","unexplained change of offensive control",3406,720
+"2010-11","possessions","possession plus non-possession points fail final score reconciliation",63,63
+"2010-11","possessions","opponent points inside possession",61,61
+"2010-11","possessions","ambiguous team defensive rebound",56,56
+"2010-11","possessions","unresolved held jump ball",38,38
+"2010-11","possessions","PBP/box",49,17
+"2010-11","possessions","unexplained change of offensive control
+Turnover",15,15
+"2010-11","possessions","missing zero-clock end-period event",6,6
+"2010-11","possessions","unassigned offensive event",6,6
+"2010-11","possessions","implausible possession count imbalance",4,4
+"2010-11","possessions","PBP scoring does not equal final score",4,4
+"2010-11","possessions","unclosed period possession",3,3
+"2011-12","lineups","reconstructed player minutes exceed source precision bounds",51,51
+"2011-12","lineups","lineup intervals fail complete game-time coverage",27,27
+"2011-12","lineups","PBP/box",47,11
+"2011-12","lineups","period 2",5,5
+"2011-12","lineups","period 5",6,5
+"2011-12","lineups","period 4",4,4
+"2011-12","lineups","period 4 invalid clock coverage",4,4
+"2011-12","lineups","period 1",4,4
+"2011-12","lineups","period 3",3,3
+"2011-12","lineups","period 7",1,1
+"2011-12","lineups","period 2 invalid clock coverage",1,1
+"2011-12","possessions","unexplained change of offensive control",2394,453
+"2011-12","possessions","possession plus non-possession points fail final score reconciliation",82,82
+"2011-12","possessions","opponent points inside possession",78,78
+"2011-12","possessions","ambiguous team defensive rebound",29,27
+"2011-12","possessions","unresolved held jump ball",25,25
+"2011-12","possessions","unexplained change of offensive control
+Turnover",11,11
+"2011-12","possessions","PBP/box",47,11
+"2011-12","possessions","implausible possession count imbalance",10,10
+"2011-12","possessions","missing zero-clock end-period event",5,5
+"2011-12","possessions","PBP scoring does not equal final score",4,4
+"2011-12","possessions","unassigned offensive event",3,3
+"2012-13","lineups","PBP/box",2489,745
+"2012-13","lineups","reconstructed player minutes exceed source precision bounds",253,253
+"2012-13","lineups","lineup intervals fail complete game-time coverage",244,244
+"2012-13","lineups","period 2",82,71
+"2012-13","lineups","period 1",72,60
+"2012-13","lineups","period 4",68,60
+"2012-13","lineups","period 3",61,52
+"2012-13","lineups","unrostered live-event participant",38,38
+"2012-13","lineups","period 5",12,12
+"2012-13","lineups","missing or unrostered shooter identity",7,7
+"2012-13","lineups","period 2 invalid clock coverage",6,6
+"2012-13","lineups","period 4 invalid clock coverage",4,4
+"2012-13","lineups","period 3 invalid clock coverage",2,2
+"2012-13","lineups","period 6",2,2
+"2012-13","lineups","period 7",1,1
+"2012-13","lineups","period 1 invalid clock coverage",1,1
+"2012-13","lineups","independent game-level totals disagree",1,1
+"2012-13","possessions","unexplained change of offensive control",3567,781
+"2012-13","possessions","PBP/box",2489,745
+"2012-13","possessions","possession plus non-possession points fail final score reconciliation",737,737
+"2012-13","possessions","opponent points inside possession",545,545
+"2012-13","possessions","PBP scoring does not equal final score",450,450
+"2012-13","possessions","unexplained change of offensive control
+Turnover",148,135
+"2012-13","possessions","ambiguous team defensive rebound",81,76
+"2012-13","possessions","implausible possession count imbalance",65,65
+"2012-13","possessions","unresolved held jump ball",62,62
+"2012-13","possessions","missing zero-clock end-period event",13,13
+"2012-13","possessions","unassigned offensive event",10,10
+"2012-13","possessions","unclosed period possession",5,5
+"2012-13","possessions","inconsistent jump/turnover causal dependency",3,3
+"2012-13","possessions","independent game-level totals disagree",1,1
+"2013-14","lineups","PBP/box",127,52
+"2013-14","lineups","reconstructed player minutes exceed source precision bounds",49,49
+"2013-14","lineups","lineup intervals fail complete game-time coverage",47,47
+"2013-14","lineups","unrostered live-event participant",41,41
+"2013-14","lineups","period 5",14,14
+"2013-14","lineups","period 2",13,12
+"2013-14","lineups","period 4",9,9
+"2013-14","lineups","period 1",7,6
+"2013-14","lineups","period 3",5,5
+"2013-14","lineups","period 6",3,3
+"2013-14","lineups","independent game-level totals disagree",2,2
+"2013-14","lineups","period 7",2,2
+"2013-14","possessions","unexplained change of offensive control",774,350
+"2013-14","possessions","possession plus non-possession points fail final score reconciliation",206,206
+"2013-14","possessions","opponent points inside possession",195,195
+"2013-14","possessions","unresolved held jump ball",94,94
+"2013-14","possessions","PBP/box",127,52
+"2013-14","possessions","PBP scoring does not equal final score",26,26
+"2013-14","possessions","unexplained change of offensive control
+Turnover",26,26
+"2013-14","possessions","ambiguous team defensive rebound",29,25
+"2013-14","possessions","implausible possession count imbalance",14,14
+"2013-14","possessions","unassigned offensive event",10,10
+"2013-14","possessions","independent game-level totals disagree",2,2
+"2014-15","lineups","PBP/box",211,86
+"2014-15","lineups","unrostered live-event participant",54,54
+"2014-15","lineups","lineup intervals fail complete game-time coverage",46,46
+"2014-15","lineups","reconstructed player minutes exceed source precision bounds",46,46
+"2014-15","lineups","period 4",15,13
+"2014-15","lineups","period 5",11,10
+"2014-15","lineups","period 2",10,10
+"2014-15","lineups","period 1",9,9
+"2014-15","lineups","period 3",5,5
+"2014-15","lineups","missing or unrostered shooter identity",3,3
+"2014-15","lineups","period 6",2,2
+"2014-15","possessions","unexplained change of offensive control",673,299
+"2014-15","possessions","possession plus non-possession points fail final score reconciliation",200,200
+"2014-15","possessions","opponent points inside possession",180,180
+"2014-15","possessions","PBP/box",211,86
+"2014-15","possessions","unresolved held jump ball",72,72
+"2014-15","possessions","PBP scoring does not equal final score",48,48
+"2014-15","possessions","unexplained change of offensive control
+Turnover",38,36
+"2014-15","possessions","ambiguous team defensive rebound",26,20
+"2014-15","possessions","implausible possession count imbalance",13,13
+"2014-15","possessions","unassigned offensive event",4,4
+"2014-15","possessions","inconsistent jump/turnover causal dependency",1,1
+"2015-16","lineups","PBP/box",19428,823
+"2015-16","lineups","independent game-level totals disagree",1169,581
+"2015-16","lineups","unrostered live-event participant",216,54
+"2015-16","lineups","lineup intervals fail complete game-time coverage",212,53
+"2015-16","lineups","reconstructed player minutes exceed source precision bounds",212,53
+"2015-16","lineups","period 4",88,22
+"2015-16","lineups","missing or unrostered shooter identity",48,12
+"2015-16","lineups","period 5",44,11
+"2015-16","lineups","period 2",44,11
+"2015-16","lineups","period 3",28,7
+"2015-16","lineups","period 1",20,5
+"2015-16","lineups","period 8",4,1
+"2015-16","lineups","period 6",4,1
+"2015-16","possessions","possession plus non-possession points fail final score reconciliation",3141,930
+"2015-16","possessions","PBP scoring does not equal final score",2904,930
+"2015-16","possessions","PBP/box",19825,930
+"2015-16","possessions","unexplained change of offensive control",11276,746
+"2015-16","possessions","independent game-level totals disagree",1307,650
+"2015-16","possessions","opponent points inside possession",1832,542
+"2015-16","possessions","implausible possession count imbalance",447,169
+"2015-16","possessions","unexplained change of offensive control
+Turnover",449,138
+"2015-16","possessions","ambiguous team defensive rebound",490,126
+"2015-16","possessions","unresolved held jump ball",280,70
+"2015-16","possessions","unassigned offensive event",40,10
+"2015-16","possessions","inconsistent jump/turnover causal dependency",6,3
+"2015-16","possessions","unknown scoring team",3,1
+"2016-17","lineups","PBP/box",2369,289
+"2016-17","lineups","independent game-level totals disagree",423,205
+"2016-17","lineups","reconstructed player minutes exceed source precision bounds",264,66
+"2016-17","lineups","lineup intervals fail complete game-time coverage",252,63
+"2016-17","lineups","unrostered live-event participant",196,49
+"2016-17","lineups","period 4",68,17
+"2016-17","lineups","period 2",64,15
+"2016-17","lineups","period 3",60,15
+"2016-17","lineups","period 1",48,10
+"2016-17","lineups","period 5",24,5
+"2016-17","lineups","period 6",8,1
+"2016-17","lineups","period 5 invalid clock coverage",4,1
+"2016-17","lineups","missing or unrostered shooter identity",4,1
+"2016-17","lineups","period 4 invalid clock coverage",4,1
+"2016-17","possessions","possession plus non-possession points fail final score reconciliation",1150,568
+"2016-17","possessions","PBP/box",3387,568
+"2016-17","possessions","PBP scoring does not equal final score",670,568
+"2016-17","possessions","unexplained change of offensive control",5098,497
+"2016-17","possessions","independent game-level totals disagree",820,403
+"2016-17","possessions","opponent points inside possession",857,346
+"2016-17","possessions","implausible possession count imbalance",132,100
+"2016-17","possessions","unexplained change of offensive control
+Turnover",197,78
+"2016-17","possessions","unresolved held jump ball",308,77
+"2016-17","possessions","ambiguous team defensive rebound",128,49
+"2016-17","possessions","unassigned offensive event",24,6
+"2016-17","possessions","missing zero-clock end-period event",8,2
+"2016-17","possessions","inconsistent jump/turnover causal dependency",5,2
+"2016-17","possessions","unclosed period possession",4,1
+"2016-17","possessions","unknown scoring team",3,1
+"2017-18","lineups","PBP/box",3109,612
+"2017-18","lineups","PBP/box critical metric unavailable",2444,611
+"2017-18","lineups","reconstructed player minutes exceed source precision bounds",1896,474
+"2017-18","lineups","lineup intervals fail complete game-time coverage",1888,472
+"2017-18","lineups","independent game-level totals disagree",884,435
+"2017-18","lineups","period 2",700,160
+"2017-18","lineups","period 4",664,151
+"2017-18","lineups","PBP/reference",162,147
+"2017-18","lineups","period 3",520,126
+"2017-18","lineups","period 1",472,109
+"2017-18","lineups","period 5",68,14
+"2017-18","lineups","period 5 invalid clock coverage",4,1
+"2017-18","lineups","period 6",4,1
+"2017-18","lineups","period 4 invalid clock coverage",4,1
+"2017-18","possessions","possession plus non-possession points fail final score reconciliation",1189,592
+"2017-18","possessions","PBP scoring does not equal final score",640,592
+"2017-18","possessions","PBP/box",3045,592
+"2017-18","possessions","PBP/box critical metric unavailable",2364,591
+"2017-18","possessions","independent game-level totals disagree",902,444
+"2017-18","possessions","unexplained change of offensive control",3275,372
+"2017-18","possessions","opponent points inside possession",751,200
+"2017-18","possessions","PBP/reference",162,147
+"2017-18","possessions","unresolved held jump ball",296,74
+"2017-18","possessions","ambiguous team defensive rebound",208,52
+"2017-18","possessions","unexplained change of offensive control
+Turnover",156,38
+"2017-18","possessions","implausible possession count imbalance",84,21
+"2017-18","possessions","unassigned offensive event",16,4
+"2017-18","possessions","missing zero-clock end-period event",8,2
+"2017-18","possessions","unknown scoring team",3,1
+"2017-18","possessions","unclosed period possession",4,1
+"2017-18","possessions","inconsistent jump/turnover causal dependency",4,1
+"2018-19","lineups","PBP/box",3276,572
+"2018-19","lineups","reconstructed player minutes exceed source precision bounds",1458,473
+"2018-19","lineups","lineup intervals fail complete game-time coverage",1458,473
+"2018-19","lineups","independent game-level totals disagree",401,374
+"2018-19","lineups","period 2",520,159
+"2018-19","lineups","period 4",487,151
+"2018-19","lineups","period 1",425,129
+"2018-19","lineups","period 3",358,114
+"2018-19","lineups","period 5",43,14
+"2018-19","lineups","period 4 invalid clock coverage",9,3
+"2018-19","lineups","unrostered live-event participant",6,2
+"2018-19","lineups","period 6",6,2
+"2018-19","lineups","missing or unrostered shooter identity",6,2
+"2018-19","possessions","PBP scoring does not equal final score",428,418
+"2018-19","possessions","PBP/box",2569,418
+"2018-19","possessions","possession plus non-possession points fail final score reconciliation",641,418
+"2018-19","possessions","independent game-level totals disagree",331,310
+"2018-19","possessions","unexplained change of offensive control",1410,237
+"2018-19","possessions","opponent points inside possession",303,111
+"2018-19","possessions","unresolved held jump ball",234,77
+"2018-19","possessions","ambiguous team defensive rebound",65,22
+"2018-19","possessions","unexplained change of offensive control
+Turnover",43,14
+"2018-19","possessions","implausible possession count imbalance",13,4
+"2018-19","possessions","missing zero-clock end-period event",9,3
+"2018-19","possessions","unassigned offensive event",6,2
+"2019-20","lineups","PBP/box",1747,437
+"2019-20","lineups","reconstructed player minutes exceed source precision bounds",1132,378
+"2019-20","lineups","lineup intervals fail complete game-time coverage",1129,377
+"2019-20","lineups","independent game-level totals disagree",323,319
+"2019-20","lineups","period 4",411,128
+"2019-20","lineups","period 2",375,119
+"2019-20","lineups","period 1",325,107
+"2019-20","lineups","period 3",279,88
+"2019-20","lineups","period 5",45,14
+"2019-20","lineups","period 6",3,1
+"2019-20","possessions","PBP/box",1137,249
+"2019-20","possessions","independent game-level totals disagree",195,191
+"2019-20","possessions","unexplained change of offensive control",521,107
+"2019-20","possessions","unresolved held jump ball",198,66
+"2019-20","possessions","possession plus non-possession points fail final score reconciliation",132,58
+"2019-20","possessions","opponent points inside possession",109,38
+"2019-20","possessions","PBP scoring does not equal final score",27,25
+"2019-20","possessions","ambiguous team defensive rebound",45,15
+"2019-20","possessions","unexplained change of offensive control
+Turnover",42,14
+"2019-20","possessions","unassigned offensive event",6,2
+"2020-21","lineups","PBP/box",659,148
+"2020-21","lineups","independent game-level totals disagree",164,132
+"2020-21","lineups","reconstructed player minutes exceed source precision bounds",246,82
+"2020-21","lineups","lineup intervals fail complete game-time coverage",240,80
+"2020-21","lineups","period 4",66,21
+"2020-21","lineups","period 2",60,19
+"2020-21","lineups","period 3",51,17
+"2020-21","lineups","period 1",36,12
+"2020-21","lineups","period 5",33,11
+"2020-21","lineups","period 6",6,2
+"2020-21","lineups","unrostered live-event participant",6,2
+"2020-21","lineups","missing or unrostered shooter identity",6,2
+"2020-21","possessions","PBP/box",905,232
+"2020-21","possessions","independent game-level totals disagree",228,195
+"2020-21","possessions","unexplained change of offensive control",585,113
+"2020-21","possessions","unresolved held jump ball",213,71
+"2020-21","possessions","possession plus non-possession points fail final score reconciliation",145,49
+"2020-21","possessions","opponent points inside possession",144,48
+"2020-21","possessions","ambiguous team defensive rebound",45,15
+"2020-21","possessions","unexplained change of offensive control
+Turnover",21,7
+"2020-21","possessions","unassigned offensive event",9,3
+"2020-21","possessions","PBP scoring does not equal final score",1,1
+"2021-22","lineups","independent game-level totals disagree",168,168
+"2021-22","lineups","PBP/box",298,97
+"2021-22","lineups","lineup intervals fail complete game-time coverage",148,74
+"2021-22","lineups","reconstructed player minutes exceed source precision bounds",148,74
+"2021-22","lineups","period 3",44,21
+"2021-22","lineups","period 4",36,18
+"2021-22","lineups","period 2",30,15
+"2021-22","lineups","period 1",30,14
+"2021-22","lineups","period 5",12,6
+"2021-22","lineups","period 6",4,2
+"2021-22","possessions","independent game-level totals disagree",279,279
+"2021-22","possessions","unexplained change of offensive control",390,117
+"2021-22","possessions","PBP/box",298,97
+"2021-22","possessions","unresolved held jump ball",166,83
+"2021-22","possessions","possession plus non-possession points fail final score reconciliation",84,42
+"2021-22","possessions","opponent points inside possession",78,39
+"2021-22","possessions","ambiguous team defensive rebound",38,19
+"2021-22","possessions","unexplained change of offensive control
+Turnover",18,9
+"2021-22","possessions","unassigned offensive event",6,3
+"2021-22","possessions","PBP scoring does not equal final score",6,3
+"2022-23","lineups","reconstructed player minutes exceed source precision bounds",251,126
+"2022-23","lineups","lineup intervals fail complete game-time coverage",179,90
+"2022-23","lineups","PBP/box",154,45
+"2022-23","lineups","period 2",42,21
+"2022-23","lineups","period 4",42,20
+"2022-23","lineups","period 5",42,20
+"2022-23","lineups","period 1",34,16
+"2022-23","lineups","period 3",23,12
+"2022-23","lineups","independent game-level totals disagree",4,2
+"2022-23","lineups","parser failure: missing value where TRUE/FALSE needed",2,1
+"2022-23","lineups","period 3 invalid clock coverage",2,1
+"2022-23","lineups","missing or unrostered shooter identity",2,1
+"2022-23","lineups","period 4 invalid clock coverage",2,1
+"2022-23","possessions","unexplained change of offensive control",468,135
+"2022-23","possessions","unresolved held jump ball",128,64
+"2022-23","possessions","possession plus non-possession points fail final score reconciliation",98,49
+"2022-23","possessions","opponent points inside possession",92,46
+"2022-23","possessions","PBP/box",154,45
+"2022-23","possessions","ambiguous team defensive rebound",50,24
+"2022-23","possessions","unexplained change of offensive control
+Turnover",17,9
+"2022-23","possessions","PBP scoring does not equal final score",10,5
+"2022-23","possessions","unassigned offensive event",6,3
+"2022-23","possessions","missing zero-clock end-period event",4,2
+"2022-23","possessions","implausible possession count imbalance",4,2
+"2022-23","possessions","independent game-level totals disagree",4,2
+"2022-23","possessions","parser failure: missing value where TRUE/FALSE needed",2,1
+"2022-23","possessions","missing periods",2,1
+"2023-24","lineups","reconstructed player minutes exceed source precision bounds",168,84
+"2023-24","lineups","lineup intervals fail complete game-time coverage",166,83
+"2023-24","lineups","PBP/box",220,72
+"2023-24","lineups","period 4",46,23
+"2023-24","lineups","period 2",46,23
+"2023-24","lineups","period 1",34,17
+"2023-24","lineups","period 3",32,16
+"2023-24","lineups","period 5",16,8
+"2023-24","lineups","independent game-level totals disagree",6,3
+"2023-24","lineups","period 6",2,1
+"2023-24","possessions","unexplained change of offensive control",391,114
+"2023-24","possessions","PBP/box",220,72
+"2023-24","possessions","unresolved held jump ball",138,69
+"2023-24","possessions","possession plus non-possession points fail final score reconciliation",74,37
+"2023-24","possessions","opponent points inside possession",64,32
+"2023-24","possessions","ambiguous team defensive rebound",44,22
+"2023-24","possessions","PBP scoring does not equal final score",14,7
+"2023-24","possessions","unexplained change of offensive control
+Turnover",10,5
+"2023-24","possessions","unassigned offensive event",8,4
+"2023-24","possessions","implausible possession count imbalance",6,3
+"2023-24","possessions","independent game-level totals disagree",6,3
+"2024-25","lineups","reconstructed player minutes exceed source precision bounds",338,169
+"2024-25","lineups","lineup intervals fail complete game-time coverage",210,105
+"2024-25","lineups","PBP/box",186,68
+"2024-25","lineups","period 3",58,28
+"2024-25","lineups","period 2",58,28
+"2024-25","lineups","period 4",54,27
+"2024-25","lineups","period 1",28,14
+"2024-25","lineups","period 5",22,11
+"2024-25","lineups","independent game-level totals disagree",3,2
+"2024-25","lineups","period 6",2,1
+"2024-25","possessions","unexplained change of offensive control",464,147
+"2024-25","possessions","unresolved held jump ball",168,84
+"2024-25","possessions","PBP/box",186,68
+"2024-25","possessions","possession plus non-possession points fail final score reconciliation",86,43
+"2024-25","possessions","opponent points inside possession",84,42
+"2024-25","possessions","ambiguous team defensive rebound",52,26
+"2024-25","possessions","unexplained change of offensive control
+Turnover",26,12
+"2024-25","possessions","PBP scoring does not equal final score",4,2
+"2024-25","possessions","implausible possession count imbalance",4,2
+"2024-25","possessions","independent game-level totals disagree",3,2
+"2024-25","possessions","unassigned offensive event",2,1
+"2025-26","lineups","PBP/box",4018,842
+"2025-26","lineups","reconstructed player minutes exceed source precision bounds",243,126
+"2025-26","lineups","lineup intervals fail complete game-time coverage",215,112
+"2025-26","lineups","period 4",67,36
+"2025-26","lineups","period 2",61,31
+"2025-26","lineups","period 3",46,21
+"2025-26","lineups","period 1",39,20
+"2025-26","lineups","period 5",18,8
+"2025-26","lineups","independent game-level totals disagree",11,7
+"2025-26","lineups","unrostered live-event participant",4,4
+"2025-26","lineups","period 2 invalid clock coverage",2,1
+"2025-26","possessions","PBP/box",4018,842
+"2025-26","possessions","unexplained change of offensive control",451,151
+"2025-26","possessions","unresolved held jump ball",175,88
+"2025-26","possessions","possession plus non-possession points fail final score reconciliation",76,38
+"2025-26","possessions","opponent points inside possession",72,36
+"2025-26","possessions","ambiguous team defensive rebound",41,20
+"2025-26","possessions","unexplained change of offensive control
+Turnover",28,14
+"2025-26","possessions","independent game-level totals disagree",11,7
+"2025-26","possessions","unassigned offensive event",6,3
+"2025-26","possessions","PBP scoring does not equal final score",4,2
+"2025-26","possessions","implausible possession count imbalance",2,1
+"2025-26","possessions","missing zero-clock end-period event",2,1
+"2025-26","possessions","inconsistent jump/turnover causal dependency",2,1
+"2025-26","possessions","unclosed period possession",2,1
+"2026-27","lineups","PBP/box",42,11
+"2026-27","lineups","lineup intervals fail complete game-time coverage",6,3
+"2026-27","lineups","reconstructed player minutes exceed source precision bounds",6,3
+"2026-27","lineups","period 2",2,1
+"2026-27","lineups","period 4",2,1
+"2026-27","lineups","period 3",2,1
+"2026-27","lineups","period 1",2,1
+"2026-27","possessions","PBP/box",42,11
+"2026-27","possessions","unexplained change of offensive control",12,3
+"2026-27","possessions","possession plus non-possession points fail final score reconciliation",4,2
+"2026-27","possessions","opponent points inside possession",4,2
+"2026-27","possessions","implausible possession count imbalance",2,1

@@ -183,3 +183,35 @@ seasons. Reconstruction accepts season labels and resumes unchanged games.
 See [season completeness](season_completeness.md) for actual counts.
 Completed processing, canonical data, reconciled reconstruction, and agreement
 with an independent source are different completeness measures.
+## Phase 3 scoped recovery
+
+The original physical engine and its four-file Phase 2 fingerprint remain
+unchanged. A versioned working projection can reorder a complete, uniquely
+numbered same-clock ordinary FT trip, recover a missing explicit jump winner,
+and assign substitution roles from exact unique full roster names in observed
+“enters the game for” descriptions. A historical actor field can contain the
+outgoing player in the incoming slot; only IDs belonging to that explicitly
+named pair are eligible for role correction. An unrelated observed ID is a
+conflict. Unicode transliteration and trimming whitespace/sentence termination
+are explicit; no fuzzy aliases or missing names are guessed.
+
+FT trips require unique complete ordinals, one shooter/team/period/clock, no
+intervening live ball event and no substitution involving the shooter. Native
+order and descriptions remain untouched. Duplicate trips, retained FTs, gaps
+and equally plausible sequences stay unresolved. A roster with wholly missing
+starter flags can use the same unique first-participation/exit/entry constraints
+as later periods; explicit contradictory flags are retained. This last rule is
+tested but did not add a production game in the screened cohort.
+
+Every result must still pass the original control, scoring, event totals,
+five-member, participation, time coverage, reference and player-minute gates.
+The source precision bounds are unchanged. The 2,002-game scope includes
+affected certified games for regression checking. Publication only adds failed
+components that now pass; it never replaces previously certified possessions or
+lineups. Component-level methods and immutable registered RDS results identify
+the derivation; original failed statuses/checks and exceptions remain available.
+
+The Phase 3 commands and limitations are in [the runbook](phase3/runbook.md).
+Legacy full-rebuild commands above reproduce the earlier engine; they should
+not be used to overwrite a Phase 3 warehouse. This phase does not infer absent
+substitutions, team-rebound intent, optical tracking or defender assignments.

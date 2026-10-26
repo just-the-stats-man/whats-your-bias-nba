@@ -1,5 +1,35 @@
 # Data dictionary
 
+Phase 3 adds an evidence layer without rewriting Phase 2 facts:
+
+| Relation | Grain / meaning |
+|---|---|
+| `shot_recovery_candidates` | Normalized source dataset + physical raw row; includes unmatched and noncertified FG candidates, native event IDs, raw/transformed locations, per-field statuses, exact NBA reference pointers and rejection reasons |
+| `shot_recovery_checks` | Dataset/game/team/metric; observed versus expected FGA/FGM/3PA/3PM |
+| `shot_recovery_checkpoints` | Season; complete relevant input signature and method |
+| `certified_shot_attempts` | Current game/event evidence that passes all shooting and actor gates and agrees with a canonical row; use this view for the Phase 3 validated shooting cohort |
+| `shot_publication_conflicts` | Current conflicting observations; includes shooter/DNP contradictions and preserved canonical field disagreements |
+| `shot_recovery_withdrawn_rows` | Preserved evidence for any new recovery row withdrawn by a publication gate; no Phase 2 row is removed |
+| `reconstruction_component_methods` | Game + possession/lineup component; actual method, complete input signature, registered result artifact |
+| `recovery_transformations` | Event/player-level explicit name-role or numbered-FT derivation, original and derived order, evidence and artifact |
+| `reconstruction_event_projection` | Original PBP columns plus `derived_*` participant/order columns for published recovery evidence; canonical PBP stays unchanged |
+| `phase3_prior_reconstruction_status`, `phase3_prior_lineup_minute_checks` | Exact original rows before a failed component was recertified |
+
+`shot_attempts` includes preserved older rows as well as new certified additions;
+its total is not the size of the stricter validated view. In the evidence view,
+`value_status` distinguishes observed and reconstructed values. A uniquely
+box-constrained value is not an independent verification of that box. Location
+status is separate from attempt certification: missing/invalid locations remain
+null, with published native pairs retained. Aggregate observed attempts and
+validated attempts are separate denominators. NBA source observations have a
+separate link-coverage report and must not be added to overlapping ESPN counts.
+
+Some games combine a preserved Phase 2 component and a recovered component.
+Use `reconstruction_component_methods` for those games; a single status-row
+version cannot describe both components. Reports in `docs/phase3/` use all
+current methods and supersede earlier coverage counts without rewriting the
+historical Phase 2 reports.
+
 Historical execution adds `sdv_history_status` (game/family admission status),
 `sdv_history_checkpoints` (season/input signature), and `sdv_nba_player_links`
 (reviewable exact identity evidence for whole NBA box recovery). Earlier failed
