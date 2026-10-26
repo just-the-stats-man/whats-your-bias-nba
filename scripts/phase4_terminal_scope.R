@@ -1,0 +1,10 @@
+source('scripts/load.R');con<-DBI::dbConnect(duckdb::duckdb(),dbdir='data/processed/phase4/baseline.duckdb',read_only=TRUE)
+tryCatch({
+  DBI::dbExecute(con,'SET threads=4');DBI::dbExecute(con,"SET memory_limit='3GB'")
+  evidence<-terminal_score_evidence(con);saveRDS(evidence,'data/processed/phase4/terminal_evidence.rds')
+  DBI::dbWriteTable(con,'_terminal',evidence,temporary=TRUE,overwrite=TRUE)
+  scope<-DBI::dbGetQuery(con,"WITH q AS (SELECT game_id,count(*) FILTER(WHERE metric!='points') n_shooting,bool_and(status='reconstructed') FILTER(WHERE metric!='points') shooting_pass,bool_and(status='reconstructed') old_pass FROM historical_event_checks GROUP BY game_id), s AS (SELECT game_id,bool_and(status='match') FILTER(WHERE metric IN ('fga','fgm')) attempt_outcome_match FROM shot_recovery_checks GROUP BY game_id), c AS (SELECT game_id,count(*) candidates,count(*) FILTER(WHERE points_attempted IS NULL) unknown_values FROM shot_recovery_candidates GROUP BY game_id) SELECT e.season,l.espn_game_id game_id,e.game_id nba_game_id,c.candidates,c.unknown_values,e.snapshot_id,e.source_row,e.event_id FROM _terminal e JOIN q USING(game_id) JOIN historical_game_links l ON e.game_id=l.nba_game_id JOIN c ON l.espn_game_id=c.game_id JOIN s ON l.espn_game_id=s.game_id WHERE e.eligible AND q.n_shooting=8 AND q.shooting_pass AND NOT q.old_pass AND s.attempt_outcome_match AND c.unknown_values>0 ORDER BY e.season,l.espn_game_id")
+  utils::write.csv(scope,'docs/phase4/terminal_recovery_scope.csv',row.names=FALSE)
+  summary<-aggregate(scope[c('candidates','unknown_values')],scope['season'],sum);summary$games<-as.integer(table(scope$season)[summary$season]);utils::write.csv(summary,'docs/phase4/terminal_recovery_bounds.csv',row.names=FALSE);print(summary)
+  utils::write.csv(evidence,'data/processed/phase4/terminal_score_evidence.csv',row.names=FALSE)
+},finally=DBI::dbDisconnect(con,shutdown=TRUE))
